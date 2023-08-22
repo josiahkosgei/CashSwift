@@ -1,0 +1,83 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <!--Project was exported from assembly: C:\DEV\maniwa\Coop\Coop\CashSwiftDeposit\App\UI\6.0\CashSwift.API.CDM.UptimeReportLibrary.dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{131BC10B-192D-41A6-A20C-FB2B47B26834}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>CashSwift.API.CDM.UptimeReportLibrary</AssemblyName>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <RootNamespace>CashSwift.API.CDM.UptimeReportLibrary</RootNamespace>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="netstandard" />
+    <Reference Include="System" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="IUptimeReportConfiguration.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="UptimeReportConfiguration.cs" />
+    <Compile Include="IUptimeReportGenerator.cs" />
+    <Compile Include="UptimeReportGenerator.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Library\CashSwift.Library.Standard\CashSwift.Library.Standard.csproj">
+      <Project>{09280264-40A9-4A75-AAD7-0776E15FFCF8}</Project>
+      <Name>CashSwift.Library.Standard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\UI\CashSwiftUtil\CashSwiftUtil.csproj">
+      <Project>{1AAE4D91-AF86-4D65-971B-14A1ABD60DD5}</Project>
+      <Name>CashSwiftUtil</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\Messaging\CashSwift.API.Messaging\CashSwift.API.Messaging.csproj">
+      <Project>{80BDE422-1B8A-4B6C-8AB2-C69ECE8D93C1}</Project>
+      <Name>CashSwift.API.Messaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CashSwift.API.CDM.Messaging.Reporting.Uptime\CashSwift.API.CDM.Messaging.Reporting.Uptime.csproj">
+      <Project>{9B20AD90-CB4B-477F-B123-43F85E8861FD}</Project>
+      <Name>CashSwift.API.CDM.Messaging.Reporting.Uptime</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CashSwift.API.CDM.Reporting.Uptime.DataAccess\CashSwift.API.CDM.Reporting.Uptime.DataAccess.csproj">
+      <Project>{BF864E7C-72E4-4593-B84F-C72A5006633D}</Project>
+      <Name>CashSwift.API.CDM.Reporting.Uptime.DataAccess</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

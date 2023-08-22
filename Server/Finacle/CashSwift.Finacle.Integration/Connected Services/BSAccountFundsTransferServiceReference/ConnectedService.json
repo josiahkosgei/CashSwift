@@ -1,0 +1,17 @@
+{
+  "ExtendedData": {
+    "inputs": [
+      "../../../../../../../../bak/Financle FT& Acc Validation/Financle FT& Acc Validation/APP.BS.Account.FundsTransfer.SyncPost.4.0.wsdl"
+    ],
+    "collectionTypes": [
+      "System.Array",
+      "System.Collections.Generic.Dictionary`2"
+    ],
+    "namespaceMappings": [
+      "*, BSAccountFundsTransferServiceReference"
+    ],
+    "sync": true,
+    "targetFramework": "net6.0",
+    "typeReuseMode": "All"
+  }
+}

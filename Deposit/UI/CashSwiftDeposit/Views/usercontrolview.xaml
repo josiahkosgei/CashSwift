@@ -1,0 +1,15 @@
+<UserControl x:Class="CashSwiftDeposit.Views.UserControlView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+             mc:Ignorable="d"
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+             xmlns:local="clr-namespace:CashSwiftDeposit.Views"
+             xmlns:cal="clr-namespace:Caliburn.Micro;assembly=Caliburn.Micro.Core"
+             xmlns:uc="clr-namespace:CashSwiftDeposit.UserControls" xmlns:viewmodels="clr-namespace:CashSwiftDeposit.ViewModels" d:DataContext="{d:DesignInstance Type=viewmodels:UserControlViewModel}">
+    <DockPanel>
+        <uc:ScreenHeader DockPanel.Dock="Top"/>
+        <TextBlock x:Name="ScreenTitle" DockPanel.Dock="Top" Style="{StaticResource Heading1}" Text="User Form"/>
+        <ContentControl x:Name="ActiveItem"/>
+    </DockPanel>
+</UserControl>

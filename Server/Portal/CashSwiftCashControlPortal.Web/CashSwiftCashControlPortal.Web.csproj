@@ -1,0 +1,331 @@
+﻿<Project ToolsVersion="15.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props" Condition="Exists('..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" />
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>
+    </ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{40E97D21-4705-447D-B263-86696B00A203}</ProjectGuid>
+    <ProjectTypeGuids>{349c5851-65df-11da-9384-00065b846f21};{fae04ec0-301f-11d3-bf4b-00c04f79efbc}</ProjectTypeGuids>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CashSwiftCashControlPortal.Web</RootNamespace>
+    <AssemblyName>CashSwiftCashControlPortal.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <UseIISExpress>true</UseIISExpress>
+    <Use64BitIISExpress />
+    <IISExpressSSLPort>44348</IISExpressSSLPort>
+    <IISExpressAnonymousAuthentication />
+    <IISExpressWindowsAuthentication />
+    <IISExpressUseClassicPipelineMode />
+    <UseGlobalApplicationHostFile />
+    <NuGetPackageImportStamp>
+    </NuGetPackageImportStamp>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v17.1, Version=17.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.AuditTrail.v17.1, Version=17.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.ConditionalAppearance.v17.1, Version=17.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.HtmlPropertyEditor.Web.v17.1, Version=17.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.Images.v17.1, Version=17.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\DevExpress.ExpressApp.Images.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Security.v17.1, Version=17.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\DevExpress.ExpressApp.Security.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Security.Xpo.v17.1, Version=17.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\DevExpress.ExpressApp.Security.Xpo.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.TreeListEditors.v17.1, Version=17.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.TreeListEditors.Web.v17.1, Version=17.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.v17.1, Version=17.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="DevExpress.ExpressApp.Validation.v17.1, Version=17.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\DevExpress.ExpressApp.Validation.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Validation.Web.v17.1, Version=17.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.Web.v17.1, Version=17.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.ExpressApp.Xpo.v17.1, Version=17.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL" />
+    <Reference Include="DevExpress.Persistent.Base.v17.1, Version=17.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\DevExpress.Persistent.Base.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Persistent.BaseImpl.v17.1, Version=17.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\DevExpress.Persistent.BaseImpl.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v17.1.Core, Version=17.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\DevExpress.Printing.v17.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v17.1.Core, Version=17.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\DevExpress.RichEdit.v17.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v17.1, Version=17.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\DevExpress.Utils.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v17.1.UI, Version=17.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\DevExpress.Utils.v17.1.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxHtmlEditor.v17.1, Version=17.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\DevExpress.Web.ASPxHtmlEditor.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxSpellChecker.v17.1, Version=17.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\DevExpress.Web.ASPxSpellChecker.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxThemes.v17.1, Version=17.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\DevExpress.Web.ASPxThemes.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxTreeList.v17.1, Version=17.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\DevExpress.Web.ASPxTreeList.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.Resources.v17.1, Version=17.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\DevExpress.Web.Resources.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.v17.1, Version=17.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a, processorArchitecture=MSIL">
+      <SpecificVersion>False</SpecificVersion>
+      <HintPath>Lib\DevExpress.Web.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v17.1, Version=17.1.17.0, Culture=neutral, PublicKeyToken=b88d1754d700e49a" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NLog.5.1.0\lib\net46\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Web.DynamicData" />
+    <Reference Include="System.Web.Entity" />
+    <Reference Include="System.Web.ApplicationServices" />
+    <Reference Include="System.ComponentModel.DataAnnotations" />
+    <Reference Include="System" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="System.Web.Extensions" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.Web.Services" />
+    <Reference Include="System.EnterpriseServices" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.CodeDom.Providers.DotNetCompilerPlatform">
+      <HintPath>..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\lib\net45\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Default.aspx" />
+    <EmbeddedResource Include="CashSwiftCashControlPortalAspNetApplication.resx">
+      <DependentUpon>CashSwiftCashControlPortalAspNetApplication.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dll.licenses">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Content Include="Error.aspx" />
+    <Content Include="Global.asax" />
+    <Content Include="Images\disable_user.png" />
+    <Content Include="Images\disable_user_12x12.png" />
+    <Content Include="Images\disable_user_32x32.png" />
+    <Content Include="Images\disable_user_48x48.png" />
+    <Content Include="Images\enable_user.png" />
+    <Content Include="Images\enable_user_12x12.png" />
+    <Content Include="Images\enable_user_32x32.png" />
+    <Content Include="Images\enable_user_48x48.png" />
+    <Content Include="Images\locked.png" />
+    <Content Include="Images\locked_12x12.png" />
+    <Content Include="Images\locked_32x32.png" />
+    <Content Include="Images\locked_48x48.png" />
+    <Content Include="Images\login.png" />
+    <Content Include="Images\Logo-Bak.png" />
+    <Content Include="Images\Logo.png" />
+    <Content Include="Images\logoff.png" />
+    <Content Include="Images\logoff_12x12.png" />
+    <Content Include="Images\logoff_32x32.png" />
+    <Content Include="Images\logoff_48x48.png" />
+    <Content Include="Images\logon.png" />
+    <Content Include="Images\logon_12x12.png" />
+    <Content Include="Images\logon_32x32.png" />
+    <Content Include="Images\logon_48x48.png" />
+    <Content Include="Images\unlocked.png" />
+    <Content Include="Images\unlocked_12x12.png" />
+    <Content Include="Images\unlocked_32x32.png" />
+    <Content Include="Images\unlocked_48x48.png" />
+    <Content Include="Images\unlocked_device.png" />
+    <Content Include="Images\unlocked_device_12x12.png" />
+    <Content Include="Images\unlocked_device_32x32.png" />
+    <Content Include="Images\unlocked_device_48x48.png" />
+    <Content Include="Lib\DevExpress.Data.v17.1.dll" />
+    <Content Include="Lib\DevExpress.ExpressApp.AuditTrail.v17.1.dll" />
+    <Content Include="Lib\DevExpress.ExpressApp.ConditionalAppearance.v17.1.dll" />
+    <Content Include="Lib\DevExpress.ExpressApp.HtmlPropertyEditor.Web.v17.1.dll" />
+    <Content Include="Lib\DevExpress.ExpressApp.Images.v17.1.dll" />
+    <Content Include="Lib\DevExpress.ExpressApp.Security.v17.1.dll" />
+    <Content Include="Lib\DevExpress.ExpressApp.Security.Xpo.v17.1.dll" />
+    <Content Include="Lib\DevExpress.ExpressApp.TreeListEditors.v17.1.dll" />
+    <Content Include="Lib\DevExpress.ExpressApp.TreeListEditors.Web.v17.1.dll" />
+    <Content Include="Lib\DevExpress.ExpressApp.v17.1.dll" />
+    <Content Include="Lib\DevExpress.ExpressApp.Validation.v17.1.dll" />
+    <Content Include="Lib\DevExpress.ExpressApp.Validation.Web.v17.1.dll" />
+    <Content Include="Lib\DevExpress.ExpressApp.Web.v17.1.dll" />
+    <Content Include="Lib\DevExpress.ExpressApp.Xpo.v17.1.dll" />
+    <Content Include="Lib\DevExpress.Persistent.Base.v17.1.dll" />
+    <Content Include="Lib\DevExpress.Persistent.BaseImpl.v17.1.dll" />
+    <Content Include="Lib\DevExpress.Printing.v17.1.Core.dll" />
+    <Content Include="Lib\DevExpress.RichEdit.v17.1.Core.dll" />
+    <Content Include="Lib\DevExpress.Utils.v17.1.dll" />
+    <Content Include="Lib\DevExpress.Utils.v17.1.UI.dll" />
+    <Content Include="Lib\DevExpress.Web.ASPxHtmlEditor.v17.1.dll" />
+    <Content Include="Lib\DevExpress.Web.ASPxSpellChecker.v17.1.dll" />
+    <Content Include="Lib\DevExpress.Web.ASPxThemes.v17.1.dll" />
+    <Content Include="Lib\DevExpress.Web.ASPxTreeList.v17.1.dll" />
+    <Content Include="Lib\DevExpress.Web.Resources.v17.1.dll" />
+    <Content Include="Lib\DevExpress.Web.v17.1.dll" />
+    <Content Include="Lib\DevExpress.Xpo.v17.1.dll" />
+    <Content Include="Lib\NLog.dll" />
+    <Content Include="Login.aspx" />
+    <Content Include="Properties\PublishProfiles\FolderProfile.pubxml.user" />
+    <Content Include="Web.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CashSwiftCashControlPortalAspNetApplication.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Default.aspx.cs">
+      <DependentUpon>Default.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Error.aspx.cs">
+      <DependentUpon>Error.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Global.asax.cs">
+      <DependentUpon>Global.asax</DependentUpon>
+    </Compile>
+    <Compile Include="Login.aspx.cs">
+      <DependentUpon>Login.aspx</DependentUpon>
+      <SubType>ASPXCodeBehind</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Properties\Settings1.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTimeSharedInput>True</DesignTimeSharedInput>
+      <DependentUpon>Settings.settings</DependentUpon>
+    </Compile>
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="Model.Desktop.xafml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model.Tablet.xafml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Model.xafml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <Content Include="NLog.config" />
+    <None Include="packages.config" />
+    <None Include="Properties\PublishProfiles\FolderProfile.pubxml" />
+    <None Include="Properties\Settings.settings">
+      <Generator>SettingsSingleFileGenerator</Generator>
+      <LastGenOutput>Settings1.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Web.Debug.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+    <None Include="Web.Release.config">
+      <DependentUpon>Web.config</DependentUpon>
+    </None>
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="App_Data\" />
+    <Folder Include="Models\" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Deposit\Library\CashSwift.Library.Standard\CashSwift.Library.Standard.csproj">
+      <Project>{09280264-40a9-4a75-aad7-0776e15ffcf8}</Project>
+      <Name>CashSwift.Library.Standard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Deposit\UI\CashSwiftUtil\CashSwiftUtil.csproj">
+      <Project>{1aae4d91-af86-4d65-971b-14a1abd60dd5}</Project>
+      <Name>CashSwiftUtil</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CashSwiftCashControlPortal.Module.Web\CashSwiftCashControlPortal.Module.Web.csproj">
+      <Project>{2ef7deff-0ee1-4eb0-931c-7d49412f6571}</Project>
+      <Name>CashSwiftCashControlPortal.Module.Web</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\CashSwiftCashControlPortal.Module\CashSwiftCashControlPortal.Module.csproj">
+      <Project>{baa2f5f3-66d9-468f-ae87-f68741663bdb}</Project>
+      <Name>CashSwiftCashControlPortal.Module</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <PropertyGroup>
+    <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>
+    <VSToolsPath Condition="'$(VSToolsPath)' == ''">$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v$(VisualStudioVersion)</VSToolsPath>
+  </PropertyGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+  <Import Project="$(VSToolsPath)\WebApplications\Microsoft.WebApplication.targets" Condition="'$(VSToolsPath)' != ''" />
+  <Import Project="$(MSBuildExtensionsPath32)\Microsoft\VisualStudio\v10.0\WebApplications\Microsoft.WebApplication.targets" Condition="false" />
+  <ProjectExtensions>
+    <VisualStudio>
+      <FlavorProperties GUID="{349c5851-65df-11da-9384-00065b846f21}">
+        <WebProjectProperties>
+          <UseIIS>True</UseIIS>
+          <AutoAssignPort>True</AutoAssignPort>
+          <DevelopmentServerPort>49430</DevelopmentServerPort>
+          <DevelopmentServerVPath>/</DevelopmentServerVPath>
+          <IISUrl>https://localhost:44348/</IISUrl>
+          <NTLMAuthentication>False</NTLMAuthentication>
+          <UseCustomServer>False</UseCustomServer>
+          <CustomServerUrl>
+          </CustomServerUrl>
+          <SaveServerSettingsInUserFile>False</SaveServerSettingsInUserFile>
+        </WebProjectProperties>
+      </FlavorProperties>
+    </VisualStudio>
+  </ProjectExtensions>
+  <Target Name="EnsureNuGetPackageBuildImports" BeforeTargets="PrepareForBuild">
+    <PropertyGroup>
+      <ErrorText>This project references NuGet package(s) that are missing on this computer. Use NuGet Package Restore to download them.  For more information, see http://go.microsoft.com/fwlink/?LinkID=322105. The missing file is {0}.</ErrorText>
+    </PropertyGroup>
+    <Error Condition="!Exists('..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props')" Text="$([System.String]::Format('$(ErrorText)', '..\..\..\packages\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.2.0.1\build\net46\Microsoft.CodeDom.Providers.DotNetCompilerPlatform.props'))" />
+  </Target>
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

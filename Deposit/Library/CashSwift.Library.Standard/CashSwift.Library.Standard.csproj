@@ -1,0 +1,179 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003" ToolsVersion="12.0">
+  <!--Project was exported from assembly: C:\DEV\maniwa\Coop\Coop\CashSwiftDeposit\App\UI\6.0\CashSwift.Library.Standard.dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{09280264-40A9-4A75-AAD7-0776E15FFCF8}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>CashSwift.Library.Standard</AssemblyName>
+    <ApplicationVersion>1.0.0.0</ApplicationVersion>
+    <RootNamespace>CashSwift.Library.Standard</RootNamespace>
+    <FileUpgradeFlags>
+    </FileUpgradeFlags>
+    <UpgradeBackupLocation>
+    </UpgradeBackupLocation>
+    <OldToolsVersion>2.0</OldToolsVersion>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+    <CodeAnalysisRuleSet>MinimumRecommendedRules.ruleset</CodeAnalysisRuleSet>
+    <Prefer32Bit>false</Prefer32Bit>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Configuration.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Primitives.6.0.0\lib\net461\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="netstandard" />
+    <Reference Include="NLog, Version=5.0.0.0, Culture=neutral, PublicKeyToken=5120e14c03d0593c, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\NLog.5.0.2\lib\net46\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Configuration" />
+    <Reference Include="System.IO.Compression" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Statuses\IControllerStatus.cs" />
+    <Compile Include="Utilities\ExtentionMethods.cs" />
+    <Compile Include="Utilities\DictionaryExtensions.cs" />
+    <Compile Include="Utilities\HierarchyMethods.cs" />
+    <Compile Include="Utilities\GuidExt.cs" />
+    <Compile Include="Utilities\MailMessageExt.cs" />
+    <Compile Include="Utilities\ByteExtentions.cs" />
+    <Compile Include="Utilities\CharExtentions.cs" />
+    <Compile Include="Utilities\ByteArrayExtentions.cs" />
+    <Compile Include="Utilities\StringCipher.cs" />
+    <Compile Include="Utilities\StringExtensions.cs" />
+    <Compile Include="Utilities\FileIOExtentions.cs" />
+    <Compile Include="Utilities\ListExtentions.cs" />
+    <Compile Include="Utilities\ExceptionExtentions.cs" />
+    <Compile Include="Utilities\DateTimeExtentions.cs" />
+    <Compile Include="Utilities\Mathf.cs" />
+    <Compile Include="Utilities\RegexUtilities.cs" />
+    <Compile Include="Statuses\CashSwiftException.cs" />
+    <Compile Include="Statuses\ApplicationState.cs" />
+    <Compile Include="Statuses\ApplicationErrorConst.cs" />
+    <Compile Include="Statuses\CommonClasses.cs" />
+    <Compile Include="Statuses\UptimeModeType.cs" />
+    <Compile Include="Statuses\PCInformation.cs" />
+    <Compile Include="Statuses\UserLockType.cs" />
+    <Compile Include="Statuses\XMLSerialization.cs" />
+    <Compile Include="Statuses\CashSwiftDeviceState.cs" />
+    <Compile Include="Statuses\CoreBankingStatus.cs" />
+    <Compile Include="Statuses\ControllerStatus.cs" />
+    <Compile Include="Statuses\ControllerState.cs" />
+    <Compile Include="Statuses\DeviceState.cs" />
+    <Compile Include="Statuses\DeviceNoteAcceptorType.cs" />
+    <Compile Include="Statuses\DeviceNoteAcceptor.cs" />
+    <Compile Include="Statuses\BagLevel.cs" />
+    <Compile Include="Statuses\BagState.cs" />
+    <Compile Include="Statuses\DeviceBag.cs" />
+    <Compile Include="Statuses\DeviceSensorType.cs" />
+    <Compile Include="Statuses\DeviceSensorState.cs" />
+    <Compile Include="Statuses\DeviceSensorDoor.cs" />
+    <Compile Include="Statuses\DeviceSensorBag.cs" />
+    <Compile Include="Statuses\DeviceSensor.cs" />
+    <Compile Include="Statuses\EscrowType.cs" />
+    <Compile Include="Statuses\EscrowStatus.cs" />
+    <Compile Include="Statuses\EscrowPosition.cs" />
+    <Compile Include="Statuses\DeviceEscrow.cs" />
+    <Compile Include="Statuses\ControllerDeviceTransaction.cs" />
+    <Compile Include="Statuses\DeviceTransactionStatus.cs" />
+    <Compile Include="Statuses\DeviceTransactionType.cs" />
+    <Compile Include="Statuses\DeviceStateChangedEventArgs.cs" />
+    <Compile Include="Statuses\ControllerStateChangedEventArgs.cs" />
+    <Compile Include="Statuses\DeviceStatusChangedEventArgs.cs" />
+    <Compile Include="Statuses\DeviceManagerState.cs" />
+    <Compile Include="Statuses\KeyboardType.cs" />
+    <Compile Include="Statuses\ErrorLevel.cs" />
+    <Compile Include="Statuses\AccountPermissionListType.cs" />
+    <Compile Include="Statuses\StandardResult.cs" />
+    <Compile Include="Statuses\StringResult.cs" />
+    <Compile Include="Statuses\DepositBag.cs" />
+    <Compile Include="Statuses\ControllerStatusResult.cs" />
+    <Compile Include="Statuses\DenominationResult.cs" />
+    <Compile Include="Statuses\Denomination.cs" />
+    <Compile Include="Statuses\DenominationItemType.cs" />
+    <Compile Include="Statuses\DenominationItem.cs" />
+    <Compile Include="Statuses\CITResultBody.cs" />
+    <Compile Include="Statuses\CITResult.cs" />
+    <Compile Include="Statuses\DropResultResult.cs" />
+    <Compile Include="Statuses\DropMode.cs" />
+    <Compile Include="Statuses\TransactionStatusResponseResult.cs" />
+    <Compile Include="Statuses\TransactionStatusResponseData.cs" />
+    <Compile Include="Statuses\TransactionResultResult.cs" />
+    <Compile Include="Statuses\TransactionResultType.cs" />
+    <Compile Include="Statuses\TransactionResultStatus.cs" />
+    <Compile Include="Statuses\DropStatusResult.cs" />
+    <Compile Include="Statuses\DropStatusResultData.cs" />
+    <Compile Include="Statuses\DropStatusResultStatus.cs" />
+    <Compile Include="Statuses\DeviceTransaction.cs" />
+    <Compile Include="Statuses\DeviceDrop.cs" />
+    <Compile Include="Statuses\DeviceTransactionResult.cs" />
+    <Compile Include="Statuses\DCErrorConst.cs" />
+    <Compile Include="Security\APIHashing.cs" />
+    <Compile Include="Security\HMACDelegatingHandler.cs" />
+    <Compile Include="Security\PasswordGenerator.cs" />
+    <Compile Include="Security\PasswordPolicyItems.cs" />
+    <Compile Include="Security\PasswordPolicyResult.cs" />
+    <Compile Include="Security\PasswordPolicyManager.cs" />
+    <Compile Include="Security\InvalidHashException.cs" />
+    <Compile Include="Security\CannotPerformOperationException.cs" />
+    <Compile Include="Security\PasswordStorage.cs" />
+    <Compile Include="Security\CashSwiftHashing.cs" />
+    <Compile Include="Security\UserRoleHMACDelegatingHandler.cs" />
+    <Compile Include="Logging\CashSwiftAPILogger.cs" />
+    <Compile Include="Logging\CashSwiftLogger.cs" />
+    <Compile Include="Logging\CashSwiftWebLogger.cs" />
+    <Compile Include="Logging\ICashSwiftAPILogger.cs" />
+    <Compile Include="Logging\ICashSwiftLogger.cs" />
+    <Compile Include="Logging\ICashSwiftWebLogger.cs" />
+    <Compile Include="AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildBinPath)\Microsoft.CSharp.targets" />
+</Project>

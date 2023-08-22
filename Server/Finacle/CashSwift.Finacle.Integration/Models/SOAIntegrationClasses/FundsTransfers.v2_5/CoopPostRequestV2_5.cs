@@ -1,0 +1,28 @@
+﻿// CashSwift.Integrations.CooperativeBank.SOAIntegrationClasses.FundsTransfers.v2_5.CoopPostRequestV2_5
+using System.Globalization;
+using CashSwift.API.Messaging.Integration.Transactions;
+using CashSwift.Finacle.Integration.CQRS.Helpers;
+
+namespace CashSwift.Finacle.Integration.Models.SOAIntegrationClasses.FundsTransfers.v2_5
+{
+    public class CoopPostRequestV2_5 : CoopFundsTransferRequestBase
+    {
+        private PostConfiguration PostConfiguration;
+
+        public CoopPostRequestV2_5(PostTransactionRequest request, string branch_source, string tx_narration, PostConfiguration postConfiguration)
+        {
+            PostConfiguration = postConfiguration;
+            RequestUUID = request.MessageID;
+            MessageDateTime = request.MessageDateTime;
+            string text = request.Transaction.CreditAccount.Currency.ToUpperInvariant();
+            string text2 = request.Transaction.DateTime.ToString(PostConfiguration.DateFormat, CultureInfo.InvariantCulture);
+            string text3 = request.Transaction.Amount.ToString("F");
+            string text4 = null;
+            if (!string.IsNullOrWhiteSpace(PostConfiguration.Realm))
+            {
+                text4 = "<mes:Realm>" + PostConfiguration.Realm + "</mes:Realm>";
+            }
+            RawXML = "<soapenv:Envelope xmlns:soapenv=\"http://schemas.xmlsoap.org/soap/envelope/\" xmlns:mes=\"urn://co-opbank.co.ke/CommonServices/Data/Message/MessageHeader\" xmlns:com=\"urn://co-opbank.co.ke/CommonServices/Data/Common\" xmlns:ns=\"urn://co-opbank.co.ke/Banking/CanonicalDataModel/FundsTransfer/2.5\">\r\n   <soapenv:Header>\r\n      <mes:RequestHeader>\r\n         <!--Optional:-->\r\n         <com:CreationTimestamp>" + MessageDateTime.ToString(PostConfiguration.DateFormat, CultureInfo.InvariantCulture) + "</com:CreationTimestamp>\r\n         <!--Optional:-->\r\n         <com:CorrelationID>" + RequestUUID + "</com:CorrelationID>\r\n         <mes:MessageID>" + Guid.NewGuid().ToString().ToUpperInvariant() + "</mes:MessageID>\r\n         <!--Optional:-->\r\n         <mes:Credentials>\r\n            <!--Optional:-->\r\n            <mes:SystemCode>" + PostConfiguration.SystemCode + "</mes:SystemCode>\r\n            <!--Optional:-->\r\n            <mes:Username>" + PostConfiguration.Username + "</mes:Username>\r\n            <!--Optional:-->\r\n            <mes:Password>" + PostConfiguration.Password + "</mes:Password>\r\n            <!--Optional:-->\r\n            " + text4 + "\r\n         </mes:Credentials>\r\n      </mes:RequestHeader>\r\n   </soapenv:Header>\r\n   <soapenv:Body>\r\n      <ns:FundsTransferRequest>\r\n         <ns:FundsTransferReqData>\r\n            <!--Optional:-->\r\n            <ns:OperationParameters>\r\n               <ns:MessageType>NORMAL</ns:MessageType>\r\n               <ns:UserID>" + PostConfiguration.UserID + "</ns:UserID>\r\n               <ns:ValueDate>" + text2 + "</ns:ValueDate>\r\n               <ns:ExchangeRateDetails>\r\n                  <ns:FromCurrency>" + text + "</ns:FromCurrency>\r\n                  <ns:ExchangeRate>1.00</ns:ExchangeRate>\r\n                  <ns:ExchangeRateFlag>M</ns:ExchangeRateFlag>\r\n                  <ns:ToCurrency>" + text + "</ns:ToCurrency>\r\n               </ns:ExchangeRateDetails>\r\n            </ns:OperationParameters>\r\n            <ns:TransactionItems>\r\n               <!--1 or more repetitions:-->\r\n               <ns:TransactionItem>\r\n                  <ns:TransactionItemKey>" + request.DeviceReferenceNumber + "1</ns:TransactionItemKey>\r\n                  <ns:AccountNumber>" + request.Transaction.DebitAccount.AccountNumber + "</ns:AccountNumber>\r\n                  <ns:DebitCreditFlag>D</ns:DebitCreditFlag>\r\n                  <ns:TransactionAmount>" + text3 + "</ns:TransactionAmount>\r\n                  <ns:TransactionCurrency>" + text + "</ns:TransactionCurrency>\r\n                  <ns:TransactionReference>" + request.DeviceReferenceNumber + "</ns:TransactionReference>\r\n                  <ns:Narrative>" + tx_narration + "</ns:Narrative>\r\n                  <ns:BaseEquivalent>1</ns:BaseEquivalent>\r\n                  <ns:SourceBranch>" + branch_source + "</ns:SourceBranch>\r\n                  <ns:TransactionCode>" + PostConfiguration.TransactionCode + "</ns:TransactionCode>\r\n               </ns:TransactionItem>\r\n               <ns:TransactionItem>\r\n                  <ns:TransactionItemKey>" + request.DeviceReferenceNumber + "2</ns:TransactionItemKey>\r\n                  <ns:AccountNumber>" + request.Transaction.CreditAccount.AccountNumber + "</ns:AccountNumber>\r\n                  <ns:DebitCreditFlag>C</ns:DebitCreditFlag>\r\n                  <ns:TransactionAmount>" + text3 + "</ns:TransactionAmount>\r\n                  <ns:TransactionCurrency>" + text + "</ns:TransactionCurrency>\r\n                  <ns:TransactionReference>" + request.DeviceReferenceNumber + "</ns:TransactionReference>\r\n                  <ns:Narrative>" + tx_narration + "</ns:Narrative>\r\n                  <ns:BaseEquivalent>1</ns:BaseEquivalent>\r\n                  <ns:SourceBranch>" + branch_source + "</ns:SourceBranch>\r\n                  <ns:TransactionCode>" + PostConfiguration.TransactionCode + "</ns:TransactionCode>\r\n               </ns:TransactionItem>\r\n            </ns:TransactionItems>\r\n         </ns:FundsTransferReqData>\r\n      </ns:FundsTransferRequest>\r\n   </soapenv:Body>\r\n</soapenv:Envelope>";
+        }
+    }
+}

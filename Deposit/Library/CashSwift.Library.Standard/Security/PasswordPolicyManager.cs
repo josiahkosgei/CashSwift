@@ -1,0 +1,84 @@
+﻿// Security.PasswordPolicyManager
+
+
+using System;
+using System.Collections.Generic;
+using System.Text.RegularExpressions;
+
+namespace CashSwift.Library.Standard.Security
+{
+    public class PasswordPolicyManager
+    {
+        public static IList<PasswordPolicyResult> Validate(
+          string Password,
+          PasswordPolicyItems Policy)
+        {
+            IList<PasswordPolicyResult> passwordPolicyResultList = new List<PasswordPolicyResult>();
+            if (Password.Length < Policy.Minimum_Length)
+                passwordPolicyResultList.Add(PasswordPolicyResult.MINIMUM_LENGTH);
+            if (UpperCaseCount(Password) < Policy.Upper_Case_length)
+                passwordPolicyResultList.Add(PasswordPolicyResult.UPPER_CASE_LENGTH);
+            if (LowerCaseCount(Password) < Policy.Lower_Case_length)
+                passwordPolicyResultList.Add(PasswordPolicyResult.LOWER_CASE_LENGTH);
+            if (NumericCount(Password) < Policy.Numeric_length)
+                passwordPolicyResultList.Add(PasswordPolicyResult.NUMERIC_LENGTH);
+            if (NonAlphaCount(Password) < Policy.Special_length)
+                passwordPolicyResultList.Add(PasswordPolicyResult.SPECIAL_LENGTH);
+            return passwordPolicyResultList.Count > 0 ? passwordPolicyResultList : null;
+        }
+
+        public static int UpperCaseCount(string Password)
+        {
+            try
+            {
+                return Regex.Matches(Password, "[A-Z]").Count;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
+        public static int LowerCaseCount(string Password)
+        {
+            try
+            {
+                return Regex.Matches(Password, "[a-z]").Count;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
+        public static int NumericCount(string Password)
+        {
+            try
+            {
+                return Regex.Matches(Password, "[0-9]").Count;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
+        public static int NonAlphaCount(string Password)
+        {
+            try
+            {
+                return Regex.Matches(Password, "[^0-9a-zA-Z\\._]").Count;
+            }
+            catch (Exception ex)
+            {
+                return 0;
+            }
+        }
+
+        public static int SpecificSpecialCount(string Password, string specials)
+        {
+            string pattern = string.Format("/^[{0}\\w\\s]*$/", specials);
+            return Regex.Matches(Password, pattern).Count;
+        }
+    }
+}

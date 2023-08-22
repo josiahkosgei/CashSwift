@@ -1,0 +1,420 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{BAA2F5F3-66D9-468F-AE87-F68741663BDB}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CashSwiftCashControlPortal.Module</RootNamespace>
+    <AssemblyName>CashSwiftCashControlPortal.Module</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.Data.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.AuditTrail.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.ExpressApp.AuditTrail.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.ConditionalAppearance.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.ExpressApp.ConditionalAppearance.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.HtmlPropertyEditor.Web.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.ExpressApp.HtmlPropertyEditor.Web.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Images.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.ExpressApp.Images.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Security.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.ExpressApp.Security.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Security.Xpo.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.ExpressApp.Security.Xpo.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.TreeListEditors.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.ExpressApp.TreeListEditors.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.TreeListEditors.Web.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.ExpressApp.TreeListEditors.Web.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.ExpressApp.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Validation.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.ExpressApp.Validation.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Validation.Web.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.ExpressApp.Validation.Web.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Web.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.ExpressApp.Web.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Xpo.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.ExpressApp.Xpo.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Persistent.Base.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.Persistent.Base.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Persistent.BaseImpl.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.Persistent.BaseImpl.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v17.1.Core">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.Printing.v17.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v17.1.Core">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.RichEdit.v17.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.Utils.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v17.1.UI">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.Utils.v17.1.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxHtmlEditor.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.Web.ASPxHtmlEditor.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxSpellChecker.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.Web.ASPxSpellChecker.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxThemes.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.Web.ASPxThemes.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxTreeList.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.Web.ASPxTreeList.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.Resources.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.Web.Resources.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.Web.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.Xpo.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Configuration.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=7.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Primitives.7.0.0\lib\net462\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Newtonsoft.Json.13.0.2\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.DirectoryServices.Protocols" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Memory, Version=4.0.1.2, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Memory.4.5.5\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Web" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="BusinessObjects\Authentication\CashSwift\Activity.cs" />
+    <Compile Include="BusinessObjects\Authentication\CashSwift\APIUser.cs" />
+    <Compile Include="BusinessObjects\Authentication\CashSwift\ApplicationUserLoginDetail.cs" />
+    <Compile Include="BusinessObjects\Authentication\CashSwift\DeviceLogin.cs" />
+    <Compile Include="BusinessObjects\Authentication\CashSwift\DeviceRole.cs" />
+    <Compile Include="BusinessObjects\Authentication\CashSwift\LoginAction.cs" />
+    <Compile Include="BusinessObjects\Authentication\CashSwift\PasswordHistory.cs" />
+    <Compile Include="BusinessObjects\Authentication\CashSwift\PasswordPolicy.cs" />
+    <Compile Include="BusinessObjects\Authentication\CashSwift\Permission.cs" />
+    <Compile Include="BusinessObjects\Authentication\CashSwift\UserGroup.cs" />
+    <Compile Include="BusinessObjects\Authentication\CashSwift\UserLockLogEntry.cs" />
+    <Compile Include="BusinessObjects\Authentication\CashSwift\UserLockType.cs" />
+    <Compile Include="BusinessObjects\Authentication\CashSwift\WebPortalLoginLogEntry.cs" />
+    <Compile Include="BusinessObjects\Authentication\CashSwift\WebUserLoginCount.cs" />
+    <Compile Include="BusinessObjects\Authentication\CashSwift\WebUserPasswordHistory.cs" />
+    <Compile Include="BusinessObjects\Authentication\XAF\CashSwiftAuthentication.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="BusinessObjects\Authentication\XAF\CashSwiftLogonParameters.cs" />
+    <Compile Include="BusinessObjects\Authentication\XAF\Permissions\CashSwiftPermissionRequestProcessorBase.cs" />
+    <Compile Include="BusinessObjects\Monitoring\CashSwiftCommunicationServiceStatus.cs" />
+    <Compile Include="CashSwiftCashControlPortalModule.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CashSwiftNewObjectController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="BusinessObjects\ApplicationConfiguration\Bank.cs" />
+    <Compile Include="BusinessObjects\ApplicationConfiguration\Branch.cs" />
+    <Compile Include="BusinessObjects\ApplicationConfiguration\Config.cs" />
+    <Compile Include="BusinessObjects\ApplicationConfiguration\ConfigCategory.cs" />
+    <Compile Include="BusinessObjects\ApplicationConfiguration\ConfigGroup.cs" />
+    <Compile Include="BusinessObjects\ApplicationConfiguration\Country.cs" />
+    <Compile Include="BusinessObjects\ApplicationConfiguration\Currency.cs" />
+    <Compile Include="BusinessObjects\ApplicationConfiguration\CurrencyList.cs" />
+    <Compile Include="BusinessObjects\ApplicationConfiguration\CurrencyList_Currency.cs" />
+    <Compile Include="BusinessObjects\ApplicationConfiguration\Language.cs" />
+    <Compile Include="BusinessObjects\ApplicationConfiguration\LanguageList.cs" />
+    <Compile Include="BusinessObjects\ApplicationConfiguration\LanguageList_Language.cs" />
+    <Compile Include="BusinessObjects\Authentication\XAF\ApplicationUser.cs" />
+    <Compile Include="BusinessObjects\Authentication\XAF\ApplicationUserChangePassword.cs" />
+    <Compile Include="BusinessObjects\Authentication\XAF\ApplicationUserMode.cs" />
+    <Compile Include="BusinessObjects\Authentication\XAF\Permissions\CheckerPermission.cs" />
+    <Compile Include="BusinessObjects\Authentication\XAF\Permissions\CheckerPermissionRequest.cs" />
+    <Compile Include="BusinessObjects\Authentication\XAF\Permissions\CheckerPermissionRequestProcessor.cs" />
+    <Compile Include="BusinessObjects\Authentication\XAF\Permissions\MakerPermission.cs" />
+    <Compile Include="BusinessObjects\Authentication\XAF\Permissions\MakerPermissionRequest.cs" />
+    <Compile Include="BusinessObjects\Authentication\XAF\Permissions\MakerPermissionRequestProcessor.cs" />
+    <Compile Include="BusinessObjects\Authentication\XAF\Permissions\MakerTypePermissionObject.cs" />
+    <Compile Include="BusinessObjects\Authentication\XAF\WebPortalRole.cs" />
+    <Compile Include="BusinessObjects\CDM_API\GenerateUptimeReportPopupWindowParams.cs" />
+    <Compile Include="BusinessObjects\CITs\CIT.cs" />
+    <Compile Include="BusinessObjects\CITs\CITDenominations.cs" />
+    <Compile Include="BusinessObjects\CITs\CITPosting.cs" />
+    <Compile Include="BusinessObjects\CITs\CITPostingStatus.cs" />
+    <Compile Include="BusinessObjects\CITs\CITPrintout.cs" />
+    <Compile Include="BusinessObjects\CITs\CITTransaction.cs" />
+    <Compile Include="BusinessObjects\CoreBanking\Account.cs" />
+    <Compile Include="BusinessObjects\CoreBanking\AccountPermission.cs" />
+    <Compile Include="BusinessObjects\CoreBanking\AccountPermissionItem.cs" />
+    <Compile Include="BusinessObjects\CoreBanking\AccountPermissionListType.cs" />
+    <Compile Include="BusinessObjects\DepositorServerV2\ConnectionHelper.cs" />
+    <Compile Include="BusinessObjects\Devices\Device.cs" />
+    <Compile Include="BusinessObjects\Devices\DeviceCITSuspenseAccount.cs" />
+    <Compile Include="BusinessObjects\Devices\DeviceConfig.cs" />
+    <Compile Include="BusinessObjects\Devices\DeviceLock.cs" />
+    <Compile Include="BusinessObjects\Devices\DevicePrinter.cs" />
+    <Compile Include="BusinessObjects\Devices\DeviceSuspenseAccount.cs" />
+    <Compile Include="BusinessObjects\Devices\DeviceType.cs" />
+    <Compile Include="BusinessObjects\Exceptions\EscrowJam.cs" />
+    <Compile Include="BusinessObjects\MakerChecker\IMakerChecker.cs" />
+    <Compile Include="BusinessObjects\MakerChecker\MakerCheckerDecision.cs" />
+    <Compile Include="BusinessObjects\MakerChecker\MakerCheckerPopupWindowParams.cs" />
+    <Compile Include="BusinessObjects\Monitoring\ApplicationLog.cs" />
+    <Compile Include="BusinessObjects\Monitoring\DeviceStatus.cs" />
+    <Compile Include="BusinessObjects\Monitoring\DeviceStatusLevel.cs" />
+    <Compile Include="BusinessObjects\Monitoring\PrinterStatus.cs" />
+    <Compile Include="BusinessObjects\Notification\AlertAttachmentType.cs" />
+    <Compile Include="BusinessObjects\Notification\AlertMessageRegistry.cs" />
+    <Compile Include="BusinessObjects\Notification\AlertMessageType.cs" />
+    <Compile Include="BusinessObjects\Screens\GUIPrepopItem.cs" />
+    <Compile Include="BusinessObjects\Screens\GUIPrepopList.cs" />
+    <Compile Include="BusinessObjects\Screens\GUIPrepopList_Item.cs" />
+    <Compile Include="BusinessObjects\Screens\GUIScreen.cs" />
+    <Compile Include="BusinessObjects\Screens\GUIScreenList.cs" />
+    <Compile Include="BusinessObjects\Screens\GuiScreenList_Screen.cs" />
+    <Compile Include="BusinessObjects\Screens\GUIScreenText.cs" />
+    <Compile Include="BusinessObjects\Screens\GUIScreenType.cs" />
+    <Compile Include="BusinessObjects\Server\ServerConfiguration.cs" />
+    <Compile Include="BusinessObjects\Transactions\DenominationDetail.cs" />
+    <Compile Include="BusinessObjects\Transactions\DepositorSession.cs" />
+    <Compile Include="BusinessObjects\Transactions\PostingAuthResult.cs" />
+    <Compile Include="BusinessObjects\Transactions\PostingProcCallResult.cs" />
+    <Compile Include="BusinessObjects\Transactions\Printout.cs" />
+    <Compile Include="BusinessObjects\Transactions\Transaction.cs" />
+    <Compile Include="BusinessObjects\Transactions\TransactionLimitList.cs" />
+    <Compile Include="BusinessObjects\Transactions\TransactionLimitListItem.cs" />
+    <Compile Include="BusinessObjects\Transactions\TransactionPosting.cs" />
+    <Compile Include="BusinessObjects\Transactions\TransactionPostingStatus.cs" />
+    <Compile Include="BusinessObjects\Transactions\TransactionText.cs" />
+    <Compile Include="BusinessObjects\Transactions\TransactionType.cs" />
+    <Compile Include="BusinessObjects\Transactions\TransactionTypeList.cs" />
+    <Compile Include="BusinessObjects\Transactions\TransactionTypeListItem.cs" />
+    <Compile Include="BusinessObjects\Transactions\TransactionTypeList_TransactionTypeListItem.cs" />
+    <Compile Include="BusinessObjects\Translations\SystemTextItem.cs" />
+    <Compile Include="BusinessObjects\Translations\SystemTextItemCategory.cs" />
+    <Compile Include="BusinessObjects\Translations\SystemTextItemType.cs" />
+    <Compile Include="BusinessObjects\Translations\SystemTextTranslation.cs" />
+    <Compile Include="BusinessObjects\Translations\UserTextItem.cs" />
+    <Compile Include="BusinessObjects\Translations\UserTextItemCategory.cs" />
+    <Compile Include="BusinessObjects\Translations\UserTextItemType.cs" />
+    <Compile Include="BusinessObjects\Translations\UserTextTranslation.cs" />
+    <Compile Include="BusinessObjects\Validation\ValidationItem.cs" />
+    <Compile Include="BusinessObjects\Validation\ValidationItemValue.cs" />
+    <Compile Include="BusinessObjects\Validation\ValidationList.cs" />
+    <Compile Include="BusinessObjects\Validation\ValidationList_ValidationItem.cs" />
+    <Compile Include="BusinessObjects\Validation\ValidationText.cs" />
+    <Compile Include="BusinessObjects\Validation\ValidationType.cs" />
+    <Compile Include="Controllers\ApplicationUserViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CITPostingController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CITPostingViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CITTransactionPostCheckerController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CITTransactionViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CITViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CustomErrorController.cs" />
+    <Compile Include="Controllers\CustomListEditorInplaceEditController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CustomWebDeleteObjectsViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CustomWebModificationsController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\CustomWebNewObjectViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DeviceStatusViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DeviceStatusWindowController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DeviceViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\DeviceVisibilityViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\EmailConfiguration.cs" />
+    <Compile Include="Controllers\EmailManager.cs" />
+    <Compile Include="Controllers\LoginConfiguration.cs" />
+    <Compile Include="Controllers\RemoveBaseTypePermissionNewActionItemController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\TransactionPostCheckerController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\TransactionPostingController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\TransactionPostingViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Controllers\TransactionViewController.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="CustomFunctionOperator\CurrentUserUsernameOperator.cs" />
+    <Compile Include="CustomFunctionOperator\IsAllowedByUserGroupOperator.cs" />
+    <Compile Include="CustomFunctionOperator\IsVisibleByUserGroupOperator.cs" />
+    <Compile Include="CustomFunctionOperator\TransactionCanPostOperator.cs" />
+    <Compile Include="CustomFunctionOperator\UserHasActivityPermissionOperator.cs" />
+    <Compile Include="CustomFunctionOperator\UserIsAdministrativeOperator.cs" />
+    <Compile Include="DatabaseUpdate\SystemTextItemUpdate.cs" />
+    <Compile Include="DatabaseUpdate\Updater.cs" />
+    <Compile Include="DatabaseUpdate\UserTextItemUpdater.cs" />
+    <Compile Include="Properties\Settings.cs" />
+    <Compile Include="Util\Logger.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CashSwiftCashControlPortalModule.resx">
+      <DependentUpon>CashSwiftCashControlPortalModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\ApplicationUserViewController.resx">
+      <DependentUpon>ApplicationUserViewController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\CITPostingController.resx">
+      <DependentUpon>CITPostingController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\CITTransactionPostCheckerController.resx">
+      <DependentUpon>CITTransactionPostCheckerController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\DeviceViewController.resx">
+      <DependentUpon>DeviceViewController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\TransactionPostCheckerController.resx">
+      <DependentUpon>TransactionPostCheckerController.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Controllers\TransactionPostingController.resx">
+      <DependentUpon>TransactionPostingController.cs</DependentUpon>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <EmbeddedResource Include="Model.DesignedDiffs.xafml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <None Include="Model\DesignedDiffs.xafml" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="dll.licenses">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Lib\DevExpress.Data.v17.1.dll" />
+    <Content Include="Lib\DevExpress.ExpressApp.AuditTrail.v17.1.dll" />
+    <Content Include="Lib\DevExpress.ExpressApp.ConditionalAppearance.v17.1.dll" />
+    <Content Include="Lib\DevExpress.ExpressApp.Security.v17.1.dll" />
+    <Content Include="Lib\DevExpress.ExpressApp.TreeListEditors.v17.1.dll" />
+    <Content Include="Lib\DevExpress.ExpressApp.TreeListEditors.Web.v17.1.dll" />
+    <Content Include="Lib\DevExpress.ExpressApp.v17.1.dll" />
+    <Content Include="Lib\DevExpress.ExpressApp.Validation.v17.1.dll" />
+    <Content Include="Lib\DevExpress.ExpressApp.Web.v17.1.dll" />
+    <Content Include="Lib\DevExpress.ExpressApp.Xpo.v17.1.dll" />
+    <Content Include="Lib\DevExpress.Persistent.Base.v17.1.dll" />
+    <Content Include="Lib\DevExpress.Persistent.BaseImpl.v17.1.dll" />
+    <Content Include="Lib\DevExpress.Web.Resources.v17.1.dll" />
+    <Content Include="Lib\DevExpress.Xpo.v17.1.dll" />
+    <Content Include="Lib\Microsoft.Extensions.Configuration.Abstractions.dll" />
+    <Content Include="Lib\Newtonsoft.Json.dll" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\..\..\Deposit\API\CDM\CashSwift.API.CDM.Messaging.Reporting.Uptime\CashSwift.API.CDM.Messaging.Reporting.Uptime.csproj">
+      <Project>{9b20ad90-cb4b-477f-b123-43f85e8861fd}</Project>
+      <Name>CashSwift.API.CDM.Messaging.Reporting.Uptime</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Deposit\API\CDM\CashSwift.API.CDM.Messaging\CashSwift.API.CDM.Messaging.csproj">
+      <Project>{cff1db92-7328-4c1d-ab6a-e72b775729e3}</Project>
+      <Name>CashSwift.API.CDM.Messaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Deposit\API\Messaging\CashSwift.API.Messaging.Communication\CashSwift.API.Messaging.Communication.csproj">
+      <Project>{5779b33d-a90f-4c18-8d19-e16d61583689}</Project>
+      <Name>CashSwift.API.Messaging.Communication</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Deposit\API\Messaging\CashSwift.API.Messaging.Integration\CashSwift.API.Messaging.Integration.csproj">
+      <Project>{d66bc88e-b717-445f-9a0c-2bb1ae61be1a}</Project>
+      <Name>CashSwift.API.Messaging.Integration</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Deposit\API\Messaging\CashSwift.API.Messaging\CashSwift.API.Messaging.csproj">
+      <Project>{80bde422-1b8a-4b6c-8ab2-c69ece8d93c1}</Project>
+      <Name>CashSwift.API.Messaging</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Deposit\Library\CashSwift.Library.Standard\CashSwift.Library.Standard.csproj">
+      <Project>{09280264-40a9-4a75-aad7-0776e15ffcf8}</Project>
+      <Name>CashSwift.Library.Standard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\..\..\Deposit\UI\CashSwiftUtil\CashSwiftUtil.csproj">
+      <Project>{1aae4d91-af86-4d65-971b-14a1abd60dd5}</Project>
+      <Name>CashSwiftUtil</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

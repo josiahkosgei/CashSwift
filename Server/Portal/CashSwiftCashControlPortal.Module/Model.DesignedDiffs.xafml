@@ -1,0 +1,2541 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Application Title=" CashControl Portal" Company="Maniwa Technologies Ltd" Copyright="2022 Maniwa Technologies Ltd" ProtectedContentText="">
+	<BOModel>
+		<Class Name="CashSwiftCashControlPortal.Module.BusinessObjects.ApplicationConfiguration.Currency" DefaultLookupEditorMode="AllItemsWithSearch">
+			<OwnMembers>
+				<Member Name="code" LookupEditorMode="AllItemsWithSearch" />
+			</OwnMembers>
+		</Class>
+		<Class Name="CashSwiftCashControlPortal.Module.BusinessObjects.ApplicationConfiguration.Language" DefaultLookupEditorMode="AllItemsWithSearch">
+			<OwnMembers>
+				<Member Name="code" LookupEditorMode="AllItemsWithSearch" />
+			</OwnMembers>
+		</Class>
+		<Class Name="CashSwiftCashControlPortal.Module.BusinessObjects.CITs.CIT">
+			<OwnMembers>
+				<Member Name="cit_error_message" RowCount="3" />
+			</OwnMembers>
+		</Class>
+		<Class Name="CashSwiftCashControlPortal.Module.BusinessObjects.Devices.Device">
+			<OwnMembers>
+				<Member Name="mac_address" EditMaskType="RegEx" EditMask="([0-9A-F]{2}[-]){5}([0-9A-F]{2})" />
+			</OwnMembers>
+		</Class>
+		<Class Name="DevExpress.Persistent.BaseImpl.PermissionPolicy.PermissionPolicyRoleBase">
+			<OwnMembers>
+				<Member Name="CanEditModel" AllowEdit="False" />
+				<Member Name="IsAdministrative" AllowEdit="False" />
+			</OwnMembers>
+		</Class>
+	</BOModel>
+	<NavigationItems>
+		<Items>
+			<Item Id="System Status" Index="0">
+				<Items>
+					<Item Id="DeviceStatus_ListView" Index="0" />
+				</Items>
+			</Item>
+			<Item Id="Transactions" Index="1">
+				<Items>
+					<Item Id="Transaction_ListView" Index="0" />
+					<Item Id="TransactionArchive" ViewId="Transaction_ListView_Archive" Index="1" IsNewNode="True" />
+					<Item Id="Transaction_ListView_FailedPost" Caption="Failed Posts" ViewId="Transaction_ListView_FailedPost" Index="2" IsNewNode="True" />
+					<Item Id="TransactionPosting_ListView_Pending" ViewId="TransactionPosting_ListView_Pending" Index="3" IsNewNode="True" />
+					<Item Id="TransactionPosting_ListView" Index="4" />
+				</Items>
+			</Item>
+			<Item Id="CIT Management" Index="2">
+				<Items>
+					<Item Id="CIT_ListView" Index="0" />
+					<Item Id="CITTransaction_ListView" Index="1" />
+					<Item Id="CITTransaction_ListView_FailedPost" ViewId="CITTransaction_ListView_FailedPost" ObjectKey="" Index="2" Caption="CIT Transaction Failed Post" IsNewNode="True" />
+					<Item Id="CITPosting_ListView_Pending" ViewId="CITPosting_ListView_Pending" ObjectKey="" Caption="Pending CIT Posting" Index="3" IsNewNode="True" />
+					<Item Id="CITPosting_ListView" Caption="CIT Posting" Index="4" />
+				</Items>
+			</Item>
+			<Item Id="User Management" Index="3">
+				<Items>
+					<Item Id="Activity_ListView" Index="0" />
+					<Item Id="ApplicationUser_ListView" Index="1" />
+					<Item Id="ApplicationUser_ListView_Deleted" ViewId="ApplicationUser_ListView_Deleted" ObjectKey="" Index="2" Caption="Deleted Application User" IsNewNode="True" />
+				</Items>
+			</Item>
+			<Item Id="Application Management" Index="4" />
+			<Item Id="Device Management" Index="5" />
+			<Item Id="Notification" Index="6" />
+		</Items>
+	</NavigationItems>
+	<Options>
+		<LayoutManagerOptions RequiredFieldMark="*" />
+	</Options>
+	<SchemaModules>
+		<SchemaModule Name="SystemModule" Version="17.1.17.0" IsNewNode="True" />
+	</SchemaModules>
+	<Views>
+		<ListView Id="Account_AccountPermissions_ListView" AllowNew="False" AllowDelete="False" AllowLink="True" AllowUnlink="True" />
+		<DetailView Id="Account_DetailView">
+			<Items>
+				<PropertyEditor Id="currency" LookupEditorMode="AllItems" />
+			</Items>
+		</DetailView>
+		<ListView Id="Account_ListView">
+			<Columns>
+				<ColumnInfo Id="account_number" Index="0" />
+				<ColumnInfo Id="account_name" Index="1" />
+				<ColumnInfo Id="currency" Index="2" />
+			</Columns>
+		</ListView>
+		<ListView Id="AccountPermission_AccountPermissionItems_ListView" AllowLink="False" AllowEdit="True" AllowUnlink="False" DataAccessMode="Server">
+			<Columns>
+				<ColumnInfo Id="account" Index="-1" />
+				<ColumnInfo Id="account_permission" Index="-1" SortIndex="-1" SortOrder="None" />
+				<ColumnInfo Id="account.account_number" PropertyName="account.account_number" Index="0" SortIndex="1" SortOrder="Ascending" IsNewNode="True" />
+				<ColumnInfo Id="account.account_name" PropertyName="account.account_name" Index="1" IsNewNode="True" />
+				<ColumnInfo Id="account.currency" PropertyName="account.currency" Index="2" SortIndex="0" SortOrder="Ascending" IsNewNode="True" />
+				<ColumnInfo Id="account.enabled" PropertyName="account.enabled" Index="3" IsNewNode="True" />
+				<ColumnInfo Id="error_message" Index="4" />
+			</Columns>
+		</ListView>
+		<ListView Id="AccountPermission_Accounts_ListView" AllowNew="False" AllowDelete="False" AllowLink="True" AllowUnlink="True" />
+		<DetailView Id="Activity_DetailView">
+			<Items>
+				<PropertyEditor Id="Roles" LookupEditorMode="AllItems" DataSourceCriteria="Not [Permissions][[Activity] = '@This']" DataSourcePropertyIsNullMode="SelectNothing" />
+			</Items>
+		</DetailView>
+		<ListView Id="Activity_LookupListView" AllowDelete="False" AllowNew="True">
+			<Columns>
+				<ColumnInfo Id="name" Index="0" />
+				<ColumnInfo Id="description" Index="1" />
+			</Columns>
+		</ListView>
+		<ListView Id="Activity_Permissions_ListView" AllowEdit="True" AllowLink="False" AllowUnlink="False" />
+		<ListView Id="Activity_Roles_ListView" AllowDelete="False" AllowNew="False" AllowLink="True" AllowUnlink="True" />
+		<ListView Id="AlertAttachmentType_LookupListView">
+			<Columns>
+				<ColumnInfo Id="name" SortIndex="0" SortOrder="Ascending" />
+			</Columns>
+		</ListView>
+		<ListView Id="AlertMessageRegistry_ListView">
+			<Columns>
+				<ColumnInfo Id="AlertType" SortIndex="0" SortOrder="Ascending" />
+				<ColumnInfo Id="EmailEnabled" Index="1" />
+				<ColumnInfo Id="Role" SortOrder="Ascending" GroupIndex="0" Index="2" />
+			</Columns>
+		</ListView>
+		<ListView Id="AlertMessageRegistry_LookupListView">
+			<Columns>
+				<ColumnInfo Id="Role" Index="0" SortIndex="0" SortOrder="Ascending" />
+				<ColumnInfo Id="AlertType" Index="1" SortIndex="1" SortOrder="Ascending" />
+			</Columns>
+		</ListView>
+		<ListView Id="AlertMessageType_AlertMessageRegistries_ListView" AllowEdit="True" AllowLink="False" AllowUnlink="False" />
+		<DetailView Id="AlertMessageType_DetailView">
+			<Items>
+				<PropertyEditor Id="description" RowCount="5" />
+				<PropertyEditor Id="phone_content_template" RowCount="20" />
+				<PropertyEditor Id="raw_email_content_template" RowCount="30" />
+				<PropertyEditor Id="Roles" DataSourceCriteria="Not [AlertMessageRegistries][[AlertType] = '@This']" />
+			</Items>
+			<Layout>
+				<TabbedGroup Id="MainEditors" Index="0" RelativeSize="100" IsNewNode="True">
+					<LayoutGroup Id="Main" ShowCaption="True" Index="0" RelativeSize="100" IsNewNode="True">
+						<LayoutGroup Id="AlertMessageType" ShowCaption="False" Caption="Alert Message Type" Direction="Horizontal" Index="0" RelativeSize="7.8189300411522638" IsNewNode="True">
+							<LayoutGroup Id="AlertMessageType_col1" ShowCaption="False" Index="0" RelativeSize="50" Caption="AlertMessageType_col1" IsNewNode="True">
+								<LayoutItem Id="name" ViewItem="name" Index="0" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="AlertMessageType_col2" ShowCaption="False" Caption="Enabled" Index="1" RelativeSize="50" IsNewNode="True">
+								<LayoutItem Id="enabled" ViewItem="enabled" Index="0" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+						</LayoutGroup>
+						<LayoutItem Id="title" ViewItem="title" Index="1" RelativeSize="4.9382716049382713" IsNewNode="True" />
+						<LayoutItem Id="description" ViewItem="description" Index="2" RelativeSize="19.547325102880659" IsNewNode="True" />
+						<TabbedGroup Id="Tabs" Index="3" RelativeSize="67.6954732510288" IsNewNode="True">
+							<LayoutGroup Id="Roles" Index="0" ShowCaption="True" RelativeSize="100" IsNewNode="True">
+								<LayoutItem Id="Roles" ViewItem="Roles" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="AlertMessageRegistries" Index="1" ShowCaption="True" RelativeSize="100" IsNewNode="True">
+								<LayoutItem Id="AlertMessageRegistries" ViewItem="AlertMessageRegistries" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+						</TabbedGroup>
+					</LayoutGroup>
+					<LayoutGroup Id="SizeableEditors" Index="1" ShowCaption="True" Caption="Email HTML Editor" RelativeSize="100" IsNewNode="True">
+						<LayoutItem Id="email_content_template" ViewItem="email_content_template" ShowCaption="False" Index="0" RelativeSize="100" CaptionLocation="Top" IsNewNode="True" />
+					</LayoutGroup>
+					<LayoutGroup Id="RawText" Caption="Email Raw Text" ShowCaption="True" Index="2" RelativeSize="100" IsNewNode="True">
+						<LayoutItem Id="raw_email_content_template" ViewItem="raw_email_content_template" ShowCaption="False" Index="0" CaptionLocation="Top" RelativeSize="100" IsNewNode="True" />
+					</LayoutGroup>
+					<LayoutGroup Id="SMSText" Caption="SMS Text" ShowCaption="True" Index="3" RelativeSize="100" IsNewNode="True">
+						<LayoutItem Id="phone_content_template" ViewItem="phone_content_template" ShowCaption="False" Index="0" RelativeSize="100" CaptionLocation="Top" SizeConstraintsType="Custom" MinSize="129, 42" IsNewNode="True" />
+					</LayoutGroup>
+				</TabbedGroup>
+				<LayoutGroup Id="Main" Removed="True">
+					<LayoutGroup Id="SizeableEditors" Removed="True" />
+				</LayoutGroup>
+			</Layout>
+		</DetailView>
+		<ListView Id="AlertMessageType_LookupListView">
+			<Columns>
+				<ColumnInfo Id="name" Index="0" />
+				<ColumnInfo Id="description" Index="1" />
+			</Columns>
+		</ListView>
+		<DetailView Id="APIUser_DetailView" AllowEdit="False" AllowNew="False" />
+		<ListView Id="APIUser_ListView" Filter="" Criteria="UserIsAdministrative()" />
+		<ListView Id="ApplicationUser_AuthorisedCITs_ListView" AllowDelete="False" AllowNew="False" />
+		<ListView Id="ApplicationUser_AuthorisedDeposits_ListView" AllowDelete="False" AllowNew="False" DataAccessMode="Server" />
+		<ListView Id="ApplicationUser_AuthorisedTransactionPosting_ListView" AllowDelete="False" AllowNew="False" DataAccessMode="Server" />
+		<ListView Id="ApplicationUser_ChangeHistory_ListView">
+			<Columns>
+				<ColumnInfo Id="ModifiedOn" SortIndex="0" SortOrder="Descending" Index="0" />
+				<ColumnInfo Id="UserName" SortIndex="-1" SortOrder="None" Index="1" Width="229" />
+				<ColumnInfo Id="OldValue" Index="4" />
+				<ColumnInfo Id="NewValue" Index="5" />
+			</Columns>
+		</ListView>
+		<DetailView Id="ApplicationUser_DetailView" AllowDelete="False">
+			<Items>
+				<PropertyEditor Id="ChangeHistory" AllowEdit="False" />
+			</Items>
+			<Layout>
+				<LayoutGroup Id="Main" RelativeSize="100" Removed="True">
+					<LayoutGroup Id="Permissions" ShowCaption="True" Index="1" Direction="Horizontal" RelativeSize="18.14516129032258" Caption="Permissions" IsNewNode="True">
+						<LayoutGroup Id="Auto433b9439-17de-4a1c-b849-1952f9158f9f" ShowCaption="False" Caption="Auto433b9439-17de-4a1c-b849-1952f9158f9f(15)" Index="0" RelativeSize="50.165562913907287" IsNewNode="True">
+							<LayoutItem Id="DeviceRole" ViewItem="DeviceRole" Index="0" RelativeSize="50" IsNewNode="True" />
+							<LayoutItem Id="user_group" ViewItem="user_group" Index="1" RelativeSize="50" IsNewNode="True" />
+						</LayoutGroup>
+						<LayoutGroup Id="Auto867c89d7-7897-487f-aac5-260dfc84c2c8" ShowCaption="False" Caption="Auto867c89d7-7897-487f-aac5-260dfc84c2c8(18)" Index="1" RelativeSize="49.834437086092713" IsNewNode="True">
+							<LayoutItem Id="IsActive" ViewItem="IsActive" Index="0" RelativeSize="50" IsNewNode="True" />
+							<LayoutItem Id="DepositorEnabled" ViewItem="DepositorEnabled" Index="1" RelativeSize="50" IsNewNode="True" />
+						</LayoutGroup>
+					</LayoutGroup>
+					<LayoutGroup Id="Notification" Index="2" ShowCaption="True" Direction="Horizontal" RelativeSize="18.14516129032258" Caption="Notification" IsNewNode="True">
+						<LayoutGroup Id="Autod92aa043-7d53-49fa-b263-026e490fb5ff" ShowCaption="False" Caption="Autod92aa043-7d53-49fa-b263-026e490fb5ff(22)" Index="0" RelativeSize="50.165562913907287" IsNewNode="True">
+							<LayoutItem Id="email" ViewItem="email" Index="0" RelativeSize="50" IsNewNode="True" />
+							<LayoutItem Id="phone" ViewItem="phone" Index="1" RelativeSize="50" IsNewNode="True" />
+						</LayoutGroup>
+						<LayoutGroup Id="Autof6e2e9bb-18b3-45dc-b2e1-1bd033e2ff97" ShowCaption="False" Caption="Autof6e2e9bb-18b3-45dc-b2e1-1bd033e2ff97(25)" Index="1" RelativeSize="49.834437086092713" IsNewNode="True">
+							<LayoutItem Id="email_enabled" ViewItem="email_enabled" Index="0" RelativeSize="50" IsNewNode="True" />
+							<LayoutItem Id="phone_enabled" ViewItem="phone_enabled" Index="1" RelativeSize="50" IsNewNode="True" />
+						</LayoutGroup>
+					</LayoutGroup>
+					<LayoutGroup Id="Login" ShowCaption="True" Index="3" RelativeSize="18.14516129032258" Caption="Login" Direction="Horizontal" IsNewNode="True">
+						<LayoutGroup Id="Auto9eed1c73-942d-4160-ae44-de367e5f4b65" ShowCaption="False" Caption="Auto9eed1c73-942d-4160-ae44-de367e5f4b65(10)" Index="0" RelativeSize="50.165562913907287" IsNewNode="True">
+							<LayoutItem Id="ApplicationUserLoginDetail" ViewItem="ApplicationUserLoginDetail" Index="0" RelativeSize="50" IsNewNode="True" />
+							<LayoutItem Id="login_attempts" ViewItem="login_attempts" Index="1" RelativeSize="50" IsNewNode="True" />
+						</LayoutGroup>
+						<LayoutGroup Id="Auto2c1af30f-cf40-4320-ba1a-80ae9d8bdf25" ShowCaption="False" Caption="Auto2c1af30f-cf40-4320-ba1a-80ae9d8bdf25(11)" Index="1" RelativeSize="49.834437086092713" IsNewNode="True">
+							<LayoutItem Id="ChangePasswordOnFirstLogon" ViewItem="ChangePasswordOnFirstLogon" Index="0" RelativeSize="100" IsNewNode="True" />
+						</LayoutGroup>
+					</LayoutGroup>
+					<TabbedGroup Id="Tabs" Index="4" RelativeSize="24.596774193548388">
+						<LayoutGroup Id="AuthorisedCITPostings" RelativeSize="100" Removed="True">
+							<LayoutItem Id="AuthorisedCITPostings" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="AuthorisedCITs" RelativeSize="100" Removed="True">
+							<LayoutItem Id="AuthorisedCITs" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="AuthorisedEscrowJams" RelativeSize="100" Removed="True">
+							<LayoutItem Id="AuthorisedEscrowJams" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="AuthorisedTransactionPosting" RelativeSize="100" Removed="True">
+							<LayoutItem Id="AuthorisedTransactionPosting" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="ChangeHistory" RelativeSize="100">
+							<LayoutItem Id="ChangeHistory" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="CITs" ShowCaption="True" IsNewNode="True">
+							<LayoutGroup Id="InitiatedCITs" Index="0" ShowCaption="True" RelativeSize="100" IsNewNode="True">
+								<LayoutItem Id="InitiatedCITs" ViewItem="InitiatedCITs" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="AuthorisedCITs" Index="1" ShowCaption="True" RelativeSize="100" IsNewNode="True">
+								<LayoutItem Id="AuthorisedCITs" ViewItem="AuthorisedCITs" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="InitiatedCITPostings" Index="2" ShowCaption="True" RelativeSize="100" IsNewNode="True">
+								<LayoutItem Id="InitiatedCITPostings" ViewItem="InitiatedCITPostings" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="AuthorisedCITPostings" Index="3" ShowCaption="True" RelativeSize="100" IsNewNode="True">
+								<LayoutItem Id="AuthorisedCITPostings" ViewItem="AuthorisedCITPostings" ShowCaption="False" RelativeSize="100" Index="0" IsNewNode="True" />
+							</LayoutGroup>
+						</LayoutGroup>
+						<LayoutGroup Id="DeviceLocks" RelativeSize="100" Removed="True">
+							<LayoutItem Id="DeviceLocks" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="DeviceLogins" RelativeSize="100">
+							<LayoutItem Id="DeviceLogins" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="InitiatedCITPostings" RelativeSize="100" Removed="True">
+							<LayoutItem Id="InitiatedCITPostings" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="InitiatedCITs" RelativeSize="100" Removed="True">
+							<LayoutItem Id="InitiatedCITs" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="InitiatedEscrowJams" RelativeSize="100" Removed="True">
+							<LayoutItem Id="InitiatedEscrowJams" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="InitiatedTransactionPosting" RelativeSize="100" Removed="True">
+							<LayoutItem Id="InitiatedTransactionPosting" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="InitiatedUserLocks" RelativeSize="100" Removed="True">
+							<LayoutItem Id="InitiatedUserLocks" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="Jams" IsNewNode="True">
+							<LayoutGroup Id="InitiatedEscrowJams" Index="0" RelativeSize="100" ShowCaption="True" IsNewNode="True">
+								<LayoutItem Id="InitiatedEscrowJams" ViewItem="InitiatedEscrowJams" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="AuthorisedEscrowJams" Index="1" ShowCaption="True" RelativeSize="100" IsNewNode="True">
+								<LayoutItem Id="AuthorisedEscrowJams" ViewItem="AuthorisedEscrowJams" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+						</LayoutGroup>
+						<LayoutGroup Id="Locks" ShowCaption="True" IsNewNode="True">
+							<LayoutGroup Id="InitiatedUserLocks" Index="1" ShowCaption="True" RelativeSize="100" IsNewNode="True">
+								<LayoutItem Id="InitiatedUserLocks" ViewItem="InitiatedUserLocks" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="DeviceLocks" Index="4" ShowCaption="True" RelativeSize="100" IsNewNode="True">
+								<LayoutItem Id="DeviceLocks" ViewItem="DeviceLocks" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+						</LayoutGroup>
+						<LayoutGroup Id="Posting" IsNewNode="True">
+							<LayoutGroup Id="InitiatedTransactionPosting" Index="0" RelativeSize="100" ShowCaption="True" IsNewNode="True">
+								<LayoutItem Id="InitiatedTransactionPosting" ViewItem="InitiatedTransactionPosting" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="AuthorisedTransactionPosting" Index="1" ShowCaption="True" RelativeSize="100" IsNewNode="True">
+								<LayoutItem Id="AuthorisedTransactionPosting" ViewItem="AuthorisedTransactionPosting" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+						</LayoutGroup>
+						<LayoutGroup Id="Roles" RelativeSize="100">
+							<LayoutItem Id="Roles" RelativeSize="100" />
+						</LayoutGroup>
+					</TabbedGroup>
+					<LayoutGroup Id="SimpleEditors" RelativeSize="20.967741935483872">
+						<LayoutGroup Id="ApplicationUser" RelativeSize="100" Index="0" Direction="Vertical">
+							<LayoutGroup Id="ApplicationUser_col1" RelativeSize="100" Direction="Horizontal">
+								<LayoutGroup Id="Autoe5227fa8-c911-47b1-83ab-60ccdac9e648" ShowCaption="False" Caption="" Index="0" RelativeSize="49.834437086092713" IsNewNode="True">
+									<LayoutItem Id="UserName" ViewItem="UserName" Index="0" RelativeSize="50" IsNewNode="True" />
+									<LayoutItem Id="fname" ViewItem="fname" Index="1" RelativeSize="50" IsNewNode="True" />
+								</LayoutGroup>
+								<LayoutGroup Id="Autod5afec72-f807-4d9b-88f5-65d163152baa" ShowCaption="False" Caption="" Index="1" RelativeSize="50.165562913907287" IsNewNode="True">
+									<LayoutItem Id="IsActiveDirectoryUser" ViewItem="IsActiveDirectoryUser" Index="0" RelativeSize="50" IsNewNode="True" />
+									<LayoutItem Id="lname" ViewItem="lname" Index="1" RelativeSize="50" IsNewNode="True" />
+								</LayoutGroup>
+								<LayoutItem Id="fname" RelativeSize="27.272727272727273" Index="1" Removed="True" />
+								<LayoutItem Id="lname" RelativeSize="36.363636363636367" Index="2" Removed="True" />
+								<LayoutItem Id="phone" RelativeSize="21.428571428571427" Index="2" Removed="True" />
+								<LayoutItem Id="phone_enabled" RelativeSize="36.363636363636367" Index="2" Removed="True" />
+								<LayoutItem Id="email_enabled" RelativeSize="13.043478260869565" Index="3" Removed="True" />
+								<LayoutItem Id="DepositorEnabled" RelativeSize="23.529411764705884" Index="4" Removed="True" />
+								<LayoutItem Id="DeviceRole" RelativeSize="15" Removed="True" />
+								<LayoutItem Id="email" RelativeSize="11.538461538461538" Removed="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="ApplicationUser_col2" RelativeSize="50" Caption="ApplicationUser_col2" Direction="Horizontal" Removed="True">
+								<LayoutItem Id="user_group" RelativeSize="100" Index="0" Removed="True" />
+								<LayoutItem Id="FullName" RelativeSize="63.636363636363633" Index="1" Removed="True" />
+								<LayoutItem Id="IsActive" RelativeSize="11.538461538461538" Index="2" Removed="True" />
+								<LayoutItem Id="UserName" RelativeSize="36.363636363636367" Index="2" Removed="True" />
+								<LayoutItem Id="ApplicationUserLoginDetail" Index="4" RelativeSize="50" Removed="True" />
+								<LayoutItem Id="ChangePasswordOnFirstLogon" Removed="True" />
+								<LayoutItem Id="login_attempts" RelativeSize="15.384615384615385" Removed="True" />
+							</LayoutGroup>
+						</LayoutGroup>
+					</LayoutGroup>
+				</LayoutGroup>
+				<TabbedGroup Id="Tabs" IsNewNode="True">
+					<LayoutGroup Id="Main" Index="0" RelativeSize="100" ShowCaption="True" Caption="Properties" IsNewNode="True">
+						<LayoutGroup Id="SimpleEditors" Index="0" ShowCaption="False" RelativeSize="20.967741935483872" IsNewNode="True">
+							<LayoutGroup Id="ApplicationUser" Index="0" ShowCaption="True" Caption="Application User" RelativeSize="100" IsNewNode="True">
+								<LayoutGroup Id="ApplicationUser_col1" Index="0" Direction="Horizontal" ShowCaption="False" RelativeSize="100" IsNewNode="True">
+									<LayoutGroup Id="Autoe5227fa8-c911-47b1-83ab-60ccdac9e648" ShowCaption="False" Caption="" Index="0" RelativeSize="49.834437086092713" IsNewNode="True">
+										<LayoutItem Id="UserName" ViewItem="UserName" Index="0" RelativeSize="50" IsNewNode="True" />
+										<LayoutItem Id="fname" ViewItem="fname" Index="1" RelativeSize="50" IsNewNode="True" />
+									</LayoutGroup>
+									<LayoutGroup Id="Autod5afec72-f807-4d9b-88f5-65d163152baa" ShowCaption="False" Caption="" Index="1" RelativeSize="50.165562913907287" IsNewNode="True">
+										<LayoutItem Id="IsActiveDirectoryUser" ViewItem="IsActiveDirectoryUser" Index="0" RelativeSize="50" IsNewNode="True" />
+										<LayoutItem Id="lname" ViewItem="lname" Index="1" RelativeSize="50" IsNewNode="True" />
+									</LayoutGroup>
+								</LayoutGroup>
+							</LayoutGroup>
+						</LayoutGroup>
+						<LayoutGroup Id="Permissions" ShowCaption="True" Index="1" Direction="Horizontal" RelativeSize="18.14516129032258" IsNewNode="True">
+							<LayoutGroup Id="Auto433b9439-17de-4a1c-b849-1952f9158f9f" ShowCaption="False" Caption="Auto433b9439-17de-4a1c-b849-1952f9158f9f(15)" Index="0" RelativeSize="50.165562913907287" IsNewNode="True">
+								<LayoutItem Id="DeviceRole" ViewItem="DeviceRole" Index="0" RelativeSize="50" IsNewNode="True" />
+								<LayoutItem Id="user_group" ViewItem="user_group" Index="1" RelativeSize="50" IsNewNode="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="Auto867c89d7-7897-487f-aac5-260dfc84c2c8" ShowCaption="False" Caption="Auto867c89d7-7897-487f-aac5-260dfc84c2c8(18)" Index="1" RelativeSize="49.834437086092713" IsNewNode="True">
+								<LayoutItem Id="IsActive" ViewItem="IsActive" Index="0" RelativeSize="50" IsNewNode="True" />
+								<LayoutItem Id="DepositorEnabled" ViewItem="DepositorEnabled" Index="1" RelativeSize="50" IsNewNode="True" />
+							</LayoutGroup>
+						</LayoutGroup>
+						<LayoutGroup Id="Notification" Index="2" ShowCaption="True" Direction="Horizontal" RelativeSize="18.14516129032258" IsNewNode="True">
+							<LayoutGroup Id="Autod92aa043-7d53-49fa-b263-026e490fb5ff" ShowCaption="False" Caption="Autod92aa043-7d53-49fa-b263-026e490fb5ff(22)" Index="0" RelativeSize="50.165562913907287" IsNewNode="True">
+								<LayoutItem Id="email" ViewItem="email" Index="0" RelativeSize="50" IsNewNode="True" />
+								<LayoutItem Id="phone" ViewItem="phone" Index="1" RelativeSize="50" IsNewNode="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="Autof6e2e9bb-18b3-45dc-b2e1-1bd033e2ff97" ShowCaption="False" Caption="Autof6e2e9bb-18b3-45dc-b2e1-1bd033e2ff97(25)" Index="1" RelativeSize="49.834437086092713" IsNewNode="True">
+								<LayoutItem Id="email_enabled" ViewItem="email_enabled" Index="0" RelativeSize="50" IsNewNode="True" />
+								<LayoutItem Id="phone_enabled" ViewItem="phone_enabled" Index="1" RelativeSize="50" IsNewNode="True" />
+							</LayoutGroup>
+						</LayoutGroup>
+						<LayoutGroup Id="Login" ShowCaption="True" Index="3" RelativeSize="18.14516129032258" Direction="Horizontal" IsNewNode="True">
+							<LayoutGroup Id="Auto9eed1c73-942d-4160-ae44-de367e5f4b65" ShowCaption="False" Caption="Auto9eed1c73-942d-4160-ae44-de367e5f4b65(10)" Index="0" RelativeSize="50.165562913907287" IsNewNode="True">
+								<LayoutItem Id="ApplicationUserLoginDetail" ViewItem="ApplicationUserLoginDetail" Index="0" RelativeSize="50" IsNewNode="True" />
+								<LayoutItem Id="login_attempts" ViewItem="login_attempts" Index="1" RelativeSize="50" IsNewNode="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="Auto2c1af30f-cf40-4320-ba1a-80ae9d8bdf25" ShowCaption="False" Caption="Auto2c1af30f-cf40-4320-ba1a-80ae9d8bdf25(11)" Index="1" RelativeSize="49.834437086092713" IsNewNode="True">
+								<LayoutItem Id="ChangePasswordOnFirstLogon" ViewItem="ChangePasswordOnFirstLogon" Index="0" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+						</LayoutGroup>
+						<TabbedGroup Id="Tabs" Index="4" RelativeSize="24.596774193548388" IsNewNode="True">
+							<LayoutGroup Id="Roles" Index="0" ShowCaption="True" RelativeSize="100" IsNewNode="True">
+								<LayoutItem Id="Roles" ViewItem="Roles" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="DeviceLogins" Index="9" ShowCaption="True" RelativeSize="100" IsNewNode="True">
+								<LayoutItem Id="DeviceLogins" ViewItem="DeviceLogins" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="ChangeHistory" Index="12" ShowCaption="True" RelativeSize="100" IsNewNode="True">
+								<LayoutItem Id="ChangeHistory" ViewItem="ChangeHistory" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+						</TabbedGroup>
+					</LayoutGroup>
+					<LayoutGroup Id="CITs" IsNewNode="True">
+						<TabbedGroup Id="CITs" IsNewNode="True">
+							<LayoutGroup Id="InitiatedCITs" Index="0" ShowCaption="True" RelativeSize="100" IsNewNode="True">
+								<LayoutItem Id="InitiatedCITs" ViewItem="InitiatedCITs" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="AuthorisedCITs" Index="1" ShowCaption="True" RelativeSize="100" IsNewNode="True">
+								<LayoutItem Id="AuthorisedCITs" ViewItem="AuthorisedCITs" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="InitiatedCITPostings" Index="2" ShowCaption="True" RelativeSize="100" IsNewNode="True">
+								<LayoutItem Id="InitiatedCITPostings" ViewItem="InitiatedCITPostings" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="AuthorisedCITPostings" Index="3" ShowCaption="True" RelativeSize="100" IsNewNode="True">
+								<LayoutItem Id="AuthorisedCITPostings" ViewItem="AuthorisedCITPostings" ShowCaption="False" RelativeSize="100" Index="0" IsNewNode="True" />
+							</LayoutGroup>
+						</TabbedGroup>
+					</LayoutGroup>
+					<LayoutGroup Id="Jams" IsNewNode="True">
+						<TabbedGroup Id="Jams" IsNewNode="True">
+							<LayoutGroup Id="InitiatedEscrowJams" Index="0" RelativeSize="100" ShowCaption="True" IsNewNode="True">
+								<LayoutItem Id="InitiatedEscrowJams" ViewItem="InitiatedEscrowJams" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="AuthorisedEscrowJams" Index="1" ShowCaption="True" RelativeSize="100" IsNewNode="True">
+								<LayoutItem Id="AuthorisedEscrowJams" ViewItem="AuthorisedEscrowJams" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+						</TabbedGroup>
+					</LayoutGroup>
+					<LayoutGroup Id="Locks" IsNewNode="True">
+						<TabbedGroup Id="Locks" IsNewNode="True">
+							<LayoutGroup Id="InitiatedUserLocks" Index="1" ShowCaption="True" RelativeSize="100" IsNewNode="True">
+								<LayoutItem Id="InitiatedUserLocks" ViewItem="InitiatedUserLocks" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="DeviceLocks" Index="4" ShowCaption="True" RelativeSize="100" IsNewNode="True">
+								<LayoutItem Id="DeviceLocks" ViewItem="DeviceLocks" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+						</TabbedGroup>
+					</LayoutGroup>
+					<LayoutGroup Id="Postings" Caption="Postings" IsNewNode="True">
+						<TabbedGroup Id="Postings" Caption="Postings" ShowCaption="True" IsNewNode="True">
+							<LayoutGroup Id="InitiatedTransactionPosting" Index="0" RelativeSize="100" ShowCaption="True" IsNewNode="True">
+								<LayoutItem Id="InitiatedTransactionPosting" ViewItem="InitiatedTransactionPosting" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="AuthorisedTransactionPosting" Index="1" ShowCaption="True" RelativeSize="100" IsNewNode="True">
+								<LayoutItem Id="AuthorisedTransactionPosting" ViewItem="AuthorisedTransactionPosting" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+						</TabbedGroup>
+					</LayoutGroup>
+				</TabbedGroup>
+			</Layout>
+		</DetailView>
+		<ListView Id="ApplicationUser_DeviceLocks_ListView" AllowDelete="False" AllowNew="False" />
+		<ListView Id="ApplicationUser_DeviceLogins_ListView" AllowDelete="False" AllowNew="False">
+			<Columns>
+				<ColumnInfo Id="LoginDate" SortIndex="0" SortOrder="Descending" Index="0" />
+				<ColumnInfo Id="LogoutDate" Index="1" />
+				<ColumnInfo Id="Success" Index="2" />
+				<ColumnInfo Id="User" SortIndex="-1" SortOrder="None" Index="3" />
+			</Columns>
+		</ListView>
+		<ListView Id="ApplicationUser_InitiatedCITs_ListView" AllowDelete="False" AllowNew="False" />
+		<ListView Id="ApplicationUser_InitiatedDeposits_ListView" AllowDelete="False" AllowNew="False" DataAccessMode="Server" />
+		<ListView Id="ApplicationUser_InitiatedTransactionPosting_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" DataAccessMode="Server" />
+		<ListView Id="ApplicationUser_InitiatedUserLocks_ListView" AllowDelete="False" AllowNew="False" />
+		<ListView Id="ApplicationUser_ListView" AllowDelete="False" Criteria="[UserDeleted]=False" DataAccessMode="Server" Filter="">
+			<Columns>
+				<ColumnInfo Id="ApplicationUserLoginDetail" Index="-1" />
+				<ColumnInfo Id="fname" Index="-1" />
+				<ColumnInfo Id="lname" Index="-1" />
+				<ColumnInfo Id="UserName" Index="0" SortIndex="0" SortOrder="Ascending" />
+				<ColumnInfo Id="FullName" SortIndex="-1" SortOrder="None" Index="1" />
+				<ColumnInfo Id="IsActive" Index="2" SortIndex="-1" SortOrder="None" />
+				<ColumnInfo Id="DepositorEnabled" Index="3" SortIndex="-1" SortOrder="None" />
+				<ColumnInfo Id="DeviceRole" Index="4" />
+				<ColumnInfo Id="user_group" Index="5" />
+				<ColumnInfo Id="email" Index="6" />
+				<ColumnInfo Id="ChangePasswordOnFirstLogon" Index="7" />
+				<ColumnInfo Id="email_enabled" Index="8" />
+				<ColumnInfo Id="phone" Index="9" />
+				<ColumnInfo Id="phone_enabled" Index="10" />
+				<ColumnInfo Id="login_attempts" Index="11" />
+			</Columns>
+		</ListView>
+		<ListView Id="ApplicationUser_ListView_Deleted" ClassName="CashSwiftCashControlPortal.Module.BusinessObjects.Authentication.XAF.ApplicationUser" AllowDelete="False" Criteria="[UserDeleted]=True" DataAccessMode="Server" AllowLink="False" AllowNew="False" Filter="" IsNewNode="True">
+			<Columns IsNewNode="True">
+				<ColumnInfo Id="ApplicationUserLoginDetail" PropertyName="ApplicationUserLoginDetail" Width="70" Index="-1" IsNewNode="True" />
+				<ColumnInfo Id="fname" PropertyName="fname" Width="70" Index="-1" IsNewNode="True" />
+				<ColumnInfo Id="lname" PropertyName="lname" Width="70" Index="-1" IsNewNode="True" />
+				<ColumnInfo Id="UserName" PropertyName="UserName" Width="70" Index="0" SortIndex="0" SortOrder="Ascending" IsNewNode="True" />
+				<ColumnInfo Id="FullName" PropertyName="FullName" Width="400" Index="1" IsNewNode="True" />
+				<ColumnInfo Id="IsActive" PropertyName="IsActive" Width="50" Index="2" IsNewNode="True" />
+				<ColumnInfo Id="DepositorEnabled" PropertyName="DepositorEnabled" Width="50" Index="3" IsNewNode="True" />
+				<ColumnInfo Id="DeviceRole" PropertyName="DeviceRole" Width="70" Index="4" IsNewNode="True" />
+				<ColumnInfo Id="user_group" PropertyName="user_group" Width="70" Index="5" IsNewNode="True" />
+				<ColumnInfo Id="email" PropertyName="email" Width="70" Index="6" IsNewNode="True" />
+				<ColumnInfo Id="ChangePasswordOnFirstLogon" PropertyName="ChangePasswordOnFirstLogon" Width="50" Index="7" IsNewNode="True" />
+				<ColumnInfo Id="email_enabled" PropertyName="email_enabled" Width="50" Index="8" IsNewNode="True" />
+				<ColumnInfo Id="phone" PropertyName="phone" Width="70" Index="9" IsNewNode="True" />
+				<ColumnInfo Id="phone_enabled" PropertyName="phone_enabled" Width="50" Index="10" IsNewNode="True" />
+				<ColumnInfo Id="login_attempts" PropertyName="login_attempts" Width="50" Index="11" IsNewNode="True" />
+				<ColumnInfo Id="IsActiveDirectoryUser" PropertyName="IsActiveDirectoryUser" Width="50" Index="15" IsNewNode="True" />
+			</Columns>
+		</ListView>
+		<ListView Id="ApplicationUser_LookupListView" AllowDelete="False" AllowNew="True" />
+		<ListView Id="ApplicationUser_Roles_ListView" AllowDelete="False" AllowNew="False" AllowLink="True" AllowUnlink="True" />
+		<ListView Id="ApplicationUserChangePassword_ListView" Removed="True" />
+		<ListView Id="ApplicationUserChangePassword_LookupListView" Removed="True" />
+		<DetailView Id="ApplicationUserLoginDetail_DetailView" AllowDelete="False" AllowEdit="False" AllowNew="False" />
+		<ListView Id="ApplicationUserLoginDetail_ListView" AllowNew="False" AllowDelete="False" />
+		<ListView Id="ApplicationUserLoginDetail_LookupListView" AllowDelete="False" AllowLink="False" AllowNew="True" />
+		<ListView Id="ApplicationUserLoginDetail_UserLockEntries_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+		<ListView Id="ApplicationUserLoginDetail_WebPortalLogEntries_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+		<ListView Id="Bank_Branches_ListView" AllowDelete="False" AllowLink="False" />
+		<DetailView Id="Bank_DetailView">
+			<Items>
+				<PropertyEditor Id="country_code" LookupEditorMode="AllItems" />
+			</Items>
+		</DetailView>
+		<ListView Id="Bank_ListView" AllowUnlink="False" AllowLink="False" AllowEdit="False" />
+		<ListView Id="Bank_LookupListView" AllowDelete="False" AllowNew="False">
+			<Columns>
+				<ColumnInfo Id="name" Index="0" />
+				<ColumnInfo Id="country_code" Index="1" />
+			</Columns>
+		</ListView>
+		<ListView Id="Branch_LookupListView" AllowDelete="False" AllowNew="True" AllowEdit="True">
+			<Columns>
+				<ColumnInfo Id="bank_id" PropertyName="bank_id" Index="0" SortIndex="0" SortOrder="Ascending" IsNewNode="True" />
+				<ColumnInfo Id="name" Index="1" SortIndex="1" SortOrder="Ascending" />
+				<ColumnInfo Id="branch_code" PropertyName="branch_code" Index="2" IsNewNode="True" />
+				<ColumnInfo Id="description" Index="3" />
+			</Columns>
+		</ListView>
+		<DetailView Id="CommunicationServiceStatus_DetailView" AllowDelete="False" AllowNew="False" AllowEdit="False" />
+		<ListView Id="CommunicationServiceStatus_ListView" AllowDelete="False" AllowNew="False" />
+		<ListView Id="CommunicationServiceStatus_LookupListView" AllowDelete="False" AllowLink="False" AllowNew="False" />
+		<DetailView Id="LogonParameters_DetailView">
+			<Items>
+				<StaticImage Id="LoginImage" ImageName="login" Caption="LoginImage(6)" IsNewNode="True" />
+			</Items>
+			<Layout>
+				<LayoutGroup Id="Main" RelativeSize="100">
+					<LayoutGroup Id="SimpleEditors" RelativeSize="100">
+						<LayoutGroup Id="LogonParameters" RelativeSize="100">
+							<LayoutItem Id="LoginImage" ViewItem="LoginImage" Index="0" RelativeSize="81.208053691275168" IsNewNode="True" />
+							<LayoutItem Id="UserName" Index="1" RelativeSize="8.053691275167786" />
+							<LayoutItem Id="Password" Index="2" RelativeSize="10.738255033557048" />
+						</LayoutGroup>
+					</LayoutGroup>
+				</LayoutGroup>
+			</Layout>
+		</DetailView>
+		<ListView Id="LogonParameters_ListView" Removed="True" />
+		<ListView Id="LogonParameters_LookupListView" Removed="True" />
+		<ListView Id="CIT_CITDenominationsCollection_ListView" AllowDelete="False" AllowNew="False">
+			<Columns>
+				<ColumnInfo Id="datetime" Index="-1" />
+				<ColumnInfo Id="denom" Index="-1" />
+				<ColumnInfo Id="subtotal" Index="-1" />
+				<ColumnInfo Id="currency_id" Index="0" SortIndex="0" SortOrder="Ascending" />
+				<ColumnInfo Id="DenomAmount" Index="1" SortIndex="1" SortOrder="Ascending" />
+				<ColumnInfo Id="count" Index="2" />
+				<ColumnInfo Id="SubTotalAmount" Index="3" />
+			</Columns>
+		</ListView>
+		<ListView Id="CIT_CITPrintouts_ListView" AllowNew="False" AllowDelete="False" />
+		<ListView Id="CIT_CITTransactions_ListView" DataAccessMode="Server">
+			<Columns>
+				<ColumnInfo Id="cit_id.auth_user" PropertyName="cit_id.auth_user" Index="-1" IsNewNode="True" />
+				<ColumnInfo Id="cit_id.cit_complete_date" PropertyName="cit_id.cit_complete_date" Index="-1" IsNewNode="True" />
+				<ColumnInfo Id="cit_id.cit_error" PropertyName="cit_id.cit_error" Index="-1" IsNewNode="True" />
+				<ColumnInfo Id="cit_id.cit_error_message" PropertyName="cit_id.cit_error_message" Index="-1" IsNewNode="True" />
+				<ColumnInfo Id="cit_id.complete" PropertyName="cit_id.complete" Index="-1" IsNewNode="True" />
+				<ColumnInfo Id="cit_id.fromDate" PropertyName="cit_id.fromDate" Index="-1" IsNewNode="True" />
+				<ColumnInfo Id="cit_id.new_bag_number" PropertyName="cit_id.new_bag_number" Index="-1" IsNewNode="True" />
+				<ColumnInfo Id="cit_id.old_bag_number" PropertyName="cit_id.old_bag_number" Index="-1" IsNewNode="True" />
+				<ColumnInfo Id="cit_id.seal_number" PropertyName="cit_id.seal_number" Index="-1" IsNewNode="True" />
+				<ColumnInfo Id="cit_id.start_user" PropertyName="cit_id.start_user" Index="-1" IsNewNode="True" />
+				<ColumnInfo Id="cit_id.toDate" PropertyName="cit_id.toDate" Index="-1" IsNewNode="True" />
+				<ColumnInfo Id="KeyProperty" Index="-1" Removed="True" />
+				<ColumnInfo Id="cit_id.device_id" PropertyName="cit_id.device_id" Index="0" SortIndex="-1" SortOrder="None" IsNewNode="True" />
+				<ColumnInfo Id="cit_id.cit_date" PropertyName="cit_id.cit_date" Index="1" SortIndex="0" SortOrder="Descending" IsNewNode="True" />
+				<ColumnInfo Id="currency" Index="2" SortIndex="1" SortOrder="Ascending" />
+				<ColumnInfo Id="TotalAmount" Index="3" />
+				<ColumnInfo Id="suspense_account" Index="4" />
+				<ColumnInfo Id="account_number" Index="5" />
+				<ColumnInfo Id="narration" Index="6" />
+				<ColumnInfo Id="cb_date" Index="7" />
+				<ColumnInfo Id="cb_tx_number" Index="8" />
+				<ColumnInfo Id="cb_tx_status" Index="9" />
+				<ColumnInfo Id="error_code" Index="10" />
+				<ColumnInfo Id="error_message" Index="11" />
+				<ColumnInfo Id="Date" Index="12" />
+			</Columns>
+		</ListView>
+		<DetailView Id="CIT_DetailView" AllowDelete="False" AllowEdit="False" AllowNew="False">
+			<Layout>
+				<LayoutGroup Id="Main" RelativeSize="100">
+					<LayoutGroup Id="SimpleEditors" RelativeSize="59.081836327345307">
+						<LayoutGroup Id="CIT" RelativeSize="65.540540540540547">
+							<LayoutGroup Id="CIT_col1" RelativeSize="50">
+								<LayoutItem Id="device_id" Index="0" RelativeSize="20" />
+								<LayoutItem Id="cit_date" Index="1" RelativeSize="15" />
+								<LayoutItem Id="cit_complete_date" Index="2" RelativeSize="15" />
+								<LayoutItem Id="fromDate" Index="3" RelativeSize="15" />
+								<LayoutItem Id="toDate" Index="4" RelativeSize="15" />
+								<LayoutItem Id="complete" ViewItem="complete" Index="5" RelativeSize="20" IsNewNode="True" />
+								<LayoutItem Id="start_user" Index="5" RelativeSize="20" Removed="True" />
+								<LayoutItem Id="KeyProperty" Removed="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="CIT_col2" RelativeSize="50">
+								<LayoutItem Id="start_user" ViewItem="start_user" Index="1" RelativeSize="15" IsNewNode="True" />
+								<LayoutItem Id="old_bag_number" Index="2" RelativeSize="15" />
+								<LayoutItem Id="new_bag_number" RelativeSize="15" Index="3" />
+								<LayoutItem Id="seal_number" RelativeSize="15" Index="4" />
+								<LayoutItem Id="cit_error" ViewItem="cit_error" Index="5" RelativeSize="20" IsNewNode="True" Removed="True" />
+								<LayoutItem Id="complete" RelativeSize="20" Index="5" Removed="True" />
+								<LayoutItem Id="cit_error_message" Removed="True" />
+							</LayoutGroup>
+						</LayoutGroup>
+						<LayoutItem Id="cit_error_message" ViewItem="cit_error_message" Index="1" RelativeSize="34.45945945945946" CaptionLocation="Top" IsNewNode="True" />
+					</LayoutGroup>
+					<TabbedGroup Id="Tabs" RelativeSize="40.918163672654693">
+						<LayoutGroup Id="CITDenominationsCollection" RelativeSize="100">
+							<LayoutItem Id="CITDenominationsCollection" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="Transactions" RelativeSize="100">
+							<LayoutItem Id="Transactions" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="CITPrintouts" RelativeSize="100">
+							<LayoutItem Id="CITPrintouts" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="CITTransactions" RelativeSize="100">
+							<LayoutItem Id="CITTransactions" RelativeSize="100" />
+						</LayoutGroup>
+					</TabbedGroup>
+				</LayoutGroup>
+			</Layout>
+		</DetailView>
+		<ListView Id="CIT_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" Filter="IsOutlookIntervalToday([cit_date])" DataAccessMode="Server">
+			<Columns>
+				<ColumnInfo Id="KeyProperty" Index="-1" />
+				<ColumnInfo Id="device_id" Index="0" />
+				<ColumnInfo Id="cit_date" SortOrder="Descending" SortIndex="0" Index="1" />
+				<ColumnInfo Id="cit_complete_date" Index="2" />
+				<ColumnInfo Id="fromDate" Index="3" />
+				<ColumnInfo Id="toDate" Index="4" />
+				<ColumnInfo Id="start_user" Index="5" />
+				<ColumnInfo Id="auth_user" Index="6" />
+				<ColumnInfo Id="old_bag_number" Index="7" />
+				<ColumnInfo Id="new_bag_number" Index="8" />
+				<ColumnInfo Id="seal_number" Index="9" />
+				<ColumnInfo Id="complete" Index="10" />
+				<ColumnInfo Id="cit_error" Index="11" />
+				<ColumnInfo Id="cit_error_message" Index="12" />
+			</Columns>
+		</ListView>
+		<ListView Id="CIT_LookupListView" AllowDelete="False" AllowNew="False" />
+		<ListView Id="CIT_Transactions_ListView" AllowDelete="False" AllowNew="False" DataAccessMode="Server">
+			<Columns>
+				<ColumnInfo Id="KeyProperty" Index="-1" Removed="True" />
+				<ColumnInfo Id="tx_start_date" SortIndex="0" SortOrder="Ascending" Index="0" />
+				<ColumnInfo Id="tx_end_date" Index="1" />
+				<ColumnInfo Id="cb_tx_number" Index="2" />
+				<ColumnInfo Id="device_id" Index="3" />
+				<ColumnInfo Id="tx_type" Index="4" />
+				<ColumnInfo Id="tx_currency" Index="5" />
+				<ColumnInfo Id="TotalAmount" Index="6" />
+				<ColumnInfo Id="tx_account_number" Index="7" />
+				<ColumnInfo Id="cb_account_name" Index="8" />
+				<ColumnInfo Id="tx_ref_account" Index="9" />
+				<ColumnInfo Id="cb_ref_account_name" Index="10" />
+				<ColumnInfo Id="tx_narration" Index="11" />
+				<ColumnInfo Id="tx_depositor_name" Index="12" />
+				<ColumnInfo Id="tx_id_number" Index="13" />
+				<ColumnInfo Id="tx_phone" Index="14" />
+				<ColumnInfo Id="session_id" Index="15" />
+				<ColumnInfo Id="tx_random_number" Index="16" />
+				<ColumnInfo Id="tx_completed" Index="17" />
+				<ColumnInfo Id="funds_source" Index="18" />
+				<ColumnInfo Id="tx_result" Index="19" />
+				<ColumnInfo Id="tx_error_code" Index="20" />
+				<ColumnInfo Id="tx_error_message" Index="21" />
+				<ColumnInfo Id="cb_date" Index="22" />
+				<ColumnInfo Id="cb_tx_status" Index="23" />
+				<ColumnInfo Id="notes_rejected" Index="24" />
+				<ColumnInfo Id="jam_detected" Index="25" />
+				<ColumnInfo Id="escrow_jam_detected" Index="26" />
+				<ColumnInfo Id="tx_suspense_account" Index="27" />
+			</Columns>
+		</ListView>
+		<DetailView Id="CITDenominations_DetailView" AllowDelete="False" AllowEdit="False" AllowNew="False">
+			<Layout>
+				<LayoutGroup Id="Main" RelativeSize="100">
+					<LayoutGroup Id="SimpleEditors" RelativeSize="100">
+						<LayoutGroup Id="CITDenominations" RelativeSize="100">
+							<LayoutGroup Id="CITDenominations_col1" RelativeSize="49.884526558891451">
+								<LayoutItem Id="cit_id" RelativeSize="7.441860465116279" />
+								<LayoutItem Id="datetime" RelativeSize="5.5813953488372094" />
+								<LayoutItem Id="currency_id" RelativeSize="5.5813953488372094" />
+								<LayoutItem Id="DenomAmount" ViewItem="DenomAmount" Index="3" RelativeSize="5.5813953488372094" IsNewNode="True" />
+								<LayoutItem Id="count" ViewItem="count" Index="4" RelativeSize="5.5813953488372094" IsNewNode="True" />
+								<LayoutItem Id="SubTotalAmount" ViewItem="SubTotalAmount" Index="5" RelativeSize="70.232558139534888" IsNewNode="True" />
+								<LayoutItem Id="denom" RelativeSize="88.700564971751419" Removed="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="CITDenominations_col2" RelativeSize="50.115473441108549" Caption="CITDenominations_col2" Direction="Horizontal">
+								<LayoutItem Id="DenomAmount" Index="0" RelativeSize="100" Removed="True" />
+								<LayoutItem Id="SubTotalAmount" Index="0" RelativeSize="7.441860465116279" Removed="True" />
+								<LayoutItem Id="count" RelativeSize="4.5197740112994351" Removed="True" />
+								<LayoutItem Id="subtotal" Removed="True" />
+							</LayoutGroup>
+						</LayoutGroup>
+					</LayoutGroup>
+				</LayoutGroup>
+			</Layout>
+		</DetailView>
+		<ListView Id="CITDenominations_ListView" AllowDelete="False" AllowNew="False">
+			<Columns>
+				<ColumnInfo Id="denom" Index="-1" />
+				<ColumnInfo Id="subtotal" Index="-1" />
+				<ColumnInfo Id="cit_id" Index="0" SortIndex="0" SortOrder="Ascending" />
+				<ColumnInfo Id="currency_id" Index="1" SortIndex="1" SortOrder="Ascending" />
+				<ColumnInfo Id="DenomAmount" Index="2" SortIndex="2" SortOrder="Ascending" />
+				<ColumnInfo Id="count" Index="3" />
+				<ColumnInfo Id="SubTotalAmount" Index="4" />
+				<ColumnInfo Id="datetime" Index="5" />
+			</Columns>
+		</ListView>
+		<ListView Id="CITDenominations_LookupListView" AllowDelete="False" AllowNew="False" />
+		<DetailView Id="CITPosting_DetailView" AllowEdit="False" AllowDelete="False" AllowNew="False" />
+		<ListView Id="CITPosting_ListView" AllowNew="False" AllowDelete="False" DataAccessMode="Server">
+			<Columns>
+				<ColumnInfo Id="init_date" Index="0" SortIndex="0" SortOrder="Descending" />
+				<ColumnInfo Id="cb_tx_number" Index="1" />
+				<ColumnInfo Id="post_status" Index="2" />
+				<ColumnInfo Id="post_date" Index="3" SortIndex="-1" SortOrder="None" />
+				<ColumnInfo Id="dr_currency" Index="4" SortIndex="-1" SortOrder="None" />
+				<ColumnInfo Id="DRAmount" Index="5" />
+				<ColumnInfo Id="dr_account" Index="6" />
+				<ColumnInfo Id="cr_currency" Index="7" />
+				<ColumnInfo Id="CRAmount" Index="8" />
+				<ColumnInfo Id="cr_account" Index="9" />
+				<ColumnInfo Id="initialising_user" Index="10" />
+				<ColumnInfo Id="authorising_user" Index="11" />
+				<ColumnInfo Id="auth_date" Index="12" />
+				<ColumnInfo Id="auth_response" Index="13" />
+				<ColumnInfo Id="reason" Index="14" />
+				<ColumnInfo Id="cit_tx_id" Index="15" />
+				<ColumnInfo Id="narration" Index="16" />
+				<ColumnInfo Id="error_code" Index="17" />
+				<ColumnInfo Id="error_message" Index="18" />
+				<ColumnInfo Id="cb_date" Index="19" />
+				<ColumnInfo Id="cb_tx_status" Index="20" />
+				<ColumnInfo Id="cb_status_detail" Index="21" />
+				<ColumnInfo Id="device_initiated" Index="22" />
+				<ColumnInfo Id="is_complete" Index="23" />
+			</Columns>
+		</ListView>
+		<ListView Id="CITPosting_ListView_Pending" ClassName="CashSwiftCashControlPortal.Module.BusinessObjects.CITs.CITPosting" AllowNew="False" AllowDelete="False" Criteria="IsNullOrEmpty([cit_tx_id.cb_tx_number]) And Not [cit_tx_id.CITPostings][Not IsNullOrEmpty([cb_tx_number]) Or [auth_response] = '2'] And [post_status] = ##Enum#CashSwiftCashControlPortal.Module.BusinessObjects.CITs.CITPostingStatus,AUTH_AWAIT#" Filter="[initialising_user.id] &lt;&gt; CurrentUserId()" Caption="Pending CIT Posting" DataAccessMode="Server" IsNewNode="True">
+			<Columns IsNewNode="True">
+				<ColumnInfo Id="cit_tx_id" PropertyName="cit_tx_id" Width="70" Index="0" IsNewNode="True" />
+				<ColumnInfo Id="init_date" PropertyName="init_date" Width="70" Index="1" SortIndex="0" SortOrder="Descending" IsNewNode="True" />
+				<ColumnInfo Id="initialising_user" PropertyName="initialising_user" Width="70" Index="2" IsNewNode="True" />
+				<ColumnInfo Id="dr_currency" PropertyName="dr_currency" Width="400" SortIndex="-1" SortOrder="None" Index="3" IsNewNode="True" />
+				<ColumnInfo Id="DRAmount" PropertyName="DRAmount" Width="50" Index="4" IsNewNode="True" />
+				<ColumnInfo Id="dr_account" PropertyName="dr_account" Width="70" Index="5" IsNewNode="True" />
+				<ColumnInfo Id="cr_currency" PropertyName="cr_currency" Width="70" Index="6" IsNewNode="True" />
+				<ColumnInfo Id="CRAmount" PropertyName="CRAmount" Width="50" Index="7" IsNewNode="True" />
+				<ColumnInfo Id="cr_account" PropertyName="cr_account" Width="70" Index="8" IsNewNode="True" />
+				<ColumnInfo Id="narration" PropertyName="narration" Width="70" Index="9" IsNewNode="True" />
+				<ColumnInfo Id="error_code" PropertyName="error_code" Width="70" Index="10" IsNewNode="True" />
+				<ColumnInfo Id="error_message" PropertyName="error_message" Width="70" Index="11" IsNewNode="True" />
+				<ColumnInfo Id="cb_tx_number" PropertyName="cb_tx_number" Width="70" Index="12" IsNewNode="True" />
+				<ColumnInfo Id="cb_date" PropertyName="cb_date" Width="70" Index="13" IsNewNode="True" />
+				<ColumnInfo Id="cb_tx_status" PropertyName="cb_tx_status" Width="70" Index="14" IsNewNode="True" />
+				<ColumnInfo Id="cb_status_detail" PropertyName="cb_status_detail" Width="70" Index="15" IsNewNode="True" />
+				<ColumnInfo Id="post_status" PropertyName="post_status" Width="70" Index="16" IsNewNode="True" />
+				<ColumnInfo Id="post_date" PropertyName="post_date" Width="70" Index="17" IsNewNode="True" />
+				<ColumnInfo Id="authorising_user" PropertyName="authorising_user" Width="70" Index="18" IsNewNode="True" />
+				<ColumnInfo Id="auth_date" PropertyName="auth_date" Width="70" Index="19" IsNewNode="True" />
+				<ColumnInfo Id="auth_response" PropertyName="auth_response" Width="70" Index="20" IsNewNode="True" />
+				<ColumnInfo Id="reason" PropertyName="reason" Width="70" Index="21" IsNewNode="True" />
+				<ColumnInfo Id="device_initiated" PropertyName="device_initiated" Width="50" Index="22" IsNewNode="True" />
+				<ColumnInfo Id="is_complete" PropertyName="is_complete" Width="50" Index="23" IsNewNode="True" />
+			</Columns>
+		</ListView>
+		<ListView Id="CITPosting_LookupListView" AllowNew="False" AllowDelete="False" />
+		<DetailView Id="CITPrintout_DetailView" AllowDelete="False" AllowEdit="False" AllowNew="False" />
+		<ListView Id="CITPrintout_ListView" AllowDelete="False" AllowNew="False" />
+		<ListView Id="CITPrintout_LookupListView" AllowDelete="False" AllowNew="False" />
+		<ListView Id="CITTransaction_CITPostings_ListView" AllowDelete="False" AllowNew="False" DataAccessMode="Server" />
+		<DetailView Id="CITTransaction_DetailView" AllowDelete="False" AllowEdit="False" AllowNew="False">
+			<Items>
+				<PropertyEditor Id="error_message" RowCount="5" />
+				<PropertyEditor Id="KeyProperty" Removed="True" />
+			</Items>
+			<Layout>
+				<LayoutGroup Id="Main" RelativeSize="100">
+					<LayoutGroup Id="SimpleEditors" RelativeSize="56.886227544910177">
+						<LayoutGroup Id="CITTransaction" RelativeSize="59.649122807017541">
+							<LayoutGroup Id="CITTransaction_col1" RelativeSize="49.767441860465119">
+								<LayoutItem Id="cit_id" Index="0" RelativeSize="23.529411764705884" />
+								<LayoutItem Id="suspense_account" Index="1" RelativeSize="17.647058823529413" />
+								<LayoutItem Id="currency" Index="2" RelativeSize="17.647058823529413" />
+								<LayoutItem Id="cb_tx_number" ViewItem="cb_tx_number" Index="3" RelativeSize="17.647058823529413" IsNewNode="True" />
+								<LayoutItem Id="TotalAmount" Index="3" RelativeSize="15" Removed="True" />
+								<LayoutItem Id="error_code" ViewItem="error_code" Index="4" RelativeSize="23.529411764705884" IsNewNode="True" />
+								<LayoutItem Id="account_number" Index="5" RelativeSize="20" Removed="True" />
+								<LayoutItem Id="Date" Removed="True" />
+								<LayoutItem Id="KeyProperty" Removed="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="CITTransaction_col2" RelativeSize="50.232558139534881">
+								<LayoutItem Id="Date" ViewItem="Date" Index="0" RelativeSize="23.529411764705884" IsNewNode="True" />
+								<LayoutItem Id="account_number" ViewItem="account_number" Index="1" RelativeSize="17.647058823529413" IsNewNode="True" />
+								<LayoutItem Id="cb_tx_number" Index="2" RelativeSize="17.647058823529413" Removed="True" />
+								<LayoutItem Id="TotalAmount" ViewItem="TotalAmount" Index="2" RelativeSize="17.647058823529413" IsNewNode="True" />
+								<LayoutItem Id="narration" RelativeSize="41.1764705882353" Index="3" />
+								<LayoutItem Id="cb_date" RelativeSize="15" Index="4" Removed="True" />
+								<LayoutItem Id="cb_tx_status" RelativeSize="23.529411764705884" Index="4" Removed="True" />
+								<LayoutItem Id="error_code" RelativeSize="20" Index="5" Removed="True" />
+								<LayoutItem Id="error_message" RelativeSize="20" Removed="True" />
+							</LayoutGroup>
+						</LayoutGroup>
+						<LayoutItem Id="error_message" ViewItem="error_message" Index="1" RelativeSize="40.350877192982459" IsNewNode="True" />
+					</LayoutGroup>
+					<LayoutGroup Id="SizeableEditors" RelativeSize="17.365269461077844" Caption="cb_status_detail">
+						<LayoutGroup Id="Auto7ad9d147-fdc7-4513-92d2-60799ea1c6f3" ShowCaption="False" Caption="" Direction="Horizontal" Index="0" RelativeSize="31.03448275862069" IsNewNode="True">
+							<LayoutItem Id="cb_date" ViewItem="cb_date" Index="0" RelativeSize="50" IsNewNode="True" />
+							<LayoutItem Id="cb_tx_status" ViewItem="cb_tx_status" Index="1" RelativeSize="50" IsNewNode="True" />
+						</LayoutGroup>
+						<LayoutItem Id="cb_status_detail" RelativeSize="68.965517241379317" Index="1" />
+					</LayoutGroup>
+					<LayoutGroup Id="CITPostings_Group" Direction="Vertical" RelativeSize="25.748502994011975">
+						<LayoutItem Id="CITPostings" RelativeSize="100" />
+					</LayoutGroup>
+				</LayoutGroup>
+			</Layout>
+		</DetailView>
+		<ListView Id="CITTransaction_ListView" DataAccessMode="Server" AllowNew="False" AllowDelete="False">
+			<Columns>
+				<ColumnInfo Id="KeyProperty" Index="-1" Removed="True" />
+				<ColumnInfo Id="Date" Width="106" SortIndex="0" SortOrder="Descending" Index="0" />
+				<ColumnInfo Id="cit_id" Index="1" />
+				<ColumnInfo Id="currency" Index="2" />
+				<ColumnInfo Id="TotalAmount" Index="3" />
+				<ColumnInfo Id="suspense_account" Index="4" />
+				<ColumnInfo Id="account_number" Index="5" />
+				<ColumnInfo Id="narration" Index="6" />
+				<ColumnInfo Id="cb_date" Index="7" />
+				<ColumnInfo Id="cb_tx_status" Index="8" />
+				<ColumnInfo Id="error_code" Index="9" />
+				<ColumnInfo Id="error_message" Index="10" />
+			</Columns>
+		</ListView>
+		<ListView Id="CITTransaction_ListView_FailedPost" ClassName="CashSwiftCashControlPortal.Module.BusinessObjects.CITs.CITTransaction" DataAccessMode="Server" Criteria="IsNullOrEmpty([cb_tx_number]) And Not [CITPostings][Not IsNullOrEmpty([cb_tx_number]) Or [is_complete] = False Or [auth_response] = '2'] And [TotalAmount] &gt; 0.0" AllowDelete="False" AllowNew="False" IsNewNode="True">
+			<Columns IsNewNode="True">
+				<ColumnInfo Id="cb_status_detail" PropertyName="cb_status_detail" Width="70" Index="-1" IsNewNode="True" />
+				<ColumnInfo Id="Date" PropertyName="Date" Index="0" SortIndex="0" SortOrder="Descending" IsNewNode="True" />
+				<ColumnInfo Id="cit_id" PropertyName="cit_id" Width="70" Index="1" IsNewNode="True" />
+				<ColumnInfo Id="currency" PropertyName="currency" Width="70" Index="2" IsNewNode="True" />
+				<ColumnInfo Id="TotalAmount" PropertyName="TotalAmount" Width="50" Index="3" IsNewNode="True" />
+				<ColumnInfo Id="suspense_account" PropertyName="suspense_account" Width="70" Index="4" IsNewNode="True" />
+				<ColumnInfo Id="account_number" PropertyName="account_number" Width="70" Index="5" IsNewNode="True" />
+				<ColumnInfo Id="narration" PropertyName="narration" Width="70" Index="6" IsNewNode="True" />
+				<ColumnInfo Id="cb_date" PropertyName="cb_date" Width="70" Index="7" IsNewNode="True" />
+				<ColumnInfo Id="cb_tx_status" PropertyName="cb_tx_status" Width="70" Index="8" IsNewNode="True" />
+				<ColumnInfo Id="error_code" PropertyName="error_code" Width="50" Index="9" IsNewNode="True" />
+				<ColumnInfo Id="error_message" PropertyName="error_message" Width="70" Index="10" IsNewNode="True" />
+			</Columns>
+		</ListView>
+		<ListView Id="CITTransaction_LookupListView" AllowDelete="False" AllowNew="False">
+			<Columns>
+				<ColumnInfo Id="KeyProperty" Index="-1" Removed="True" />
+				<ColumnInfo Id="cit_id" PropertyName="cit_id" Index="1" IsNewNode="True" />
+				<ColumnInfo Id="account_number" PropertyName="account_number" Index="2" IsNewNode="True" />
+				<ColumnInfo Id="suspense_account" PropertyName="suspense_account" Index="3" IsNewNode="True" />
+				<ColumnInfo Id="currency" PropertyName="currency" Index="4" IsNewNode="True" />
+				<ColumnInfo Id="TotalAmount" PropertyName="TotalAmount" Index="5" IsNewNode="True" />
+			</Columns>
+		</ListView>
+		<ListView Id="Config_DeviceConfigs_ListView" AllowLink="False" AllowUnlink="False">
+			<Columns>
+				<ColumnInfo Id="group_id" Index="0" SortIndex="0" SortOrder="Ascending" />
+				<ColumnInfo Id="ConfigValue" Index="1" />
+			</Columns>
+		</ListView>
+		<ListView Id="Config_ListView" AllowDelete="True" AllowEdit="True" AllowLink="False" AllowUnlink="False">
+			<Columns>
+				<ColumnInfo Id="name" Index="0" SortIndex="0" SortOrder="Ascending" />
+				<ColumnInfo Id="description" Index="1" />
+				<ColumnInfo Id="category_id" Index="2" />
+				<ColumnInfo Id="default_value" Index="3" />
+			</Columns>
+		</ListView>
+		<ListView Id="Config_LookupListView" AllowDelete="False" AllowNew="False">
+			<Columns>
+				<ColumnInfo Id="name" PropertyName="name" Index="0" SortIndex="0" SortOrder="Ascending" IsNewNode="True" />
+				<ColumnInfo Id="default_value" PropertyName="default_value" Index="1" IsNewNode="True" />
+				<ColumnInfo Id="description" Index="2" />
+				<ColumnInfo Id="category_id" PropertyName="category_id" Index="3" IsNewNode="True" />
+			</Columns>
+		</ListView>
+		<ListView Id="ConfigCategory_Configs_ListView">
+			<Columns>
+				<ColumnInfo Id="name" Index="0" SortIndex="0" SortOrder="Ascending" />
+				<ColumnInfo Id="default_value" Index="1" />
+				<ColumnInfo Id="description" Index="2" />
+				<ColumnInfo Id="category_id" Index="3" />
+			</Columns>
+		</ListView>
+		<ListView Id="ConfigCategory_ListView" AllowEdit="True" />
+		<ListView Id="ConfigCategory_LookupListView" AllowDelete="False" AllowNew="False">
+			<Columns>
+				<ColumnInfo Id="name" Index="0" />
+				<ColumnInfo Id="description" Index="1" />
+			</Columns>
+		</ListView>
+		<ListView Id="ConfigGroup_ConfigGroupCollection_ListView">
+			<Columns>
+				<ColumnInfo Id="name" Index="-1" SortIndex="-1" SortOrder="None" />
+				<ColumnInfo Id="Parent" Index="-1" />
+				<ColumnInfo Id="parent_group" Index="-1" />
+				<ColumnInfo Id="Name" Index="0" SortIndex="0" SortOrder="Ascending" />
+				<ColumnInfo Id="description" Index="1" />
+			</Columns>
+		</ListView>
+		<DetailView Id="ConfigGroup_DetailView">
+			<Layout>
+				<LayoutGroup Id="Main" RelativeSize="100">
+					<LayoutGroup Id="SimpleEditors" RelativeSize="17.066666666666666">
+						<LayoutGroup Id="ConfigGroup" RelativeSize="100" Direction="Vertical">
+							<LayoutGroup Id="ConfigGroup_col1" RelativeSize="100">
+								<LayoutItem Id="name" RelativeSize="36.363636363636367" />
+								<LayoutItem Id="description" RelativeSize="27.272727272727273" />
+								<LayoutItem Id="parent_group" RelativeSize="36.363636363636367" />
+							</LayoutGroup>
+							<LayoutGroup Id="ConfigGroup_col2" Caption="ConfigGroup_col2" RelativeSize="50" Direction="Horizontal" Removed="True">
+								<LayoutItem Id="Parent" Index="0" RelativeSize="100" Removed="True" />
+								<LayoutItem Id="Name" Removed="True" />
+							</LayoutGroup>
+						</LayoutGroup>
+					</LayoutGroup>
+					<TabbedGroup Id="Tabs" RelativeSize="82.933333333333337">
+						<LayoutGroup Id="ConfigGroupCollection" RelativeSize="100">
+							<LayoutItem Id="ConfigGroupCollection" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="DeviceConfigs" RelativeSize="100">
+							<LayoutItem Id="DeviceConfigs" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="Devices" RelativeSize="100">
+							<LayoutItem Id="Devices" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="Children" RelativeSize="100">
+							<LayoutItem Id="Children" RelativeSize="100" />
+						</LayoutGroup>
+					</TabbedGroup>
+				</LayoutGroup>
+			</Layout>
+		</DetailView>
+		<ListView Id="ConfigGroup_DeviceConfigs_ListView">
+			<Columns>
+				<ColumnInfo Id="config_id" SortIndex="0" SortOrder="Ascending" />
+				<ColumnInfo Id="ConfigValue" Index="1" />
+			</Columns>
+		</ListView>
+		<ListView Id="ConfigGroup_Devices_ListView">
+			<Columns>
+				<ColumnInfo Id="login_attempts" Index="-1" />
+				<ColumnInfo Id="login_cycles" Index="-1" />
+			</Columns>
+		</ListView>
+		<ListView Id="ConfigGroup_ListView" AllowEdit="True">
+			<Columns>
+				<ColumnInfo Id="Name" Index="-1" />
+				<ColumnInfo Id="parent_group" Index="-1" />
+				<ColumnInfo Id="Parent" Index="2" />
+			</Columns>
+		</ListView>
+		<ListView Id="ConfigGroup_LookupListView" AllowDelete="False" AllowNew="False">
+			<Columns>
+				<ColumnInfo Id="Parent" PropertyName="Parent" Index="-1" IsNewNode="True" />
+				<ColumnInfo Id="name" Index="0" />
+				<ColumnInfo Id="description" Index="1" />
+			</Columns>
+		</ListView>
+		<ListView Id="Country_ListView" AllowEdit="True">
+			<Columns>
+				<ColumnInfo Id="country_code" PropertyName="country_code" Index="0" SortIndex="0" SortOrder="Ascending" Width="97" IsNewNode="True" />
+				<ColumnInfo Id="country_name" Width="280" Index="1" SortIndex="-1" SortOrder="None" />
+			</Columns>
+		</ListView>
+		<ListView Id="Country_LookupListView" AllowDelete="False" AllowNew="False">
+			<Columns>
+				<ColumnInfo Id="country_code" PropertyName="country_code" Index="1" SortIndex="0" SortOrder="Ascending" IsNewNode="True" />
+				<ColumnInfo Id="country_name" SortIndex="-1" SortOrder="None" />
+			</Columns>
+		</ListView>
+		<ListView Id="Currency_CITDenominationsCollection_ListView" AllowDelete="False" AllowNew="False" Removed="True">
+			<Columns>
+				<ColumnInfo Id="denom" Index="-1" />
+				<ColumnInfo Id="subtotal" Index="-1" />
+				<ColumnInfo Id="cit_id" Index="0" SortIndex="0" SortOrder="Ascending" />
+				<ColumnInfo Id="DenomAmount" Index="1" SortIndex="1" SortOrder="Ascending" />
+				<ColumnInfo Id="count" Index="2" />
+				<ColumnInfo Id="SubTotalAmount" Index="3" />
+				<ColumnInfo Id="datetime" Index="4" />
+			</Columns>
+		</ListView>
+		<ListView Id="Currency_CurrencyList_Currencys_ListView" Removed="True" />
+		<ListView Id="Currency_CurrencyListDefaults_ListView" Removed="True" />
+		<DetailView Id="Currency_DetailView">
+			<Items>
+				<PropertyEditor Id="CITDenominationsCollection" Removed="True" />
+				<PropertyEditor Id="CurrencyList_Currencys" Removed="True" />
+				<PropertyEditor Id="CurrencyListDefaults" Removed="True" />
+				<PropertyEditor Id="DeviceCITSuspenseAccounts" Removed="True" />
+				<PropertyEditor Id="DeviceSuspenseAccounts" Removed="True" />
+				<PropertyEditor Id="TransactionLimitListItems" Removed="True" />
+				<PropertyEditor Id="Transactions" Removed="True" />
+				<PropertyEditor Id="TransactionTypeListItems" Removed="True" />
+			</Items>
+			<Layout>
+				<LayoutGroup Id="Main" RelativeSize="100">
+					<LayoutGroup Id="SimpleEditors" RelativeSize="100">
+						<LayoutGroup Id="Currency" RelativeSize="100">
+							<LayoutGroup Id="Currency_col1" RelativeSize="50">
+								<LayoutItem Id="code" RelativeSize="6.8965517241379306" />
+								<LayoutItem Id="name" RelativeSize="5.1724137931034484" />
+								<LayoutItem Id="minor" RelativeSize="87.931034482758619" />
+							</LayoutGroup>
+							<LayoutGroup Id="Currency_col2" RelativeSize="50">
+								<LayoutItem Id="flag" RelativeSize="6.8965517241379306" />
+								<LayoutItem Id="enabled" RelativeSize="93.103448275862064" />
+							</LayoutGroup>
+						</LayoutGroup>
+					</LayoutGroup>
+					<TabbedGroup Id="Tabs" RelativeSize="74.703557312252968" Removed="True">
+						<LayoutGroup Id="CurrencyList_Currencys" Index="0" RelativeSize="100">
+							<LayoutItem Id="CurrencyList_Currencys" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="CurrencyListDefaults" RelativeSize="100" Index="0" Removed="True">
+							<LayoutItem Id="CurrencyListDefaults" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="DeviceCITSuspenseAccounts" Index="0" RelativeSize="100" Removed="True">
+							<LayoutItem Id="DeviceCITSuspenseAccounts" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="DeviceSuspenseAccounts" Index="1" RelativeSize="100" Removed="True">
+							<LayoutItem Id="DeviceSuspenseAccounts" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="TransactionLimitListItems" Index="3" RelativeSize="100" Removed="True">
+							<LayoutItem Id="TransactionLimitListItems" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="TransactionTypeListItems" Index="3" RelativeSize="100" Removed="True">
+							<LayoutItem Id="TransactionTypeListItems" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="CITDenominationsCollection" RelativeSize="100" Removed="True">
+							<LayoutItem Id="CITDenominationsCollection" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="Transactions" Removed="True" />
+					</TabbedGroup>
+				</LayoutGroup>
+			</Layout>
+		</DetailView>
+		<ListView Id="Currency_DeviceCITSuspenseAccounts_ListView" Removed="True" />
+		<ListView Id="Currency_DeviceSuspenseAccounts_ListView" Removed="True">
+			<Columns>
+				<ColumnInfo Id="device_id" SortIndex="0" SortOrder="Ascending" />
+			</Columns>
+		</ListView>
+		<ListView Id="Currency_ListView">
+			<Columns>
+				<ColumnInfo Id="code" LookupEditorMode="AllItemsWithSearch" />
+			</Columns>
+		</ListView>
+		<ListView Id="Currency_LookupListView" AllowDelete="False" AllowNew="False" DataAccessMode="Server">
+			<Columns>
+				<ColumnInfo Id="code" PropertyName="code" Index="0" SortIndex="0" SortOrder="Ascending" IsNewNode="True" />
+				<ColumnInfo Id="name" Width="138" SortIndex="-1" SortOrder="None" Index="1" />
+			</Columns>
+		</ListView>
+		<ListView Id="Currency_TransactionLimitListItems_ListView" Removed="True" />
+		<ListView Id="Currency_Transactions_ListView" AllowDelete="False" AllowNew="False" Removed="True">
+			<Columns>
+				<ColumnInfo Id="tx_start_date" SortIndex="0" SortOrder="Ascending" />
+			</Columns>
+		</ListView>
+		<ListView Id="Currency_TransactionTypeListItems_ListView" AllowDelete="False" AllowNew="False" Removed="True" />
+		<DetailView Id="CurrencyList_Currency_DetailView">
+			<Items>
+				<PropertyEditor Id="currency_item" LookupEditorMode="AllItems" />
+			</Items>
+		</DetailView>
+		<ListView Id="CurrencyList_Currency_ListView">
+			<Columns>
+				<ColumnInfo Id="currency_list" SortIndex="-1" GroupIndex="0" />
+				<ColumnInfo Id="currency_order" SortIndex="0" SortOrder="Ascending" />
+			</Columns>
+		</ListView>
+		<ListView Id="CurrencyList_Currency_LookupListView" AllowDelete="False" AllowNew="False" />
+		<ListView Id="CurrencyList_CurrencyList_Currencys_ListView" AllowLink="False" AllowUnlink="False">
+			<Columns>
+				<ColumnInfo Id="currency_list" Index="-1" SortIndex="-1" SortOrder="None" />
+				<ColumnInfo Id="currency_item" Index="0" Width="84" />
+				<ColumnInfo Id="currency_order" Index="1" SortIndex="0" SortOrder="Ascending" />
+				<ColumnInfo Id="max_value" Index="2" />
+				<ColumnInfo Id="max_count" Index="3" />
+			</Columns>
+		</ListView>
+		<DetailView Id="CurrencyList_DetailView">
+			<Items>
+				<PropertyEditor Id="default_currency" LookupEditorMode="AllItems" />
+			</Items>
+		</DetailView>
+		<ListView Id="CurrencyList_Devices_ListView">
+			<Columns>
+				<ColumnInfo Id="login_attempts" Index="-1" />
+				<ColumnInfo Id="login_cycles" Index="-1" />
+				<ColumnInfo Id="branch_id" Index="0" SortIndex="0" SortOrder="Ascending" />
+				<ColumnInfo Id="machine_name" SortIndex="1" SortOrder="Ascending" Index="1" />
+				<ColumnInfo Id="name" SortIndex="-1" SortOrder="None" Index="2" />
+				<ColumnInfo Id="description" Index="3" />
+				<ColumnInfo Id="device_number" Index="4" />
+				<ColumnInfo Id="device_location" Index="5" />
+				<ColumnInfo Id="branch_id.bank_id" PropertyName="branch_id.bank_id" Index="6" SortIndex="-1" SortOrder="Ascending" GroupIndex="0" IsNewNode="True" />
+				<ColumnInfo Id="type_id" Index="7" />
+				<ColumnInfo Id="enabled" Index="8" />
+				<ColumnInfo Id="config_group" Index="9" />
+				<ColumnInfo Id="user_group" Index="10" />
+				<ColumnInfo Id="GUIScreen_list" Index="11" />
+				<ColumnInfo Id="language_list" Index="12" />
+				<ColumnInfo Id="transaction_type_list" Index="13" />
+			</Columns>
+		</ListView>
+		<ListView Id="CurrencyList_LookupListView" AllowDelete="False" AllowNew="False">
+			<Columns>
+				<ColumnInfo Id="name" Index="0" />
+				<ColumnInfo Id="description" Index="1" />
+				<ColumnInfo Id="default_currency" PropertyName="default_currency" Index="2" IsNewNode="True" />
+			</Columns>
+		</ListView>
+		<DetailView Id="DenominationDetail_DetailView" AllowDelete="False" AllowEdit="False" AllowNew="False" />
+		<ListView Id="DenominationDetail_ListView" AllowDelete="False" AllowNew="False">
+			<Columns>
+				<ColumnInfo Id="datetime" Index="-1" />
+				<ColumnInfo Id="denom" Index="-1" />
+				<ColumnInfo Id="subtotal" Index="-1" />
+				<ColumnInfo Id="tx_id.tx_end_date" PropertyName="tx_id.tx_end_date" Index="0" SortIndex="0" SortOrder="Descending" IsNewNode="True" />
+				<ColumnInfo Id="tx_id" Index="1" />
+				<ColumnInfo Id="DenomAmount" Index="2" SortIndex="1" SortOrder="Ascending" />
+				<ColumnInfo Id="count" Index="3" />
+				<ColumnInfo Id="SubTotalAmount" Index="4" />
+			</Columns>
+		</ListView>
+		<ListView Id="DenominationDetail_LookupListView" AllowDelete="False" AllowNew="False" />
+		<ListView Id="DepositorSession_ApplicationLogs_ListView">
+			<Columns>
+				<ColumnInfo Id="device_id" Index="-1" />
+				<ColumnInfo Id="log_date" Index="0" SortIndex="0" SortOrder="Ascending" />
+				<ColumnInfo Id="event_name" Index="1" SortIndex="-1" SortOrder="None" />
+				<ColumnInfo Id="event_detail" Index="2" />
+				<ColumnInfo Id="event_type" Index="3" />
+				<ColumnInfo Id="component" Index="4" />
+				<ColumnInfo Id="log_level" Index="5" />
+			</Columns>
+		</ListView>
+		<DetailView Id="DepositorSession_DetailView" AllowDelete="False" AllowEdit="False" AllowNew="False">
+			<Layout>
+				<LayoutGroup Id="Main" RelativeSize="100">
+					<LayoutGroup Id="SimpleEditors" RelativeSize="48.303393213572853">
+						<LayoutGroup Id="DepositorSession" RelativeSize="70.247933884297524">
+							<LayoutGroup Id="DepositorSession_col1" RelativeSize="49.893390191897652">
+								<LayoutItem Id="device_id" Index="0" RelativeSize="23.529411764705884" />
+								<LayoutItem Id="session_start" Index="1" RelativeSize="17.647058823529413" />
+								<LayoutItem Id="session_end" Index="2" RelativeSize="17.647058823529413" />
+								<LayoutItem Id="language_code" Index="3" RelativeSize="41.1764705882353" />
+								<LayoutItem Id="complete" Index="4" RelativeSize="23.529411764705884" Removed="True" />
+								<LayoutItem Id="KeyProperty" Removed="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="DepositorSession_col2" RelativeSize="50.106609808102348">
+								<LayoutItem Id="complete_success" RelativeSize="23.529411764705884" />
+								<LayoutItem Id="error_message" RelativeSize="15" Index="1" Removed="True" />
+								<LayoutItem Id="terms_accepted" RelativeSize="17.647058823529413" Index="1" />
+								<LayoutItem Id="account_verified" RelativeSize="17.647058823529413" Index="2" />
+								<LayoutItem Id="reference_account_verified" RelativeSize="17.647058823529413" Index="3" />
+								<LayoutItem Id="complete" ViewItem="complete" Index="4" RelativeSize="23.529411764705884" IsNewNode="True" />
+								<LayoutItem Id="error_code" RelativeSize="23.529411764705884" Index="4" Removed="True" />
+							</LayoutGroup>
+						</LayoutGroup>
+						<LayoutItem Id="error_code" ViewItem="error_code" Index="1" RelativeSize="9.9173553719008272" IsNewNode="True" />
+						<LayoutItem Id="error_message" ViewItem="error_message" Index="2" RelativeSize="19.834710743801654" CaptionLocation="Top" IsNewNode="True" />
+					</LayoutGroup>
+					<TabbedGroup Id="Tabs" RelativeSize="51.696606786427147">
+						<LayoutGroup Id="Transactions" RelativeSize="100">
+							<LayoutItem Id="Transactions" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="ApplicationLogs" RelativeSize="100">
+							<LayoutItem Id="ApplicationLogs" RelativeSize="100" />
+						</LayoutGroup>
+					</TabbedGroup>
+				</LayoutGroup>
+			</Layout>
+		</DetailView>
+		<ListView Id="DepositorSession_ListView" AllowDelete="False" AllowNew="False">
+			<Columns>
+				<ColumnInfo Id="KeyProperty" Index="-1" />
+				<ColumnInfo Id="device_id" Index="0" />
+				<ColumnInfo Id="session_start" SortOrder="Descending" SortIndex="1" Index="1" />
+				<ColumnInfo Id="session_end" Index="2" />
+				<ColumnInfo Id="language_code" Index="3" />
+				<ColumnInfo Id="complete" Index="4" />
+				<ColumnInfo Id="complete_success" Index="5" />
+				<ColumnInfo Id="error_code" Index="6" />
+				<ColumnInfo Id="error_message" Index="7" />
+				<ColumnInfo Id="terms_accepted" Index="8" />
+				<ColumnInfo Id="account_verified" Index="9" />
+				<ColumnInfo Id="reference_account_verified" Index="10" />
+			</Columns>
+		</ListView>
+		<ListView Id="DepositorSession_LookupListView" AllowDelete="False" AllowNew="False" />
+		<ListView Id="DepositorSession_Transactions_ListView" AllowDelete="False" AllowNew="False" />
+		<ListView Id="Device_CITs_ListView" AllowDelete="False" AllowNew="False" />
+		<ListView Id="Device_DepositorSessions_ListView" AllowDelete="False" AllowNew="False">
+			<Columns>
+				<ColumnInfo Id="session_start" SortOrder="Descending" />
+			</Columns>
+		</ListView>
+		<DetailView Id="Device_DetailView">
+			<Layout>
+				<LayoutGroup Id="Main" RelativeSize="100">
+					<LayoutGroup Id="SimpleEditors" Index="0" RelativeSize="54.838709677419352" ShowCaption="False" Removed="True">
+						<LayoutGroup Id="Device" Index="0" Direction="Horizontal" ShowCaption="True" RelativeSize="100" IsNewNode="True">
+							<LayoutGroup Id="Device_col1" Index="0" ShowCaption="False" RelativeSize="50" IsNewNode="True">
+								<LayoutItem Id="name" ViewItem="name" ShowCaption="" Index="0" RelativeSize="13.793103448275861" IsNewNode="True" />
+								<LayoutItem Id="description" ViewItem="description" ShowCaption="" Index="1" RelativeSize="10.344827586206897" IsNewNode="True" />
+								<LayoutItem Id="device_number" ViewItem="device_number" ShowCaption="" Index="2" RelativeSize="10.344827586206897" IsNewNode="True" />
+								<LayoutItem Id="device_location" ViewItem="device_location" ShowCaption="" Index="3" RelativeSize="10.344827586206897" IsNewNode="True" />
+								<LayoutItem Id="machine_name" ViewItem="machine_name" ShowCaption="" Index="4" RelativeSize="10.344827586206897" IsNewNode="True" />
+								<LayoutItem Id="mac_address" ViewItem="mac_address" ShowCaption="" Index="5" RelativeSize="10.344827586206897" IsNewNode="True" />
+								<LayoutItem Id="branch_id" ViewItem="branch_id" ShowCaption="" Index="6" RelativeSize="10.344827586206897" IsNewNode="True" />
+								<LayoutItem Id="type_id" ViewItem="type_id" ShowCaption="" Index="7" RelativeSize="10.344827586206897" IsNewNode="True" />
+								<LayoutItem Id="enabled" ViewItem="enabled" ShowCaption="" Index="8" RelativeSize="13.793103448275861" IsNewNode="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="Device_col2" Index="1" ShowCaption="False" RelativeSize="50" IsNewNode="True">
+								<LayoutItem Id="config_group" ViewItem="config_group" ShowCaption="" Index="0" RelativeSize="13.793103448275861" IsNewNode="True" />
+								<LayoutItem Id="user_group" ViewItem="user_group" ShowCaption="" Index="1" RelativeSize="10.344827586206897" IsNewNode="True" />
+								<LayoutItem Id="GUIScreen_list" ViewItem="GUIScreen_list" ShowCaption="" Index="2" RelativeSize="10.344827586206897" IsNewNode="True" />
+								<LayoutItem Id="language_list" ViewItem="language_list" ShowCaption="" Index="3" RelativeSize="10.344827586206897" IsNewNode="True" />
+								<LayoutItem Id="currency_list" ViewItem="currency_list" ShowCaption="" Index="4" RelativeSize="10.344827586206897" IsNewNode="True" />
+								<LayoutItem Id="transaction_type_list" ViewItem="transaction_type_list" ShowCaption="" Index="5" RelativeSize="10.344827586206897" IsNewNode="True" />
+								<LayoutItem Id="login_cycles" ViewItem="login_cycles" ShowCaption="" Index="6" RelativeSize="10.344827586206897" IsNewNode="True" />
+								<LayoutItem Id="login_attempts" ViewItem="login_attempts" ShowCaption="" Index="7" RelativeSize="24.137931034482758" IsNewNode="True" />
+							</LayoutGroup>
+						</LayoutGroup>
+					</LayoutGroup>
+					<TabbedGroup Id="Editors" IsNewNode="True">
+						<LayoutGroup Id="SimpleEditors" Index="0" RelativeSize="54.838709677419352" ShowCaption="True" Caption="Device Details" IsNewNode="True">
+							<LayoutGroup Id="Device" Index="0" Direction="Horizontal" ShowCaption="True" RelativeSize="100" IsNewNode="True">
+								<LayoutGroup Id="Device_col1" Index="0" ShowCaption="False" RelativeSize="50" IsNewNode="True">
+									<LayoutItem Id="name" ViewItem="name" ShowCaption="" Index="0" RelativeSize="13.793103448275861" IsNewNode="True" />
+									<LayoutItem Id="description" ViewItem="description" ShowCaption="" Index="1" RelativeSize="10.344827586206897" IsNewNode="True" />
+									<LayoutItem Id="device_number" ViewItem="device_number" ShowCaption="" Index="2" RelativeSize="10.344827586206897" IsNewNode="True" />
+									<LayoutItem Id="device_location" ViewItem="device_location" ShowCaption="" Index="3" RelativeSize="10.344827586206897" IsNewNode="True" />
+									<LayoutItem Id="machine_name" ViewItem="machine_name" ShowCaption="" Index="4" RelativeSize="10.344827586206897" IsNewNode="True" />
+									<LayoutItem Id="mac_address" ViewItem="mac_address" ShowCaption="" Index="5" RelativeSize="10.344827586206897" IsNewNode="True" />
+									<LayoutItem Id="branch_id" ViewItem="branch_id" ShowCaption="" Index="6" RelativeSize="10.344827586206897" IsNewNode="True" />
+									<LayoutItem Id="type_id" ViewItem="type_id" ShowCaption="" Index="7" RelativeSize="10.344827586206897" IsNewNode="True" />
+									<LayoutItem Id="enabled" ViewItem="enabled" ShowCaption="" Index="8" RelativeSize="13.793103448275861" IsNewNode="True" />
+								</LayoutGroup>
+								<LayoutGroup Id="Device_col2" Index="1" ShowCaption="False" RelativeSize="50" IsNewNode="True">
+									<LayoutItem Id="config_group" ViewItem="config_group" ShowCaption="" Index="0" RelativeSize="13.793103448275861" IsNewNode="True" />
+									<LayoutItem Id="user_group" ViewItem="user_group" ShowCaption="" Index="1" RelativeSize="10.344827586206897" IsNewNode="True" />
+									<LayoutItem Id="GUIScreen_list" ViewItem="GUIScreen_list" ShowCaption="" Index="2" RelativeSize="10.344827586206897" IsNewNode="True" />
+									<LayoutItem Id="language_list" ViewItem="language_list" ShowCaption="" Index="3" RelativeSize="10.344827586206897" IsNewNode="True" />
+									<LayoutItem Id="currency_list" ViewItem="currency_list" ShowCaption="" Index="4" RelativeSize="10.344827586206897" IsNewNode="True" />
+									<LayoutItem Id="transaction_type_list" ViewItem="transaction_type_list" ShowCaption="" Index="5" RelativeSize="10.344827586206897" IsNewNode="True" />
+									<LayoutItem Id="login_cycles" ViewItem="login_cycles" ShowCaption="" Index="6" RelativeSize="10.344827586206897" IsNewNode="True" />
+									<LayoutItem Id="login_attempts" ViewItem="login_attempts" ShowCaption="" Index="7" RelativeSize="24.137931034482758" IsNewNode="True" />
+								</LayoutGroup>
+							</LayoutGroup>
+							<TabbedGroup Id="Tabs" Index="1" RelativeSize="45.161290322580648" IsNewNode="True">
+								<LayoutGroup Id="DeviceSuspenseAccounts" Index="2" ShowCaption="True" RelativeSize="100" IsNewNode="True">
+									<LayoutItem Id="DeviceSuspenseAccounts" ViewItem="DeviceSuspenseAccounts" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True" />
+								</LayoutGroup>
+								<LayoutGroup Id="DeviceCITSuspenseAccounts" Index="4" ShowCaption="True" RelativeSize="100" IsNewNode="True">
+									<LayoutItem Id="DeviceCITSuspenseAccounts" ViewItem="DeviceCITSuspenseAccounts" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True" />
+								</LayoutGroup>
+							</TabbedGroup>
+						</LayoutGroup>
+						<LayoutGroup Id="Transaction" Caption="Transactions and CITs" Index="1" IsNewNode="True">
+							<TabbedGroup Id="@72a3508d-9aa0-428b-b2f0-f7a2e4f0c08f" IsNewNode="True">
+								<LayoutGroup Id="Transactions" Index="0" RelativeSize="100" ShowCaption="True" IsNewNode="True">
+									<LayoutItem Id="Transactions" ViewItem="Transactions" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True" />
+								</LayoutGroup>
+								<LayoutGroup Id="CITs" Index="1" RelativeSize="100" ShowCaption="True" IsNewNode="True">
+									<LayoutItem Id="CITs" ViewItem="CITs" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True" />
+								</LayoutGroup>
+							</TabbedGroup>
+						</LayoutGroup>
+						<LayoutGroup Id="Security" Index="2" IsNewNode="True">
+							<LayoutGroup Id="DeviceLocks" Index="3" ShowCaption="True" RelativeSize="100" IsNewNode="True">
+								<LayoutItem Id="DeviceLocks" ViewItem="DeviceLocks" ShowCaption="False" Index="0" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+						</LayoutGroup>
+					</TabbedGroup>
+					<TabbedGroup Id="Tabs" RelativeSize="45.161290322580648" Removed="True">
+						<LayoutGroup Id="Transactions" Index="0" RelativeSize="100" Removed="True">
+							<LayoutItem Id="Transactions" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="CITs" Index="1" RelativeSize="100" Removed="True">
+							<LayoutItem Id="CITs" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="DeviceSuspenseAccounts" Index="2" RelativeSize="100">
+							<LayoutItem Id="DeviceSuspenseAccounts" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="DepositorSessions" Index="3" Removed="True" />
+						<LayoutGroup Id="DeviceLocks" Index="3" RelativeSize="100">
+							<LayoutItem Id="DeviceLocks" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="DeviceStatusCollection" Index="3" RelativeSize="100" Removed="True">
+							<LayoutItem Id="DeviceStatusCollection" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="DeviceCITSuspenseAccounts" Index="4" RelativeSize="100">
+							<LayoutItem Id="DeviceCITSuspenseAccounts" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="DevicePrinters" Index="6" Removed="True" />
+						<LayoutGroup Id="ApplicationLogs" Removed="True" />
+					</TabbedGroup>
+				</LayoutGroup>
+			</Layout>
+		</DetailView>
+		<ListView Id="Device_DeviceLocks_ListView" AllowDelete="False" AllowNew="False">
+			<Columns>
+				<ColumnInfo Id="lock_date" SortOrder="Descending" />
+			</Columns>
+		</ListView>
+		<ListView Id="Device_DevicePrinters_ListView">
+			<Columns>
+				<ColumnInfo Id="name" SortOrder="Ascending" />
+			</Columns>
+		</ListView>
+		<ListView Id="Device_DeviceStatusCollection_ListView" AllowDelete="False" AllowNew="False">
+			<Columns>
+				<ColumnInfo Id="MachineName" Index="-1" SortIndex="-1" SortOrder="None" />
+				<ColumnInfo Id="modified" Index="0" SortIndex="0" SortOrder="Ascending" />
+				<ColumnInfo Id="CurrentStatusString" Index="1" />
+				<ColumnInfo Id="bag_percent_full" Index="2" />
+				<ColumnInfo Id="bag_note_capacity" Index="3" />
+				<ColumnInfo Id="controller_state" Index="4" />
+				<ColumnInfo Id="ba_type" Index="5" />
+				<ColumnInfo Id="ba_status" Index="6" />
+				<ColumnInfo Id="ba_currency" Index="7" />
+				<ColumnInfo Id="bag_number" Index="8" />
+				<ColumnInfo Id="bag_status" Index="9" />
+				<ColumnInfo Id="bag_note_level" Index="10" />
+				<ColumnInfo Id="bag_value_level" Index="11" />
+				<ColumnInfo Id="bag_value_capacity" Index="12" />
+				<ColumnInfo Id="sensors_type" Index="13" />
+				<ColumnInfo Id="sensors_status" Index="14" />
+				<ColumnInfo Id="sensors_value" Index="15" />
+				<ColumnInfo Id="sensors_door" Index="16" />
+				<ColumnInfo Id="sensors_bag" Index="17" />
+				<ColumnInfo Id="escrow_type" Index="18" />
+				<ColumnInfo Id="escrow_status" Index="19" />
+				<ColumnInfo Id="escrow_position" Index="20" />
+				<ColumnInfo Id="transaction_status" Index="21" />
+				<ColumnInfo Id="transaction_type" Index="22" />
+				<ColumnInfo Id="machine_datetime" Index="23" />
+				<ColumnInfo Id="current_status" Index="24" />
+				<ColumnInfo Id="ErrorLevel" Index="25" />
+				<ColumnInfo Id="BagValueAmount" Index="26" />
+				<ColumnInfo Id="BagValueCapacityAmount" Index="27" />
+			</Columns>
+		</ListView>
+		<ListView Id="Device_DeviceSuspenseAccounts_ListView">
+			<Columns>
+				<ColumnInfo Id="currency_code" SortIndex="0" SortOrder="Ascending" />
+				<ColumnInfo Id="account_number" Width="100" SortIndex="1" SortOrder="Ascending" />
+			</Columns>
+		</ListView>
+		<ListView Id="Device_ListView" DataAccessMode="Server">
+			<Columns>
+				<ColumnInfo Id="name" SortIndex="1" SortOrder="Ascending" />
+				<ColumnInfo Id="machine_name" Index="2" />
+				<ColumnInfo Id="mac_address" Index="3" />
+				<ColumnInfo Id="device_number" Index="4" />
+				<ColumnInfo Id="device_location" Index="5" />
+				<ColumnInfo Id="enabled" SortIndex="0" SortOrder="Ascending" />
+			</Columns>
+		</ListView>
+		<ListView Id="Device_LookupListView">
+			<Columns>
+				<ColumnInfo Id="machine_name" Width="91" />
+				<ColumnInfo Id="mac_address" PropertyName="mac_address" Index="2" IsNewNode="True" />
+			</Columns>
+		</ListView>
+		<ListView Id="Device_Transactions_ListView" AllowDelete="False" AllowNew="False" DataAccessMode="Server">
+			<Columns>
+				<ColumnInfo Id="KeyProperty" SortOrder="None" Index="-1" SortIndex="-1" />
+				<ColumnInfo Id="tx_start_date" Index="0" SortIndex="0" SortOrder="Descending" />
+				<ColumnInfo Id="tx_end_date" Index="1" SortIndex="-1" SortOrder="None" />
+				<ColumnInfo Id="cb_tx_number" Index="2" />
+				<ColumnInfo Id="tx_type" Index="3" />
+				<ColumnInfo Id="tx_currency" Index="4" />
+				<ColumnInfo Id="TotalAmount" Index="5" />
+				<ColumnInfo Id="tx_account_number" Index="6" />
+				<ColumnInfo Id="cb_account_name" Index="7" />
+				<ColumnInfo Id="tx_ref_account" Index="8" />
+				<ColumnInfo Id="cb_ref_account_name" Index="9" />
+				<ColumnInfo Id="tx_narration" Index="10" />
+				<ColumnInfo Id="tx_depositor_name" Index="11" />
+				<ColumnInfo Id="tx_id_number" Index="12" />
+				<ColumnInfo Id="tx_phone" Index="13" />
+				<ColumnInfo Id="session_id" Index="14" />
+				<ColumnInfo Id="tx_random_number" Index="15" />
+				<ColumnInfo Id="tx_completed" Index="16" />
+				<ColumnInfo Id="funds_source" Index="17" />
+				<ColumnInfo Id="tx_result" Index="18" />
+				<ColumnInfo Id="tx_error_code" Index="19" />
+				<ColumnInfo Id="tx_error_message" Index="20" />
+				<ColumnInfo Id="cb_date" Index="21" />
+				<ColumnInfo Id="cb_tx_status" Index="22" />
+				<ColumnInfo Id="notes_rejected" Index="23" />
+				<ColumnInfo Id="jam_detected" Index="24" />
+				<ColumnInfo Id="escrow_jam_detected" Index="25" />
+				<ColumnInfo Id="cit_id" Index="26" />
+				<ColumnInfo Id="tx_suspense_account" Index="27" />
+			</Columns>
+		</ListView>
+		<ListView Id="DeviceCITSuspenseAccount_LookupListView">
+			<Columns>
+				<ColumnInfo Id="account_name" Width="66" />
+			</Columns>
+		</ListView>
+		<ListView Id="DeviceConfig_ListView" AllowLink="False" AllowUnlink="False">
+			<Columns>
+				<ColumnInfo Id="group_id" SortOrder="Ascending" GroupIndex="0" />
+				<ColumnInfo Id="config_id" SortIndex="0" SortOrder="Ascending" />
+				<ColumnInfo Id="ConfigValue" Index="2" />
+			</Columns>
+		</ListView>
+		<ListView Id="DeviceConfig_LookupListView">
+			<Columns>
+				<ColumnInfo Id="ConfigValue" PropertyName="ConfigValue" Index="1" IsNewNode="True" />
+				<ColumnInfo Id="group_id.name" Index="2" />
+			</Columns>
+		</ListView>
+		<DetailView Id="DeviceLock_DetailView" AllowDelete="False" AllowEdit="False" AllowNew="False" />
+		<ListView Id="DeviceLock_ListView" AllowDelete="False" AllowNew="False" />
+		<ListView Id="DeviceLock_LookupListView" AllowDelete="False" AllowNew="False" />
+		<DetailView Id="DeviceLogin_DetailView" AllowDelete="False" AllowEdit="False" AllowNew="False" />
+		<ListView Id="DeviceLogin_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" DataAccessMode="Server">
+			<Columns>
+				<ColumnInfo Id="LoginDate" Index="0" SortIndex="0" SortOrder="Descending" />
+				<ColumnInfo Id="LogoutDate" Index="1" />
+				<ColumnInfo Id="Success" Index="2" />
+				<ColumnInfo Id="User" Index="3" SortIndex="-1" SortOrder="None" />
+			</Columns>
+		</ListView>
+		<ListView Id="DeviceLogin_LookupListView" AllowDelete="False" AllowNew="False" DataAccessMode="Server" />
+		<ListView Id="DevicePrinter_PrinterStatusCollection_ListView" AllowDelete="False" AllowNew="False" />
+		<ListView Id="DeviceRole_Activities_ListView" AllowDelete="False" AllowNew="False" AllowLink="True" AllowUnlink="True">
+			<Columns>
+				<ColumnInfo Id="name" SortOrder="Ascending" />
+			</Columns>
+		</ListView>
+		<ListView Id="DeviceRole_AlertMessageRegistries_ListView" AllowEdit="True" AllowLink="False" AllowUnlink="False" />
+		<ListView Id="DeviceRole_AlertMessages_ListView" AllowNew="False" AllowDelete="False" AllowUnlink="True" AllowLink="True">
+			<Columns>
+				<ColumnInfo Id="phone_content_template" Index="-1" />
+				<ColumnInfo Id="enabled" Index="3" />
+			</Columns>
+		</ListView>
+		<ListView Id="DeviceRole_ApplicationUsers_ListView" AllowDelete="False" AllowNew="False" AllowLink="True" AllowUnlink="True" />
+		<DetailView Id="DeviceRole_DetailView">
+			<Items>
+				<PropertyEditor Id="Activities" LookupEditorMode="AllItemsWithSearch" DataSourceCriteria="Not [Permissions][[Role] = '@This']" />
+				<PropertyEditor Id="AlertMessages" LookupEditorMode="AllItemsWithSearch" DataSourceCriteria="Not [AlertMessageRegistries][[Role] = '@This']" />
+			</Items>
+			<Layout>
+				<LayoutGroup Id="Main">
+					<TabbedGroup Id="Tabs">
+						<LayoutGroup Id="Activities" Index="0" />
+						<LayoutGroup Id="Permissions" Index="1" />
+						<LayoutGroup Id="AlertMessages" Index="2" />
+						<LayoutGroup Id="AlertMessageRegistries" Index="3" />
+						<LayoutGroup Id="ApplicationUsers" Index="4" ShowCaption="True" IsNewNode="True" Removed="True">
+							<LayoutItem Id="ApplicationUsers" ViewItem="ApplicationUsers" ShowCaption="False" Index="0" IsNewNode="True" />
+						</LayoutGroup>
+					</TabbedGroup>
+				</LayoutGroup>
+			</Layout>
+		</DetailView>
+		<ListView Id="DeviceRole_LookupListView" AllowDelete="False" AllowNew="True">
+			<Columns>
+				<ColumnInfo Id="name" Index="0" />
+				<ColumnInfo Id="description" Index="1" />
+			</Columns>
+		</ListView>
+		<ListView Id="DeviceRole_Permissions_ListView" AllowEdit="True" AllowLink="False" AllowUnlink="False" />
+		<DetailView Id="DeviceStatus_DetailView" AllowDelete="False" AllowEdit="False" AllowNew="False" />
+		<ListView Id="DeviceStatus_ListView" AllowNew="False" AllowUnlink="False" AllowDelete="False" DataAccessMode="Server">
+			<Columns>
+				<ColumnInfo Id="MachineName" Index="-1" SortIndex="-1" SortOrder="None" />
+				<ColumnInfo Id="device_id" SortIndex="1" SortOrder="Ascending" Index="0" />
+				<ColumnInfo Id="modified" Index="1" />
+				<ColumnInfo Id="CurrentStatusString" Index="2" />
+				<ColumnInfo Id="bag_percent_full" Index="3" />
+				<ColumnInfo Id="bag_note_capacity" Index="4" />
+				<ColumnInfo Id="controller_state" Index="5" />
+				<ColumnInfo Id="ba_type" Index="6" />
+				<ColumnInfo Id="ba_status" Index="7" />
+				<ColumnInfo Id="ba_currency" Index="8" />
+				<ColumnInfo Id="bag_number" Index="9" />
+				<ColumnInfo Id="bag_status" Index="10" />
+				<ColumnInfo Id="bag_note_level" Index="11" />
+				<ColumnInfo Id="bag_value_level" Index="12" />
+				<ColumnInfo Id="bag_value_capacity" Index="13" />
+				<ColumnInfo Id="sensors_type" Index="14" />
+				<ColumnInfo Id="sensors_status" Index="15" />
+				<ColumnInfo Id="sensors_value" Index="16" />
+				<ColumnInfo Id="sensors_door" Index="17" />
+				<ColumnInfo Id="sensors_bag" Index="18" />
+				<ColumnInfo Id="escrow_type" Index="19" />
+				<ColumnInfo Id="escrow_status" Index="20" />
+				<ColumnInfo Id="escrow_position" Index="21" />
+				<ColumnInfo Id="transaction_status" Index="22" />
+				<ColumnInfo Id="transaction_type" Index="23" />
+				<ColumnInfo Id="machine_datetime" Index="24" />
+				<ColumnInfo Id="current_status" SortIndex="-1" SortOrder="None" Width="102" Index="25" />
+				<ColumnInfo Id="ErrorLevel" Index="26" SortIndex="0" SortOrder="Descending" />
+				<ColumnInfo Id="BagValueAmount" Index="27" />
+				<ColumnInfo Id="BagValueCapacityAmount" Index="28" />
+			</Columns>
+		</ListView>
+		<ListView Id="DeviceStatus_LookupListView" AllowDelete="False" AllowNew="False" />
+		<ListView Id="DeviceSuspenseAccount_ChangeHistory_ListView">
+			<Columns>
+				<ColumnInfo Id="ModifiedOn" Index="0" SortIndex="0" SortOrder="Descending" />
+				<ColumnInfo Id="UserName" Index="1" Width="83" SortOrder="None" SortIndex="-1" />
+				<ColumnInfo Id="OldValue" Index="4" />
+				<ColumnInfo Id="NewValue" Index="5" />
+			</Columns>
+		</ListView>
+		<DetailView Id="DeviceSuspenseAccount_DetailView">
+			<Items>
+				<PropertyEditor Id="ChangeHistory" AllowEdit="False" />
+				<PropertyEditor Id="currency_code" LookupEditorMode="AllItems" />
+			</Items>
+		</DetailView>
+		<ListView Id="DeviceSuspenseAccount_LookupListView">
+			<Columns>
+				<ColumnInfo Id="currency_code" PropertyName="currency_code" Index="1" IsNewNode="True" />
+				<ColumnInfo Id="account_number" PropertyName="account_number" Index="2" IsNewNode="True" />
+				<ColumnInfo Id="account_name" PropertyName="account_name" Index="3" IsNewNode="True" />
+				<ColumnInfo Id="enabled" PropertyName="enabled" Index="4" IsNewNode="True" />
+			</Columns>
+		</ListView>
+		<DetailView Id="EscrowJam_DetailView" AllowDelete="False" AllowEdit="False" AllowNew="False" />
+		<ListView Id="EscrowJam_ListView">
+			<Columns>
+				<ColumnInfo Id="date_detected" Index="0" SortIndex="0" SortOrder="Descending" />
+				<ColumnInfo Id="transaction_id" Index="1" />
+			</Columns>
+		</ListView>
+		<ListView Id="EscrowJam_LookupListView" AllowNew="False" AllowDelete="False" />
+		<ListView Id="GUIPrepopItem_GUIPrepopList_Items_ListView" AllowLink="False" AllowUnlink="False" />
+		<ListView Id="GUIPrepopList_GUIPrepopList_Items_ListView" AllowLink="False" AllowUnlink="False">
+			<Columns>
+				<ColumnInfo Id="List_Order" SortIndex="0" SortOrder="Ascending" Width="140" />
+			</Columns>
+		</ListView>
+		<ListView Id="GUIPrepopList_GuiScreenList_Screens_ListView" AllowLink="True" AllowDelete="False" AllowNew="False" AllowUnlink="True">
+			<Columns>
+				<ColumnInfo Id="screen" SortIndex="-1" SortOrder="None" />
+				<ColumnInfo Id="screen_order" Width="84" SortIndex="0" SortOrder="Ascending" />
+			</Columns>
+		</ListView>
+		<DetailView Id="GUIScreen_DetailView">
+			<Items>
+				<PropertyEditor Id="type" LookupEditorMode="AllItems" />
+			</Items>
+		</DetailView>
+		<ListView Id="GUIScreen_GuiScreenList_Screens_ListView" AllowLink="False" AllowUnlink="False" AllowDelete="True" AllowNew="True" AllowEdit="True">
+			<Columns>
+				<ColumnInfo Id="screen" SortIndex="-1" SortOrder="None" />
+				<ColumnInfo Id="screen_order" Width="146" SortIndex="0" SortOrder="Ascending" />
+			</Columns>
+		</ListView>
+		<ListView Id="GUIScreen_ListView">
+			<Columns>
+				<ColumnInfo Id="GUIScreenText" Index="-1" />
+				<ColumnInfo Id="GUIScreenText.ScreenTitle" PropertyName="GUIScreenText.ScreenTitle" Index="8" IsNewNode="True" />
+				<ColumnInfo Id="GUIScreenText.AcceptButtonCaption" PropertyName="GUIScreenText.AcceptButtonCaption" Index="9" IsNewNode="True" />
+				<ColumnInfo Id="GUIScreenText.BackButtonCaption" PropertyName="GUIScreenText.BackButtonCaption" Index="10" IsNewNode="True" />
+				<ColumnInfo Id="GUIScreenText.CancelButtonCaption" PropertyName="GUIScreenText.CancelButtonCaption" Index="11" IsNewNode="True" />
+				<ColumnInfo Id="GUIScreenText.FullInstructions" PropertyName="GUIScreenText.FullInstructions" Index="12" IsNewNode="True" />
+				<ColumnInfo Id="GUIScreenText.ScreenTitleInstruction" PropertyName="GUIScreenText.ScreenTitleInstruction" Index="13" IsNewNode="True" />
+			</Columns>
+		</ListView>
+		<ListView Id="GUIScreen_LookupListView" AllowDelete="False" AllowNew="False" />
+		<DetailView Id="GUIScreenList_DetailView">
+			<Layout>
+				<LayoutGroup Id="Main" RelativeSize="100">
+					<LayoutGroup Id="SimpleEditors" RelativeSize="11.466666666666667">
+						<LayoutGroup Id="GUIScreenList" RelativeSize="100">
+							<LayoutItem Id="name" RelativeSize="37.2093023255814" />
+							<LayoutItem Id="description" RelativeSize="27.906976744186046" />
+							<LayoutItem Id="enabled" RelativeSize="34.883720930232556" />
+						</LayoutGroup>
+					</LayoutGroup>
+					<TabbedGroup Id="Tabs" RelativeSize="88.533333333333331">
+						<LayoutGroup Id="GuiScreenList_Screens" RelativeSize="100">
+							<LayoutItem Id="GuiScreenList_Screens" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="TransactionTypeListItems" Index="1" RelativeSize="100">
+							<LayoutItem Id="TransactionTypeListItems" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="Devices" Removed="True" />
+					</TabbedGroup>
+				</LayoutGroup>
+			</Layout>
+		</DetailView>
+		<ListView Id="GUIScreenList_GuiScreenList_Screens_ListView" AllowLink="False" AllowUnlink="False" AllowEdit="True">
+			<Columns>
+				<ColumnInfo Id="screen" SortIndex="-1" SortOrder="None" />
+				<ColumnInfo Id="screen_order" SortIndex="0" SortOrder="Ascending" />
+			</Columns>
+		</ListView>
+		<ListView Id="GUIScreenList_LookupListView" AllowDelete="False" AllowNew="False" />
+		<ListView Id="GuiScreenList_Screen_ListView" AllowUnlink="False" AllowLink="False" />
+		<ListView Id="GuiScreenList_Screen_LookupListView" AllowDelete="False" AllowNew="False" />
+		<ListView Id="GUIScreenText_LookupListView" AllowDelete="False" AllowNew="False" />
+		<ListView Id="GUIScreenType_LookupListView" AllowDelete="False" AllowNew="False" />
+		<ListView Id="Language_DepositorSessions_ListView" AllowDelete="False" AllowNew="False" Removed="True">
+			<Columns>
+				<ColumnInfo Id="session_start" SortOrder="Ascending" Width="132" Index="0" />
+				<ColumnInfo Id="session_end" Width="132" Index="1" />
+				<ColumnInfo Id="device_id" Width="65" Index="2" />
+				<ColumnInfo Id="account_verified" Width="100" />
+				<ColumnInfo Id="complete" Width="63" />
+				<ColumnInfo Id="complete_success" Width="106" />
+				<ColumnInfo Id="error_code" Width="73" />
+				<ColumnInfo Id="error_message" Width="92" />
+				<ColumnInfo Id="reference_account_verified" Width="153" />
+				<ColumnInfo Id="terms_accepted" Width="97" />
+			</Columns>
+		</ListView>
+		<DetailView Id="Language_DetailView">
+			<Items>
+				<PropertyEditor Id="DepositorSessions" Removed="True" />
+				<PropertyEditor Id="LanguageList_Languages" Removed="True" />
+				<PropertyEditor Id="LanguageLists" Removed="True" />
+			</Items>
+			<Layout>
+				<LayoutGroup Id="Main" RelativeSize="100">
+					<LayoutGroup Id="SimpleEditors" RelativeSize="14.666666666666666">
+						<LayoutGroup Id="Language" RelativeSize="100">
+							<LayoutItem Id="code" RelativeSize="29.09090909090909" />
+							<LayoutItem Id="name" RelativeSize="21.818181818181817" />
+							<LayoutItem Id="flag" RelativeSize="21.818181818181817" />
+							<LayoutItem Id="enabled" RelativeSize="27.272727272727273" />
+						</LayoutGroup>
+					</LayoutGroup>
+					<TabbedGroup Id="Tabs" RelativeSize="85.333333333333329">
+						<LayoutGroup Id="LanguageList_Languages" Index="0" RelativeSize="100" Removed="True">
+							<LayoutItem Id="LanguageList_Languages" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="LanguageLists" Index="0" RelativeSize="100" Removed="True">
+							<LayoutItem Id="LanguageLists" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="SystemTextTranslations" Index="0" RelativeSize="100">
+							<LayoutItem Id="SystemTextTranslations" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="UserTextTranslations" Index="1" RelativeSize="100">
+							<LayoutItem Id="UserTextTranslations" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="DepositorSessions" Removed="True" />
+					</TabbedGroup>
+				</LayoutGroup>
+			</Layout>
+		</DetailView>
+		<ListView Id="Language_LanguageList_Languages_ListView" Removed="True">
+			<Columns>
+				<ColumnInfo Id="language_list" SortIndex="0" SortOrder="Ascending" />
+			</Columns>
+		</ListView>
+		<ListView Id="Language_LanguageLists_ListView" Removed="True">
+			<Columns>
+				<ColumnInfo Id="default_language" Index="2" />
+				<ColumnInfo Id="enabled" Index="3" />
+			</Columns>
+		</ListView>
+		<ListView Id="Language_ListView" AllowEdit="True" />
+		<ListView Id="Language_LookupListView" AllowDelete="False" AllowNew="False">
+			<Columns>
+				<ColumnInfo Id="code" SortIndex="-1" SortOrder="None" />
+				<ColumnInfo Id="name" SortIndex="0" SortOrder="Ascending" />
+			</Columns>
+		</ListView>
+		<ListView Id="Language_SystemTextTranslations_ListView">
+			<Columns>
+				<ColumnInfo Id="SysTextItemID" Index="0" />
+				<ColumnInfo Id="ShortString" Index="1" SortOrder="Descending" />
+				<ColumnInfo Id="TranslationSysText" Index="2" />
+			</Columns>
+		</ListView>
+		<ListView Id="Language_UserTextTranslations_ListView">
+			<Columns>
+				<ColumnInfo Id="TextItemID" Index="0" SortIndex="0" SortOrder="Ascending" />
+				<ColumnInfo Id="ShortString" Index="1" SortIndex="-1" SortOrder="None" />
+				<ColumnInfo Id="TranslationText" Index="2" />
+			</Columns>
+		</ListView>
+		<ListView Id="LanguageList_Devices_ListView">
+			<Columns>
+				<ColumnInfo Id="config_group" Index="-1" />
+				<ColumnInfo Id="currency_list" SortIndex="-1" SortOrder="None" Index="-1" />
+				<ColumnInfo Id="GUIScreen_list" Index="-1" />
+				<ColumnInfo Id="login_attempts" Index="-1" />
+				<ColumnInfo Id="login_cycles" Index="-1" />
+				<ColumnInfo Id="transaction_type_list" Index="-1" />
+				<ColumnInfo Id="user_group" Index="-1" />
+				<ColumnInfo Id="machine_name" SortIndex="0" SortOrder="Ascending" Index="0" />
+				<ColumnInfo Id="name" SortIndex="-1" SortOrder="None" Index="1" />
+				<ColumnInfo Id="description" Index="2" />
+				<ColumnInfo Id="device_number" Index="3" />
+				<ColumnInfo Id="device_location" Index="4" />
+				<ColumnInfo Id="language_list" Index="8" />
+			</Columns>
+		</ListView>
+		<DetailView Id="LanguageList_Language_DetailView">
+			<Items>
+				<PropertyEditor Id="language_item" LookupEditorMode="AllItems" />
+				<PropertyEditor Id="language_list" LookupEditorMode="AllItems" />
+			</Items>
+		</DetailView>
+		<ListView Id="LanguageList_Language_ListView" AllowDelete="True">
+			<Columns>
+				<ColumnInfo Id="language_item" Index="-1" />
+				<ColumnInfo Id="language_list" SortIndex="0" SortOrder="Ascending" />
+				<ColumnInfo Id="language_order" Index="1" />
+			</Columns>
+		</ListView>
+		<ListView Id="LanguageList_Language_LookupListView" AllowDelete="False" AllowNew="False">
+			<Columns>
+				<ColumnInfo Id="language_list.name" Index="0" />
+				<ColumnInfo Id="language_item.name" Index="1" />
+			</Columns>
+		</ListView>
+		<ListView Id="LanguageList_LanguageList_Languages_ListView" AllowLink="False" AllowUnlink="False">
+			<Columns>
+				<ColumnInfo Id="language_item" SortIndex="-1" SortOrder="None" />
+				<ColumnInfo Id="language_order" SortIndex="0" SortOrder="Ascending" />
+			</Columns>
+		</ListView>
+		<ListView Id="LanguageList_ListView" AllowEdit="True" />
+		<ListView Id="LanguageList_LookupListView" AllowDelete="False" AllowNew="False">
+			<Columns>
+				<ColumnInfo Id="name" Index="0" />
+				<ColumnInfo Id="description" Index="1" />
+			</Columns>
+		</ListView>
+		<DetailView Id="MakerCheckerPopupWindowParams_DetailView" AllowDelete="False" AllowEdit="True" AllowNew="True">
+			<Items>
+				<PropertyEditor Id="reason" RowCount="7" />
+			</Items>
+			<Layout>
+				<LayoutGroup Id="Main" RelativeSize="100">
+					<LayoutGroup Id="SimpleEditors" RelativeSize="100">
+						<LayoutGroup Id="MakerCheckerPopupWindowParams" RelativeSize="100">
+							<LayoutItem Id="reason" CaptionLocation="Top" RelativeSize="100" />
+						</LayoutGroup>
+					</LayoutGroup>
+				</LayoutGroup>
+			</Layout>
+		</DetailView>
+		<DetailView Id="MakerTypePermissionObject_DetailView">
+			<Layout>
+				<LayoutGroup Id="Main" RelativeSize="100">
+					<LayoutGroup Id="SimpleEditors" RelativeSize="35.483870967741936">
+						<LayoutItem Id="TargetType" ViewItem="TargetType" Index="0" RelativeSize="18.181818181818183" IsNewNode="True" />
+						<LayoutGroup Id="PermissionPolicyTypePermissionObject" RelativeSize="81.818181818181813" Index="1">
+							<LayoutGroup Id="PermissionPolicyTypePermissionObject_col1" RelativeSize="50">
+								<LayoutItem Id="ReadState" RelativeSize="28.571428571428573" Index="0" />
+								<LayoutItem Id="WriteState" RelativeSize="21.428571428571427" Index="1" />
+								<LayoutItem Id="NavigateState" ViewItem="NavigateState" Index="2" RelativeSize="50" IsNewNode="True" />
+								<LayoutItem Id="TargetType" RelativeSize="28.571428571428573" Removed="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="PermissionPolicyTypePermissionObject_col2" RelativeSize="50">
+								<LayoutItem Id="CreateState" RelativeSize="28.571428571428573" />
+								<LayoutItem Id="DeleteState" RelativeSize="21.428571428571427" />
+								<LayoutItem Id="MakerState" ViewItem="MakerState" Index="2" RelativeSize="21.428571428571427" IsNewNode="True" />
+								<LayoutItem Id="CheckerState" ViewItem="CheckerState" Index="3" RelativeSize="28.571428571428573" IsNewNode="True" />
+								<LayoutItem Id="NavigateState" RelativeSize="17.647058823529413" Index="3" Removed="True" />
+							</LayoutGroup>
+						</LayoutGroup>
+						<LayoutGroup Id="MakerTypePermissionObject" Caption="MakerTypePermissionObject" RelativeSize="20.87912087912088" Direction="Horizontal" Removed="True">
+							<LayoutItem Id="CheckerState" Index="0" RelativeSize="100" Removed="True" />
+							<LayoutItem Id="MakerState" Removed="True" />
+						</LayoutGroup>
+					</LayoutGroup>
+					<TabbedGroup Id="Tabs" RelativeSize="64.516129032258064">
+						<LayoutGroup Id="MemberPermissions" RelativeSize="100">
+							<LayoutItem Id="MemberPermissions" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="ObjectPermissions" RelativeSize="100">
+							<LayoutItem Id="ObjectPermissions" RelativeSize="100" />
+						</LayoutGroup>
+					</TabbedGroup>
+				</LayoutGroup>
+			</Layout>
+		</DetailView>
+		<DetailView Id="PasswordHistory_DetailView" AllowDelete="False" AllowEdit="False" AllowNew="False" Removed="True" />
+		<ListView Id="PasswordHistory_ListView" AllowDelete="False" AllowLink="False" AllowNew="False" Removed="True" />
+		<ListView Id="PasswordHistory_LookupListView" AllowDelete="False" AllowNew="False" Removed="True" />
+		<DetailView Id="PasswordPolicy_DetailView" AllowDelete="False" AllowNew="False" />
+		<ListView Id="PasswordPolicy_ListView" AllowDelete="False" AllowEdit="True" AllowLink="False" AllowNew="False" />
+		<ListView Id="PasswordPolicy_LookupListView" AllowDelete="False" AllowLink="False" AllowNew="True" />
+		<ListView Id="Permission_LookupListView" AllowDelete="False" AllowNew="True">
+			<Columns>
+				<ColumnInfo Id="Role" Width="103" SortIndex="0" SortOrder="Ascending" />
+				<ColumnInfo Id="Activity.name" SortIndex="1" SortOrder="Ascending" />
+			</Columns>
+		</ListView>
+		<ListView Id="PermissionPolicyRoleBase_TypePermissions_ListView">
+			<Columns>
+				<ColumnInfo Id="CheckerState" PropertyName="&lt;MakerTypePermissionObject&gt;CheckerState" IsNewNode="True" />
+				<ColumnInfo Id="MakerState" PropertyName="&lt;MakerTypePermissionObject&gt;MakerState" IsNewNode="True" />
+			</Columns>
+		</ListView>
+		<DetailView Id="PrinterStatus_DetailView" AllowDelete="False" AllowNew="False" AllowEdit="False" />
+		<ListView Id="PrinterStatus_ListView" AllowDelete="False" AllowNew="False" />
+		<ListView Id="PrinterStatus_LookupListView" AllowDelete="False" AllowNew="False" />
+		<DetailView Id="Printout_DetailView" AllowDelete="False" AllowEdit="False" AllowNew="False" />
+		<ListView Id="Printout_ListView" AllowDelete="False" AllowNew="False">
+			<Columns>
+				<ColumnInfo Id="datetime" SortOrder="Descending" />
+			</Columns>
+		</ListView>
+		<ListView Id="Printout_LookupListView" AllowDelete="False" AllowNew="False" />
+		<DetailView Id="ServerConfiguration_DetailView">
+			<Items>
+				<PropertyEditor Id="config_value" RowCount="20" />
+			</Items>
+			<Layout>
+				<LayoutGroup Id="Main" RelativeSize="100">
+					<LayoutGroup Id="SimpleEditors" RelativeSize="100">
+						<LayoutGroup Id="ServerConfiguration" RelativeSize="100">
+							<LayoutItem Id="config_key" RelativeSize="3.7037037037037037" />
+						</LayoutGroup>
+					</LayoutGroup>
+				</LayoutGroup>
+			</Layout>
+		</DetailView>
+		<ListView Id="ServerConfiguration_ListView" AllowEdit="True">
+			<Columns>
+				<ColumnInfo Id="config_key" Index="0" SortIndex="0" SortOrder="Ascending" />
+				<ColumnInfo Id="config_value" Index="1" />
+			</Columns>
+		</ListView>
+		<ListView Id="ServerConfiguration_LookupListView">
+			<Columns>
+				<ColumnInfo Id="config_value" Index="-1" />
+				<ColumnInfo Id="config_key" Index="0" SortIndex="0" SortOrder="Ascending" />
+			</Columns>
+		</ListView>
+		<ListView Id="SystemTextItem_ListView" IsGroupPanelVisible="True">
+			<Columns>
+				<ColumnInfo Id="TextItemTypeID" SortOrder="Ascending" GroupIndex="0" />
+			</Columns>
+		</ListView>
+		<ListView Id="SystemTextItem_SystemTextTranslations_ListView" AllowDelete="True" AllowNew="True" AllowLink="False" AllowUnlink="False" />
+		<ListView Id="Transaction_DenominationDetails_ListView" AllowDelete="False" AllowNew="False">
+			<Columns>
+				<ColumnInfo Id="datetime" Index="-1" />
+				<ColumnInfo Id="denom" SortIndex="-1" SortOrder="None" Index="-1" />
+				<ColumnInfo Id="subtotal" Index="-1" />
+				<ColumnInfo Id="DenomAmount" SortIndex="0" SortOrder="Ascending" />
+				<ColumnInfo Id="count" Index="1" />
+				<ColumnInfo Id="SubTotalAmount" Index="2" />
+			</Columns>
+		</ListView>
+		<DetailView Id="Transaction_DetailView" AllowDelete="False" AllowEdit="False" AllowNew="False">
+			<Items>
+				<PropertyEditor Id="KeyProperty" Removed="True" />
+				<PropertyEditor Id="tx_phone" PropertyName="tx_phone" Removed="True" />
+			</Items>
+			<Layout>
+				<LayoutGroup Id="Main" RelativeSize="100">
+					<LayoutGroup Id="SimpleEditors" RelativeSize="30.311231393775373">
+						<LayoutGroup Id="Transaction" RelativeSize="100">
+							<LayoutGroup Id="Transaction_col1" RelativeSize="50.10989010989011">
+								<LayoutItem Id="device_id" Index="0" RelativeSize="17.391304347826086" />
+								<LayoutItem Id="tx_start_date" RelativeSize="13.043478260869565" Index="1" />
+								<LayoutItem Id="tx_end_date" RelativeSize="13.043478260869565" Index="2" />
+								<LayoutItem Id="tx_type" Index="3" RelativeSize="13.043478260869565" />
+								<LayoutItem Id="tx_currency" Index="4" RelativeSize="13.043478260869565" />
+								<LayoutItem Id="TotalAmount" Index="5" RelativeSize="30.434782608695652" />
+								<LayoutItem Id="tx_account_number" Index="6" Removed="True" />
+								<LayoutItem Id="cb_account_name" Index="7" Removed="True" />
+								<LayoutItem Id="tx_ref_account" Index="8" Removed="True" />
+								<LayoutItem Id="cb_ref_account_name" Index="9" Removed="True" />
+								<LayoutItem Id="tx_narration" Index="10" Removed="True" />
+								<LayoutItem Id="tx_depositor_name" Index="11" Removed="True" />
+								<LayoutItem Id="tx_id_number" Index="12" Removed="True" />
+								<LayoutItem Id="cb_tx_number" Index="13" Removed="True" />
+								<LayoutItem Id="KeyProperty" Removed="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="Transaction_col2" RelativeSize="49.89010989010989">
+								<LayoutItem Id="tx_account_number" ViewItem="tx_account_number" Index="0" RelativeSize="17.391304347826086" IsNewNode="True" />
+								<LayoutItem Id="tx_random_number" Index="0" RelativeSize="20" Removed="True" />
+								<LayoutItem Id="cb_account_name" ViewItem="cb_account_name" Index="1" RelativeSize="13.043478260869565" IsNewNode="True" />
+								<LayoutItem Id="tx_ref_account" ViewItem="tx_ref_account" Index="2" RelativeSize="13.043478260869565" IsNewNode="True" />
+								<LayoutItem Id="cb_ref_account_name" ViewItem="cb_ref_account_name" Index="3" RelativeSize="13.043478260869565" IsNewNode="True" />
+								<LayoutItem Id="tx_suspense_account" ViewItem="tx_suspense_account" Index="4" RelativeSize="13.043478260869565" IsNewNode="True" Removed="True" />
+								<LayoutItem Id="session_id" RelativeSize="13.043478260869565" Index="5" />
+								<LayoutItem Id="cit_id" Index="6" RelativeSize="17.391304347826086" />
+								<LayoutItem Id="escrow_jam_detected" Index="6" RelativeSize="17.391304347826086" Removed="True" />
+								<LayoutItem Id="cb_date" Removed="True" />
+								<LayoutItem Id="cb_tx_status" Removed="True" />
+								<LayoutItem Id="funds_source" Removed="True" />
+								<LayoutItem Id="jam_detected" Removed="True" />
+								<LayoutItem Id="notes_rejected" Removed="True" />
+								<LayoutItem Id="tx_completed" Removed="True" />
+								<LayoutItem Id="tx_error_code" Removed="True" />
+								<LayoutItem Id="tx_error_message" Removed="True" />
+								<LayoutItem Id="tx_result" Removed="True" />
+							</LayoutGroup>
+						</LayoutGroup>
+					</LayoutGroup>
+					<LayoutGroup Id="References" Index="1" ShowCaption="True" Direction="Horizontal" RelativeSize="15.426251691474967" IsNewNode="True">
+						<LayoutGroup Id="RLeft" Index="0" ShowCaption="False" RelativeSize="50.10989010989011" Caption="RLeft" IsNewNode="True">
+							<LayoutItem Id="tx_random_number" ViewItem="tx_random_number" Index="0" RelativeSize="36.363636363636367" IsNewNode="True" />
+							<LayoutItem Id="tx_narration" ViewItem="tx_narration" Index="1" RelativeSize="27.272727272727273" IsNewNode="True" />
+							<LayoutItem Id="tx_depositor_name" ViewItem="tx_depositor_name" Index="2" RelativeSize="36.363636363636367" IsNewNode="True" />
+						</LayoutGroup>
+						<LayoutGroup Id="RRight" Index="1" ShowCaption="False" RelativeSize="49.89010989010989" IsNewNode="True">
+							<LayoutItem Id="funds_source" ViewItem="funds_source" ShowCaption="" Index="0" RelativeSize="36.363636363636367" IsNewNode="True" />
+							<LayoutItem Id="tx_phone" ViewItem="" Index="1" RelativeSize="27.272727272727273" IsNewNode="True" />
+							<LayoutItem Id="tx_id_number" Index="2" ViewItem="tx_id_number" ShowCaption="" RelativeSize="36.363636363636367" IsNewNode="True" />
+						</LayoutGroup>
+					</LayoutGroup>
+					<LayoutGroup Id="CoreBanking" Caption="Core Banking" ShowCaption="True" Index="2" Direction="Vertical" RelativeSize="22.733423545331529" IsNewNode="True">
+						<LayoutGroup Id="CB" Index="0" Direction="Horizontal" ShowCaption="False" RelativeSize="43.661971830985912" IsNewNode="True">
+							<LayoutGroup Id="CBLeft" Index="0" ShowCaption="False" RelativeSize="50.10989010989011" IsNewNode="True">
+								<LayoutItem Id="cb_tx_number" Index="0" ShowCaption="" ViewItem="cb_tx_number" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="CBRight" Index="1" ShowCaption="False" RelativeSize="49.89010989010989" IsNewNode="True">
+								<LayoutItem Id="cb_tx_status" ViewItem="cb_tx_status" ShowCaption="" Index="0" RelativeSize="51.612903225806448" IsNewNode="True" />
+								<LayoutItem Id="cb_date" ViewItem="cb_date" ShowCaption="" Index="1" RelativeSize="48.387096774193552" IsNewNode="True" />
+							</LayoutGroup>
+						</LayoutGroup>
+						<LayoutItem Id="cb_status_detail" ViewItem="cb_status_detail" Index="1" RelativeSize="56.338028169014088" CaptionLocation="Top" IsNewNode="True" />
+					</LayoutGroup>
+					<LayoutGroup Id="Transaction Status" ShowCaption="True" Index="3" Direction="Horizontal" RelativeSize="15.426251691474967" IsNewNode="True">
+						<LayoutGroup Id="TSLeft" Index="0" ShowCaption="False" RelativeSize="50.10989010989011" IsNewNode="True">
+							<LayoutItem Id="tx_completed" ViewItem="tx_completed" ShowCaption="" Index="0" RelativeSize="36.363636363636367" IsNewNode="True" />
+							<LayoutItem Id="tx_result" ViewItem="tx_result" ShowCaption="" Index="1" RelativeSize="27.272727272727273" IsNewNode="True" />
+							<LayoutItem Id="jam_detected" ViewItem="jam_detected" Index="2" RelativeSize="36.363636363636367" IsNewNode="True" />
+						</LayoutGroup>
+						<LayoutGroup Id="TSRight" Index="1" ShowCaption="False" RelativeSize="49.89010989010989" IsNewNode="True">
+							<LayoutItem Id="tx_error_code" ViewItem="tx_error_code" Index="0" RelativeSize="36.363636363636367" IsNewNode="True" />
+							<LayoutItem Id="tx_error_message" ViewItem="tx_error_message" ShowCaption="" Index="1" RelativeSize="27.272727272727273" IsNewNode="True" />
+							<LayoutItem Id="escrow_jam_detected" ViewItem="escrow_jam_detected" Index="2" RelativeSize="36.363636363636367" IsNewNode="True" />
+						</LayoutGroup>
+					</LayoutGroup>
+					<TabbedGroup Id="Tabs" Index="4" RelativeSize="16.102841677943168">
+						<LayoutGroup Id="DenominationDetails" RelativeSize="100">
+							<LayoutItem Id="DenominationDetails" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="Printouts" RelativeSize="100">
+							<LayoutItem Id="Printouts" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="EscrowJams" RelativeSize="100">
+							<LayoutItem Id="EscrowJams" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="TransactionPostings" RelativeSize="100">
+							<LayoutItem Id="TransactionPostings" RelativeSize="100" />
+						</LayoutGroup>
+					</TabbedGroup>
+					<LayoutGroup Id="SizeableEditors" Removed="True">
+						<LayoutItem Id="cb_status_detail" Removed="True" />
+					</LayoutGroup>
+				</LayoutGroup>
+			</Layout>
+		</DetailView>
+		<ListView Id="Transaction_ListView" AllowDelete="False" AllowNew="False" Filter="" DataAccessMode="Server" Criteria="[tx_start_date]&gt;AddMonths(Today(),-2)" ShowAutoFilterRow="True" FilterEnabled="True" IsGroupPanelVisible="True">
+			<Columns>
+				<ColumnInfo Id="KeyProperty" Index="-1" />
+				<ColumnInfo Id="tx_start_date" SortIndex="0" SortOrder="Descending" Index="0" Width="132" />
+				<ColumnInfo Id="tx_end_date" Index="1" Width="132" SortOrder="None" GroupIndex="-1" />
+				<ColumnInfo Id="cb_tx_number" Index="2" Width="129" />
+				<ColumnInfo Id="device_id" Index="3" Width="65" />
+				<ColumnInfo Id="tx_type" Index="4" Width="58" />
+				<ColumnInfo Id="tx_currency" Index="5" Width="78" />
+				<ColumnInfo Id="TotalAmount" Index="6" Width="84" />
+				<ColumnInfo Id="tx_account_number" Index="7" Width="116" />
+				<ColumnInfo Id="cb_account_name" Index="8" Width="107" />
+				<ColumnInfo Id="tx_ref_account" Index="9" Width="94" />
+				<ColumnInfo Id="cb_ref_account_name" Index="10" Width="127" />
+				<ColumnInfo Id="tx_narration" Index="11" Width="80" />
+				<ColumnInfo Id="tx_depositor_name" Index="12" Width="113" />
+				<ColumnInfo Id="tx_id_number" Index="13" Width="86" />
+				<ColumnInfo Id="tx_phone" Index="14" Width="66" />
+				<ColumnInfo Id="funds_source" Index="15" Width="85" />
+				<ColumnInfo Id="session_id" Index="16" Width="69" />
+				<ColumnInfo Id="tx_random_number" Index="17" Width="116" />
+				<ColumnInfo Id="tx_completed" Index="18" Width="85" />
+				<ColumnInfo Id="tx_result" Index="19" Width="63" />
+				<ColumnInfo Id="tx_error_code" Index="20" Width="89" />
+				<ColumnInfo Id="tx_error_message" Index="21" Width="108" />
+				<ColumnInfo Id="cb_date" Index="22" Width="132" />
+				<ColumnInfo Id="cb_tx_status" Index="23" Width="83" />
+				<ColumnInfo Id="notes_rejected" Index="24" Width="93" />
+				<ColumnInfo Id="jam_detected" Index="25" Width="86" />
+				<ColumnInfo Id="cit_id" Index="26" Width="45" />
+				<ColumnInfo Id="escrow_jam_detected" Width="126" />
+				<ColumnInfo Id="tx_suspense_account" Index="28" />
+			</Columns>
+		</ListView>
+		<ListView Id="Transaction_ListView_Archive" ClassName="CashSwiftCashControlPortal.Module.BusinessObjects.Transactions.Transaction" AllowDelete="False" AllowNew="False" Filter="" DataAccessMode="Server" Criteria="" Caption="Transaction Archive (Beta)" ShowAutoFilterRow="True" FilterEnabled="True" IsGroupPanelVisible="True" IsNewNode="True">
+			<Columns IsNewNode="True">
+				<ColumnInfo Id="cb_status_detail" PropertyName="cb_status_detail" Width="70" Index="-1" IsNewNode="True" />
+				<ColumnInfo Id="tx_start_date" PropertyName="tx_start_date" Width="132" SortIndex="0" SortOrder="Descending" Index="0" IsNewNode="True" />
+				<ColumnInfo Id="tx_end_date" PropertyName="tx_end_date" Width="132" Index="1" IsNewNode="True" />
+				<ColumnInfo Id="cb_tx_number" PropertyName="cb_tx_number" Width="129" Index="2" IsNewNode="True" />
+				<ColumnInfo Id="device_id" PropertyName="device_id" Width="65" Index="3" IsNewNode="True" />
+				<ColumnInfo Id="tx_type" PropertyName="tx_type" Width="58" Index="4" IsNewNode="True" />
+				<ColumnInfo Id="tx_currency" PropertyName="tx_currency" Width="78" Index="5" IsNewNode="True" />
+				<ColumnInfo Id="TotalAmount" PropertyName="TotalAmount" Width="84" Index="6" IsNewNode="True" />
+				<ColumnInfo Id="tx_account_number" PropertyName="tx_account_number" Width="116" Index="7" IsNewNode="True" />
+				<ColumnInfo Id="cb_account_name" PropertyName="cb_account_name" Width="107" Index="8" IsNewNode="True" />
+				<ColumnInfo Id="tx_ref_account" PropertyName="tx_ref_account" Width="94" Index="9" IsNewNode="True" />
+				<ColumnInfo Id="cb_ref_account_name" PropertyName="cb_ref_account_name" Width="127" Index="10" IsNewNode="True" />
+				<ColumnInfo Id="tx_narration" PropertyName="tx_narration" Width="80" Index="11" IsNewNode="True" />
+				<ColumnInfo Id="tx_depositor_name" PropertyName="tx_depositor_name" Width="113" Index="12" IsNewNode="True" />
+				<ColumnInfo Id="tx_id_number" PropertyName="tx_id_number" Width="86" Index="13" IsNewNode="True" />
+				<ColumnInfo Id="tx_phone" PropertyName="tx_phone" Width="66" Index="14" IsNewNode="True" />
+				<ColumnInfo Id="funds_source" PropertyName="funds_source" Width="85" Index="15" IsNewNode="True" />
+				<ColumnInfo Id="session_id" PropertyName="session_id" Width="69" Index="16" IsNewNode="True" />
+				<ColumnInfo Id="tx_random_number" PropertyName="tx_random_number" Width="116" Index="17" IsNewNode="True" />
+				<ColumnInfo Id="tx_completed" PropertyName="tx_completed" Width="85" Index="18" IsNewNode="True" />
+				<ColumnInfo Id="tx_result" PropertyName="tx_result" Width="63" Index="19" IsNewNode="True" />
+				<ColumnInfo Id="tx_error_code" PropertyName="tx_error_code" Width="89" Index="20" IsNewNode="True" />
+				<ColumnInfo Id="tx_error_message" PropertyName="tx_error_message" Width="108" Index="21" IsNewNode="True" />
+				<ColumnInfo Id="cb_date" PropertyName="cb_date" Width="132" Index="22" IsNewNode="True" />
+				<ColumnInfo Id="cb_tx_status" PropertyName="cb_tx_status" Width="83" Index="23" IsNewNode="True" />
+				<ColumnInfo Id="notes_rejected" PropertyName="notes_rejected" Width="93" Index="24" IsNewNode="True" />
+				<ColumnInfo Id="jam_detected" PropertyName="jam_detected" Width="86" Index="25" IsNewNode="True" />
+				<ColumnInfo Id="cit_id" PropertyName="cit_id" Width="45" Index="26" IsNewNode="True" />
+				<ColumnInfo Id="escrow_jam_detected" PropertyName="escrow_jam_detected" Width="126" Index="26" IsNewNode="True" />
+				<ColumnInfo Id="tx_suspense_account" PropertyName="tx_suspense_account" Index="28" IsNewNode="True" />
+				<ColumnInfo Id="init_user" PropertyName="init_user" Index="29" IsNewNode="True" />
+				<ColumnInfo Id="auth_user" PropertyName="auth_user" Index="30" IsNewNode="True" />
+			</Columns>
+		</ListView>
+		<ListView Id="Transaction_ListView_FailedPost" ClassName="CashSwiftCashControlPortal.Module.BusinessObjects.Transactions.Transaction" AllowDelete="False" AllowNew="False" DataAccessMode="Server" Criteria="Not IsNullOrEmpty([tx_suspense_account]) &amp;&amp; [tx_completed] = True And [TotalAmount] &gt; 0.0 And IsNullOrEmpty([cb_tx_number]) And Not [TransactionPostings][Not IsNullOrEmpty([cb_tx_number]) Or [is_complete] = False Or [auth_response] = '2']" ShowAutoFilterRow="True" FilterEnabled="True" IsGroupPanelVisible="True" Caption="Failed Transactions" IsNewNode="True">
+			<Columns IsNewNode="True">
+				<ColumnInfo Id="cb_status_detail" PropertyName="cb_status_detail" Width="70" Index="-1" IsNewNode="True" />
+				<ColumnInfo Id="cb_tx_number" PropertyName="cb_tx_number" Width="129" Index="-1" IsNewNode="True" />
+				<ColumnInfo Id="tx_start_date" PropertyName="tx_start_date" Width="132" SortIndex="0" SortOrder="Descending" Index="-1" IsNewNode="True" />
+				<ColumnInfo Id="tx_end_date" PropertyName="tx_end_date" Width="132" Index="0" IsNewNode="True" />
+				<ColumnInfo Id="device_id" PropertyName="device_id" Width="65" Index="1" IsNewNode="True" />
+				<ColumnInfo Id="tx_type" PropertyName="tx_type" Width="58" Index="2" IsNewNode="True" />
+				<ColumnInfo Id="tx_currency" PropertyName="tx_currency" Width="78" Index="3" IsNewNode="True" />
+				<ColumnInfo Id="TotalAmount" PropertyName="TotalAmount" Width="84" Index="4" IsNewNode="True" />
+				<ColumnInfo Id="tx_account_number" PropertyName="tx_account_number" Width="116" Index="5" IsNewNode="True" />
+				<ColumnInfo Id="cb_account_name" PropertyName="cb_account_name" Width="107" Index="6" IsNewNode="True" />
+				<ColumnInfo Id="tx_ref_account" PropertyName="tx_ref_account" Width="94" Index="7" IsNewNode="True" />
+				<ColumnInfo Id="cb_ref_account_name" PropertyName="cb_ref_account_name" Width="127" Index="8" IsNewNode="True" />
+				<ColumnInfo Id="tx_narration" PropertyName="tx_narration" Width="80" Index="9" IsNewNode="True" />
+				<ColumnInfo Id="tx_depositor_name" PropertyName="tx_depositor_name" Width="113" Index="10" IsNewNode="True" />
+				<ColumnInfo Id="tx_id_number" PropertyName="tx_id_number" Width="86" Index="11" IsNewNode="True" />
+				<ColumnInfo Id="tx_phone" PropertyName="tx_phone" Width="66" Index="12" IsNewNode="True" />
+				<ColumnInfo Id="funds_source" PropertyName="funds_source" Width="85" Index="13" IsNewNode="True" />
+				<ColumnInfo Id="session_id" PropertyName="session_id" Width="69" Index="14" IsNewNode="True" />
+				<ColumnInfo Id="tx_random_number" PropertyName="tx_random_number" Width="116" Index="15" IsNewNode="True" />
+				<ColumnInfo Id="tx_completed" PropertyName="tx_completed" Width="85" Index="16" IsNewNode="True" />
+				<ColumnInfo Id="tx_result" PropertyName="tx_result" Width="63" Index="17" IsNewNode="True" />
+				<ColumnInfo Id="tx_error_code" PropertyName="tx_error_code" Width="89" Index="18" IsNewNode="True" />
+				<ColumnInfo Id="tx_error_message" PropertyName="tx_error_message" Width="108" Index="19" IsNewNode="True" />
+				<ColumnInfo Id="cb_date" PropertyName="cb_date" Width="132" Index="20" IsNewNode="True" />
+				<ColumnInfo Id="cb_tx_status" PropertyName="cb_tx_status" Width="83" Index="21" IsNewNode="True" />
+				<ColumnInfo Id="notes_rejected" PropertyName="notes_rejected" Width="93" Index="22" IsNewNode="True" />
+				<ColumnInfo Id="jam_detected" PropertyName="jam_detected" Width="86" Index="23" IsNewNode="True" />
+				<ColumnInfo Id="cit_id" PropertyName="cit_id" Width="45" Index="24" IsNewNode="True" />
+				<ColumnInfo Id="escrow_jam_detected" PropertyName="escrow_jam_detected" Width="126" Index="25" IsNewNode="True" />
+				<ColumnInfo Id="tx_suspense_account" PropertyName="tx_suspense_account" Width="70" Index="26" IsNewNode="True" />
+				<ColumnInfo Id="init_user" PropertyName="init_user" Index="27" IsNewNode="True" />
+				<ColumnInfo Id="auth_user" PropertyName="auth_user" Index="28" IsNewNode="True" />
+			</Columns>
+		</ListView>
+		<ListView Id="Transaction_LookupListView" AllowDelete="False" AllowNew="False" />
+		<ListView Id="Transaction_Printouts_ListView" AllowDelete="False" AllowNew="False" />
+		<ListView Id="TransactionLimitList_ListView">
+			<Columns>
+				<ColumnInfo Id="name" Index="0" />
+				<ColumnInfo Id="description" Index="1" />
+			</Columns>
+		</ListView>
+		<ListView Id="TransactionLimitList_TransactionLimitListItems_ListView" AllowLink="False" AllowUnlink="False" />
+		<ListView Id="TransactionLimitList_TransactionTypeListItems_ListView" AllowLink="False" AllowUnlink="False" />
+		<DetailView Id="TransactionLimitListItem_DetailView">
+			<Items>
+				<PropertyEditor Id="currency_code" LookupEditorMode="AllItems" />
+			</Items>
+			<Layout>
+				<LayoutGroup Id="Main" RelativeSize="100">
+					<LayoutGroup Id="SimpleEditors" RelativeSize="100">
+						<LayoutGroup Id="TransactionLimitListItem" RelativeSize="100">
+							<LayoutGroup Id="TransactionLimitListItem_col1" RelativeSize="50">
+								<LayoutItem Id="TransactionLimitList" RelativeSize="4.5197740112994351" />
+								<LayoutItem Id="currency_code" RelativeSize="3.3898305084745761" />
+								<LayoutItem Id="show_funds_source" Index="2" RelativeSize="3.3898305084745761" />
+								<LayoutItem Id="funds_source_amount" RelativeSize="88.700564971751419" Index="3" />
+								<LayoutItem Id="show_funds_form" Index="4" RelativeSize="77.58620689655173" Removed="True" />
+								<LayoutItem Id="prevent_overdeposit" RelativeSize="72.41379310344827" Removed="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="TransactionLimitListItem_col2" RelativeSize="50">
+								<LayoutItem Id="prevent_underdeposit" RelativeSize="4.5197740112994351" Index="0" />
+								<LayoutItem Id="underdeposit_amount" RelativeSize="3.3898305084745761" Index="1" />
+								<LayoutItem Id="prevent_overdeposit" ViewItem="prevent_overdeposit" Index="2" RelativeSize="3.3898305084745761" IsNewNode="True" />
+								<LayoutItem Id="overdeposit_amount" RelativeSize="3.3898305084745761" Index="3" />
+								<LayoutItem Id="prevent_overcount" RelativeSize="3.3898305084745761" Index="4" />
+								<LayoutItem Id="overcount_amount" RelativeSize="81.920903954802256" Index="5" />
+							</LayoutGroup>
+						</LayoutGroup>
+					</LayoutGroup>
+				</LayoutGroup>
+			</Layout>
+		</DetailView>
+		<DetailView Id="TransactionPosting_DetailView" AllowDelete="False" AllowEdit="False" AllowNew="False">
+			<Items>
+				<PropertyEditor Id="reason" RowCount="5" />
+			</Items>
+			<Layout>
+				<LayoutGroup Id="Main" RelativeSize="100">
+					<LayoutGroup Id="SimpleEditors" RelativeSize="54.618473895582326">
+						<LayoutGroup Id="TransactionPosting" RelativeSize="100">
+							<LayoutGroup Id="TransactionPosting_col1" RelativeSize="50">
+								<LayoutItem Id="dr_account" RelativeSize="13.793103448275861" Index="0" />
+								<LayoutItem Id="dr_currency" RelativeSize="10.344827586206897" Index="1" />
+								<LayoutItem Id="tx_id" Index="2" RelativeSize="10.344827586206897" />
+								<LayoutItem Id="DRAmount" Index="3" RelativeSize="10.344827586206897" />
+								<LayoutItem Id="post_date" ViewItem="post_date" Index="4" RelativeSize="10.344827586206897" IsNewNode="True" Removed="True" />
+								<LayoutItem Id="narration" RelativeSize="10.344827586206897" Index="5" />
+								<LayoutItem Id="cr_account" RelativeSize="7.8947368421052628" Index="6" Removed="True" />
+								<LayoutItem Id="cr_currency" RelativeSize="8.5714285714285712" Index="6" Removed="True" />
+								<LayoutItem Id="error_code" RelativeSize="10.344827586206897" Index="6" />
+								<LayoutItem Id="error_message" RelativeSize="10.344827586206897" Index="7" />
+								<LayoutItem Id="device_initiated" ViewItem="device_initiated" Index="8" RelativeSize="13.793103448275861" IsNewNode="True" />
+								<LayoutItem Id="cb_tx_number" RelativeSize="13.793103448275861" Removed="True" />
+								<LayoutItem Id="CRAmount" RelativeSize="9.375" Removed="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="TransactionPosting_col2" RelativeSize="50">
+								<LayoutItem Id="cr_account" ViewItem="cr_account" Index="0" RelativeSize="13.793103448275861" IsNewNode="True" />
+								<LayoutItem Id="cr_currency" ViewItem="cr_currency" Index="1" RelativeSize="10.344827586206897" IsNewNode="True" />
+								<LayoutItem Id="CRAmount" ViewItem="CRAmount" Index="2" RelativeSize="10.344827586206897" IsNewNode="True" />
+								<LayoutItem Id="cb_tx_number" ViewItem="cb_tx_number" Index="3" RelativeSize="10.344827586206897" IsNewNode="True" />
+								<LayoutItem Id="post_status" ViewItem="post_status" Index="4" RelativeSize="10.344827586206897" IsNewNode="True" Removed="True" />
+								<LayoutItem Id="auth_date" RelativeSize="7.8947368421052628" Index="5" Removed="True" />
+								<LayoutItem Id="auth_response" RelativeSize="7.8947368421052628" Index="5" Removed="True" />
+								<LayoutItem Id="authorising_user" RelativeSize="7.8947368421052628" Index="5" Removed="True" />
+								<LayoutItem Id="cb_date" RelativeSize="10.344827586206897" Index="5" />
+								<LayoutItem Id="init_date" RelativeSize="7.8947368421052628" Index="5" Removed="True" />
+								<LayoutItem Id="reason" RelativeSize="57.89473684210526" Index="5" Removed="True" />
+								<LayoutItem Id="cb_tx_status" RelativeSize="10.344827586206897" Index="6" />
+								<LayoutItem Id="cb_status_detail" RelativeSize="10.344827586206897" Index="7" />
+								<LayoutItem Id="device_initiated" RelativeSize="13.793103448275861" Index="8" Removed="True" />
+								<LayoutItem Id="is_complete" RelativeSize="13.793103448275861" Index="8" />
+								<LayoutItem Id="initialising_user" RelativeSize="5.4919908466819223" Removed="True" />
+							</LayoutGroup>
+						</LayoutGroup>
+					</LayoutGroup>
+					<LayoutGroup Id="Authorisation" ShowCaption="True" CaptionLocation="Top" Index="1" RelativeSize="45.381526104417674" Caption="Authorisation" IsNewNode="True">
+						<LayoutGroup Id="Autoc01ba8b7-d363-452e-b589-0ad514fdb3dc" ShowCaption="False" Caption="Autoc01ba8b7-d363-452e-b589-0ad514fdb3dc(26)" Direction="Horizontal" Index="0" RelativeSize="41.666666666666664" IsNewNode="True">
+							<LayoutGroup Id="Auto01f28625-7d92-4213-8a2f-f3157f4ee44e" ShowCaption="False" Caption="Auto01f28625-7d92-4213-8a2f-f3157f4ee44e(27)" Index="0" RelativeSize="73.958333333333329" IsNewNode="True">
+								<LayoutGroup Id="Autoa96aeb86-ed0c-4cd7-b68c-0222e89bb826" ShowCaption="False" Caption="" Direction="Horizontal" Index="0" RelativeSize="40" IsNewNode="True">
+									<LayoutItem Id="initialising_user" ViewItem="initialising_user" Index="0" RelativeSize="50.70422535211268" IsNewNode="True" />
+									<LayoutItem Id="init_date" ViewItem="init_date" Index="1" RelativeSize="49.29577464788732" IsNewNode="True" />
+								</LayoutGroup>
+								<LayoutGroup Id="Autofbdf6552-3da5-4be5-9524-20d2ed5c0ba8" ShowCaption="False" Caption="" Direction="Horizontal" Index="1" RelativeSize="60" IsNewNode="True">
+									<LayoutItem Id="authorising_user" ViewItem="authorising_user" CaptionLocation="Top" Index="0" RelativeSize="50.985915492957744" IsNewNode="True" />
+									<LayoutItem Id="auth_date" ViewItem="auth_date" CaptionLocation="Top" Index="1" RelativeSize="49.014084507042256" IsNewNode="True" />
+								</LayoutGroup>
+							</LayoutGroup>
+							<LayoutGroup Id="Auto477ab47b-d87b-4bf8-94ec-72e41d61b7c7" ShowCaption="False" Caption="Auto477ab47b-d87b-4bf8-94ec-72e41d61b7c7(30)" Index="1" RelativeSize="26.041666666666668" IsNewNode="True">
+								<LayoutItem Id="auth_response" ViewItem="auth_response" CaptionLocation="Top" Index="0" RelativeSize="100" IsNewNode="True" />
+							</LayoutGroup>
+						</LayoutGroup>
+						<LayoutItem Id="reason" ViewItem="reason" Index="1" RelativeSize="58.333333333333336" CaptionLocation="Top" IsNewNode="True" />
+					</LayoutGroup>
+				</LayoutGroup>
+			</Layout>
+		</DetailView>
+		<ListView Id="TransactionPosting_ListView" AllowNew="False" AllowDelete="False" DataAccessMode="Server">
+			<Columns>
+				<ColumnInfo Id="is_complete" Index="-1" />
+				<ColumnInfo Id="tx_id" Index="0" />
+				<ColumnInfo Id="post_status" Index="1" />
+				<ColumnInfo Id="cb_tx_number" Index="2" />
+				<ColumnInfo Id="init_date" Index="3" SortIndex="0" SortOrder="Descending" />
+				<ColumnInfo Id="initialising_user" Index="4" />
+				<ColumnInfo Id="auth_date" Index="5" SortIndex="-1" SortOrder="None" />
+				<ColumnInfo Id="authorising_user" Index="6" />
+				<ColumnInfo Id="post_date" SortIndex="-1" SortOrder="None" Index="7" />
+				<ColumnInfo Id="auth_response" Index="8" />
+				<ColumnInfo Id="reason" Index="9" />
+				<ColumnInfo Id="cr_currency" Index="10" SortIndex="-1" SortOrder="None" />
+				<ColumnInfo Id="CRAmount" Index="11" />
+				<ColumnInfo Id="cr_account" Index="12" />
+				<ColumnInfo Id="dr_currency" Index="13" SortIndex="-1" SortOrder="None" />
+				<ColumnInfo Id="DRAmount" Index="14" SortIndex="-1" SortOrder="None" />
+				<ColumnInfo Id="dr_account" Index="15" />
+				<ColumnInfo Id="narration" Index="16" />
+				<ColumnInfo Id="error_code" Index="17" />
+				<ColumnInfo Id="error_message" Index="18" />
+				<ColumnInfo Id="cb_date" Index="19" />
+				<ColumnInfo Id="cb_tx_status" Index="20" />
+				<ColumnInfo Id="cb_status_detail" Index="21" />
+				<ColumnInfo Id="device_initiated" Index="22" />
+			</Columns>
+		</ListView>
+		<ListView Id="TransactionPosting_ListView_Pending" ClassName="CashSwiftCashControlPortal.Module.BusinessObjects.Transactions.TransactionPosting" AllowNew="False" AllowDelete="False" Caption="Pending Transaction Posting" Filter="[initialising_user.id] &lt;&gt; CurrentUserId()" Criteria="[tx_id.tx_completed] = True And [tx_id.TotalAmount] &gt; 0.0 And IsNullOrEmpty([tx_id.cb_tx_number]) And Not [tx_id.TransactionPostings][Not IsNullOrEmpty([cb_tx_number]) Or [auth_response] = '2'] And [post_status] =  ##Enum#CashSwiftCashControlPortal.Module.BusinessObjects.Transactions.TransactionPostingStatus,AUTH_AWAIT#" DataAccessMode="Server" IsNewNode="True">
+			<Columns IsNewNode="True">
+				<ColumnInfo Id="is_complete" PropertyName="is_complete" Width="50" Index="-1" IsNewNode="True" />
+				<ColumnInfo Id="init_date" PropertyName="init_date" Width="70" Index="0" SortIndex="0" SortOrder="Descending" IsNewNode="True" />
+				<ColumnInfo Id="initialising_user" PropertyName="initialising_user" Width="70" Index="1" IsNewNode="True" />
+				<ColumnInfo Id="cr_account" PropertyName="cr_account" Width="70" Index="2" IsNewNode="True" />
+				<ColumnInfo Id="cr_currency" PropertyName="cr_currency" Width="70" Index="3" IsNewNode="True" />
+				<ColumnInfo Id="CRAmount" PropertyName="CRAmount" Width="50" Index="4" IsNewNode="True" />
+				<ColumnInfo Id="dr_account" PropertyName="dr_account" Width="70" Index="5" IsNewNode="True" />
+				<ColumnInfo Id="dr_currency" PropertyName="dr_currency" Width="400" Index="6" IsNewNode="True" />
+				<ColumnInfo Id="DRAmount" PropertyName="DRAmount" Width="50" Index="7" IsNewNode="True" />
+				<ColumnInfo Id="narration" PropertyName="narration" Width="70" Index="8" IsNewNode="True" />
+				<ColumnInfo Id="post_status" PropertyName="post_status" Width="70" Index="9" IsNewNode="True" />
+				<ColumnInfo Id="cb_tx_number" PropertyName="cb_tx_number" Width="70" Index="10" IsNewNode="True" />
+				<ColumnInfo Id="post_date" PropertyName="post_date" Width="70" Index="11" IsNewNode="True" />
+				<ColumnInfo Id="auth_date" PropertyName="auth_date" Width="70" Index="12" IsNewNode="True" />
+				<ColumnInfo Id="authorising_user" PropertyName="authorising_user" Width="70" Index="13" IsNewNode="True" />
+				<ColumnInfo Id="auth_response" PropertyName="auth_response" Width="70" Index="14" IsNewNode="True" />
+				<ColumnInfo Id="reason" PropertyName="reason" Width="70" Index="15" IsNewNode="True" />
+				<ColumnInfo Id="error_code" PropertyName="error_code" Width="70" Index="16" IsNewNode="True" />
+				<ColumnInfo Id="error_message" PropertyName="error_message" Width="70" Index="17" IsNewNode="True" />
+				<ColumnInfo Id="cb_date" PropertyName="cb_date" Width="70" Index="18" IsNewNode="True" />
+				<ColumnInfo Id="cb_tx_status" PropertyName="cb_tx_status" Width="70" Index="19" IsNewNode="True" />
+				<ColumnInfo Id="cb_status_detail" PropertyName="cb_status_detail" Width="70" Index="20" IsNewNode="True" />
+				<ColumnInfo Id="device_initiated" PropertyName="device_initiated" Width="50" Index="21" IsNewNode="True" />
+			</Columns>
+		</ListView>
+		<ListView Id="TransactionPosting_LookupListView" AllowDelete="False" AllowLink="False" AllowNew="False" DataAccessMode="Server" />
+		<ListView Id="TransactionTypeList_TransactionTypeList_TransactionTypeListItems_ListView" AllowLink="False" AllowUnlink="False" />
+		<DetailView Id="TransactionTypeListItem_DetailView">
+			<Items>
+				<PropertyEditor Id="AccountPermission" PropertyName="AccountPermission" IsNewNode="True" />
+				<PropertyEditor Id="default_account_currency" LookupEditorMode="AllItems" />
+				<PropertyEditor Id="Transactions" Removed="True" />
+			</Items>
+			<Layout>
+				<LayoutGroup Id="Main" RelativeSize="100">
+					<TabbedGroup Id="MainEditors" Index="0" RelativeSize="100" IsNewNode="True">
+						<LayoutGroup Id="SimpleEditors" ShowCaption="True" Index="0" RelativeSize="100" IsNewNode="True">
+							<LayoutItem Id="Icon" ViewItem="Icon" Index="0" RelativeSize="7.2562358276643995" IsNewNode="True" />
+							<LayoutGroup Id="TransactionTypeListItem" Direction="Horizontal" RelativeSize="31.292517006802722" Caption="Transaction Type List Item" ShowCaption="True" Index="1" IsNewNode="True">
+								<LayoutGroup Id="TransactionTypeListItem_col1" Index="0" ShowCaption="False" RelativeSize="50" IsNewNode="True">
+									<LayoutItem Id="name" ViewItem="name" ShowCaption="" Index="0" RelativeSize="28.571428571428573" IsNewNode="True" />
+									<LayoutItem Id="description" ViewItem="description" ShowCaption="" Index="1" RelativeSize="21.428571428571427" IsNewNode="True" />
+									<LayoutItem Id="validate_reference_account" ViewItem="validate_reference_account" ShowCaption="" Index="2" RelativeSize="21.428571428571427" IsNewNode="True" />
+									<LayoutItem Id="enabled" ViewItem="enabled" ShowCaption="" Index="3" RelativeSize="28.571428571428573" IsNewNode="True" />
+								</LayoutGroup>
+								<LayoutGroup Id="TransactionTypeListItem_col2" Index="1" ShowCaption="False" RelativeSize="50" IsNewNode="True">
+									<LayoutItem Id="tx_type" ViewItem="tx_type" ShowCaption="" Index="0" RelativeSize="28.571428571428573" IsNewNode="True" />
+									<LayoutItem Id="tx_type_guiscreenlist" ViewItem="tx_type_guiscreenlist" ShowCaption="" Index="1" RelativeSize="21.428571428571427" IsNewNode="True" />
+									<LayoutItem Id="cb_tx_type" ViewItem="cb_tx_type" ShowCaption="" Index="2" RelativeSize="21.428571428571427" IsNewNode="True" />
+									<LayoutItem Id="tx_limit_list" ViewItem="tx_limit_list" Index="3" RelativeSize="28.571428571428573" IsNewNode="True" />
+								</LayoutGroup>
+							</LayoutGroup>
+							<LayoutGroup Id="Account Info" Index="2" ShowCaption="True" RelativeSize="61.451247165532877" Direction="Horizontal" IsNewNode="True">
+								<LayoutGroup Id="Auto32806b1b-f05c-41f0-9f7a-2ea30b187c32" ShowCaption="False" Caption="Auto32806b1b-f05c-41f0-9f7a-2ea30b187c32(16)" Index="0" RelativeSize="50" IsNewNode="True">
+									<LayoutItem Id="default_account" ViewItem="default_account" Index="0" RelativeSize="13.502109704641351" IsNewNode="True" />
+									<LayoutItem Id="default_account_currency" ViewItem="default_account_currency" Index="1" RelativeSize="10.126582278481013" IsNewNode="True" />
+									<LayoutItem Id="init_user_required" ViewItem="init_user_required" Index="2" RelativeSize="76.371308016877634" IsNewNode="True" />
+								</LayoutGroup>
+								<LayoutGroup Id="Autodf5770f9-a225-4c44-b19d-61933c735ec3" ShowCaption="False" Caption="Autodf5770f9-a225-4c44-b19d-61933c735ec3(19)" Index="1" RelativeSize="50" IsNewNode="True">
+									<LayoutItem Id="default_account_name" ViewItem="default_account_name" Index="0" RelativeSize="13.502109704641351" IsNewNode="True" />
+									<LayoutItem Id="validate_default_account" ViewItem="validate_default_account" Index="1" RelativeSize="10.126582278481013" IsNewNode="True" />
+									<LayoutItem Id="auth_user_required" ViewItem="auth_user_required" Index="2" RelativeSize="76.371308016877634" IsNewNode="True" />
+								</LayoutGroup>
+							</LayoutGroup>
+						</LayoutGroup>
+						<LayoutGroup Id="TransactionText" ShowCaption="True" Index="1" RelativeSize="100" Caption="TransactionText" Direction="Vertical" IsNewNode="True">
+							<LayoutGroup Id="Autoc8937118-bd8a-4ac2-b570-e9df2dc419b0" ShowCaption="False" Caption="Autoc8937118-bd8a-4ac2-b570-e9df2dc419b0(28)" Direction="Horizontal" Index="0" RelativeSize="100" IsNewNode="True">
+								<LayoutGroup Id="Auto052b1ffa-28e7-47db-916d-18cb592a2965" ShowCaption="False" Caption="Auto052b1ffa-28e7-47db-916d-18cb592a2965(29)" Index="0" RelativeSize="50" IsNewNode="True">
+									<LayoutItem Id="TransactionText.AccountNumberCaption" ViewItem="TransactionText.AccountNumberCaption" Index="0" RelativeSize="7.2562358276643995" IsNewNode="True" />
+									<LayoutItem Id="TransactionText.ReferenceAccountNumberCaption" ViewItem="TransactionText.ReferenceAccountNumberCaption" Index="1" RelativeSize="5.4421768707482991" IsNewNode="True" />
+									<LayoutItem Id="TransactionText.AliasAccountNumberCaption" ViewItem="TransactionText.AliasAccountNumberCaption" Index="2" RelativeSize="5.4421768707482991" IsNewNode="True" />
+									<LayoutItem Id="TransactionText.NarrationCaption" ViewItem="TransactionText.NarrationCaption" Index="3" RelativeSize="5.4421768707482991" IsNewNode="True" />
+									<LayoutItem Id="TransactionText.DepositorNameCaption" ViewItem="TransactionText.DepositorNameCaption" Index="4" RelativeSize="5.4421768707482991" IsNewNode="True" />
+									<LayoutItem Id="TransactionText.ListItemCaption" ViewItem="TransactionText.ListItemCaption" Index="5" RelativeSize="5.4421768707482991" IsNewNode="True" />
+									<LayoutItem Id="TransactionText.Disclaimer" ViewItem="TransactionText.Disclaimer" Index="6" RelativeSize="5.4421768707482991" IsNewNode="True" />
+									<LayoutItem Id="TransactionText.FundsSource_caption" ViewItem="TransactionText.FundsSource_caption" Index="7" RelativeSize="60.090702947845806" IsNewNode="True" />
+								</LayoutGroup>
+								<LayoutGroup Id="Autod0d85fdd-257d-4ff4-a119-e13088c6dc2f" ShowCaption="False" Caption="Autod0d85fdd-257d-4ff4-a119-e13088c6dc2f(37)" Index="1" RelativeSize="50" IsNewNode="True">
+									<LayoutItem Id="TransactionText.AccountNameCaption" ViewItem="TransactionText.AccountNameCaption" Index="0" RelativeSize="7.2562358276643995" IsNewNode="True" />
+									<LayoutItem Id="TransactionText.ReferenceAccountNameCaption" ViewItem="TransactionText.ReferenceAccountNameCaption" Index="1" RelativeSize="5.4421768707482991" IsNewNode="True" />
+									<LayoutItem Id="TransactionText.AliasAccountNameCaption" ViewItem="TransactionText.AliasAccountNameCaption" Index="2" RelativeSize="5.4421768707482991" IsNewNode="True" />
+									<LayoutItem Id="TransactionText.PhoneNumberCaption" ViewItem="TransactionText.PhoneNumberCaption" Index="3" RelativeSize="5.4421768707482991" IsNewNode="True" />
+									<LayoutItem Id="TransactionText.IDNumberCaption" ViewItem="TransactionText.IDNumberCaption" Index="4" RelativeSize="5.4421768707482991" IsNewNode="True" />
+									<LayoutItem Id="TransactionText.FullInstructions" ViewItem="TransactionText.FullInstructions" Index="5" RelativeSize="5.4421768707482991" IsNewNode="True" />
+									<LayoutItem Id="TransactionText.TermsAndConditions" ViewItem="TransactionText.TermsAndConditions" Index="6" RelativeSize="5.4421768707482991" IsNewNode="True" />
+									<LayoutItem Id="TransactionText.ReceiptTemplate" ViewItem="TransactionText.ReceiptTemplate" Index="7" RelativeSize="60.090702947845806" IsNewNode="True" />
+								</LayoutGroup>
+							</LayoutGroup>
+						</LayoutGroup>
+						<LayoutGroup Id="Account Permission" ShowCaption="True" Index="2" RelativeSize="100" Caption="Account Permission" Direction="Vertical" IsNewNode="True">
+							<LayoutGroup Id="Permissions" ShowCaption="False" Index="0" RelativeSize="13.378684807256235" Caption="Permissions" IsNewNode="True">
+								<LayoutItem Id="AccountPermission.error_message" ViewItem="AccountPermission.error_message" Index="0" RelativeSize="54.237288135593218" IsNewNode="True" />
+								<LayoutItem Id="AccountPermission.list_type" ViewItem="AccountPermission.list_type" Index="1" RelativeSize="45.762711864406782" IsNewNode="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="Accounts" ShowCaption="False" Index="1" RelativeSize="86.621315192743765" Direction="Vertical" IsNewNode="True">
+								<TabbedGroup Id="AccountListTabs" CaptionLocation="Top" Index="0" RelativeSize="100" IsNewNode="True">
+									<LayoutGroup Id="AccountList" ShowCaption="True" CaptionLocation="Top" Index="0" RelativeSize="100" Direction="Vertical" Caption="Account List" IsNewNode="True">
+										<LayoutItem Id="AccountPermission.AccountPermissionItems" ViewItem="AccountPermission.AccountPermissionItems" Index="0" RelativeSize="100" IsNewNode="True" />
+									</LayoutGroup>
+								</TabbedGroup>
+							</LayoutGroup>
+						</LayoutGroup>
+					</TabbedGroup>
+					<LayoutGroup Id="SimpleEditors" RelativeSize="31.73277661795407" Index="1" Removed="True">
+						<LayoutGroup Id="TransactionTypeListItem" RelativeSize="100" Removed="True">
+							<LayoutGroup Id="TransactionTypeListItem_col1" RelativeSize="50">
+								<LayoutItem Id="default_account_currency" RelativeSize="15" Index="4" Removed="True" />
+								<LayoutItem Id="default_account_name" RelativeSize="13.043478260869565" Index="4" Removed="True" />
+								<LayoutItem Id="validate_default_account" RelativeSize="23.529411764705884" Index="4" Removed="True" />
+								<LayoutItem Id="default_account" RelativeSize="11.538461538461538" Removed="True" />
+								<LayoutItem Id="description" RelativeSize="21.428571428571427" />
+								<LayoutItem Id="name" RelativeSize="28.571428571428573" />
+								<LayoutItem Id="validate_reference_account" RelativeSize="28.571428571428573" />
+							</LayoutGroup>
+							<LayoutGroup Id="TransactionTypeListItem_col2" RelativeSize="50" />
+						</LayoutGroup>
+					</LayoutGroup>
+					<TabbedGroup Id="Tabs" Index="4" RelativeSize="30.688935281837161" Removed="True">
+						<LayoutGroup Id="Transactions" RelativeSize="100">
+							<LayoutItem Id="Transactions" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="TransactionTypeList_TransactionTypeListItems" RelativeSize="100">
+							<LayoutItem Id="TransactionTypeList_TransactionTypeListItems" RelativeSize="100" />
+						</LayoutGroup>
+					</TabbedGroup>
+				</LayoutGroup>
+			</Layout>
+		</DetailView>
+		<ListView Id="TransactionTypeListItem_ListView">
+			<Columns>
+				<ColumnInfo Id="AccountPermission" Index="-1" />
+				<ColumnInfo Id="Icon" Index="0" />
+				<ColumnInfo Id="name" Index="1" />
+				<ColumnInfo Id="description" Index="2" />
+				<ColumnInfo Id="validate_reference_account" Index="4" />
+				<ColumnInfo Id="default_account" Index="5" />
+				<ColumnInfo Id="default_account_name" Index="6" />
+				<ColumnInfo Id="default_account_currency" Index="7" />
+				<ColumnInfo Id="validate_default_account" Index="8" />
+				<ColumnInfo Id="enabled" Index="9" />
+				<ColumnInfo Id="tx_type" Index="10" />
+				<ColumnInfo Id="tx_type_guiscreenlist" Index="11" />
+				<ColumnInfo Id="cb_tx_type" Index="12" />
+			</Columns>
+		</ListView>
+		<ListView Id="TransactionTypeListItem_Transactions_ListView" AllowDelete="False" AllowNew="False" TopReturnedObjects="100" Removed="True">
+			<Columns>
+				<ColumnInfo Id="tx_start_date" SortIndex="0" SortOrder="Descending" />
+			</Columns>
+		</ListView>
+		<ListView Id="TransactionTypeListItem_TransactionTypeList_TransactionTypeListItems_ListView" AllowLink="False" AllowUnlink="False">
+			<Columns>
+				<ColumnInfo Id="txtype_list" Index="-1" />
+				<ColumnInfo Id="txtype_list_item" SortIndex="-1" SortOrder="None" />
+				<ColumnInfo Id="list_order" Index="1" SortIndex="0" SortOrder="Ascending" />
+			</Columns>
+		</ListView>
+		<DetailView Id="UserGroup_DetailView">
+			<Layout>
+				<LayoutGroup Id="Main" RelativeSize="100">
+					<LayoutGroup Id="SimpleEditors" RelativeSize="17.066666666666666">
+						<LayoutGroup Id="UserGroup" RelativeSize="100" Direction="Vertical">
+							<LayoutGroup Id="UserGroup_col1" RelativeSize="100">
+								<LayoutItem Id="name" RelativeSize="36.363636363636367" />
+								<LayoutItem Id="description" RelativeSize="27.272727272727273" />
+								<LayoutItem Id="parent_group" RelativeSize="36.363636363636367" />
+							</LayoutGroup>
+							<LayoutGroup Id="UserGroup_col2" Caption="UserGroup_col2" RelativeSize="50" Direction="Horizontal" Removed="True">
+								<LayoutItem Id="Parent" Index="0" RelativeSize="100" Removed="True" />
+								<LayoutItem Id="Name" Removed="True" />
+							</LayoutGroup>
+						</LayoutGroup>
+					</LayoutGroup>
+					<TabbedGroup Id="Tabs" RelativeSize="82.933333333333337">
+						<LayoutGroup Id="UserGroupCollection" RelativeSize="100">
+							<LayoutItem Id="UserGroupCollection" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="Devices" RelativeSize="100">
+							<LayoutItem Id="Devices" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="ApplicationUsers" RelativeSize="100">
+							<LayoutItem Id="ApplicationUsers" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="Children" RelativeSize="100">
+							<LayoutItem Id="Children" RelativeSize="100" />
+						</LayoutGroup>
+					</TabbedGroup>
+				</LayoutGroup>
+			</Layout>
+		</DetailView>
+		<ListView Id="UserGroup_ListView">
+			<Columns>
+				<ColumnInfo Id="Name" Index="-1" />
+				<ColumnInfo Id="Parent" Index="-1" />
+			</Columns>
+		</ListView>
+		<ListView Id="UserGroup_LookupListView" AllowDelete="False" AllowNew="True" />
+		<DetailView Id="UserLockLogEntry_DetailView" AllowDelete="False" AllowEdit="False" AllowNew="False" />
+		<ListView Id="UserLockLogEntry_ListView" AllowDelete="False" AllowNew="False">
+			<Columns>
+				<ColumnInfo Id="LogDate" SortIndex="0" SortOrder="Descending" />
+			</Columns>
+		</ListView>
+		<ListView Id="UserLockLogEntry_LookupListView" AllowDelete="False" AllowNew="True" />
+		<DetailView Id="UserTextItem_DetailView">
+			<Items>
+				<PropertyEditor Id="Category" LookupEditorMode="AllItemsWithSearch" />
+				<PropertyEditor Id="TextItemTypeID" LookupEditorMode="AllItemsWithSearch" />
+			</Items>
+			<Layout>
+				<LayoutGroup Id="Main" RelativeSize="100">
+					<LayoutGroup Id="SimpleEditors" RelativeSize="21.398305084745761">
+						<LayoutGroup Id="UserTextItem" RelativeSize="100">
+							<LayoutGroup Id="UserTextItem_col1" RelativeSize="50">
+								<LayoutItem Id="name" RelativeSize="50" />
+								<LayoutItem Id="description" RelativeSize="50" />
+								<LayoutItem Id="Category" RelativeSize="36.363636363636367" Removed="True" />
+							</LayoutGroup>
+							<LayoutGroup Id="UserTextItem_col2" Caption="UserTextItem_col2" RelativeSize="50">
+								<LayoutItem Id="Category" ViewItem="Category" Index="0" RelativeSize="50" IsNewNode="True" />
+								<LayoutItem Id="TextItemTypeID" RelativeSize="50" Index="1" />
+								<LayoutItem Id="ShortString" Removed="True" />
+							</LayoutGroup>
+						</LayoutGroup>
+					</LayoutGroup>
+					<LayoutGroup Id="SizeableEditors" RelativeSize="39.406779661016948">
+						<LayoutItem Id="DefaultTranslation" RelativeSize="100" />
+					</LayoutGroup>
+					<LayoutGroup Id="UserTextTranslations_Group" Direction="Vertical" RelativeSize="39.194915254237287">
+						<LayoutItem Id="UserTextTranslations" RelativeSize="100" />
+					</LayoutGroup>
+				</LayoutGroup>
+			</Layout>
+		</DetailView>
+		<ListView Id="UserTextItem_ListView" IsGroupPanelVisible="True">
+			<Columns>
+				<ColumnInfo Id="ShortString" Index="3" />
+				<ColumnInfo Id="TextItemTypeID" SortOrder="Ascending" GroupIndex="0" Index="4" />
+			</Columns>
+		</ListView>
+		<ListView Id="UserTextItem_LookupListView">
+			<Columns>
+				<ColumnInfo Id="name" Index="0" />
+				<ColumnInfo Id="ShortString" Index="1" />
+			</Columns>
+		</ListView>
+		<ListView Id="ValidationItem_LookupListView">
+			<Columns>
+				<ColumnInfo Id="name" Index="0" />
+				<ColumnInfo Id="description" Index="1" />
+			</Columns>
+		</ListView>
+		<ListView Id="ValidationItem_ValidationItemValues_ListView">
+			<Columns>
+				<ColumnInfo Id="order" SortIndex="0" SortOrder="Ascending" />
+			</Columns>
+		</ListView>
+		<ListView Id="ValidationItem_ValidationList_ValidationItems_ListView">
+			<Columns>
+				<ColumnInfo Id="validation_list_id" SortIndex="-1" SortOrder="None" />
+				<ColumnInfo Id="order" SortIndex="0" SortOrder="Ascending" />
+			</Columns>
+		</ListView>
+		<ListView Id="ValidationList_ValidationItem_ListView">
+			<Columns>
+				<ColumnInfo Id="validation_list_id" SortIndex="-1" SortOrder="None" />
+				<ColumnInfo Id="order" SortIndex="0" SortOrder="Ascending" />
+			</Columns>
+		</ListView>
+		<ListView Id="ValidationList_ValidationList_ValidationItems_ListView">
+			<Columns>
+				<ColumnInfo Id="validation_list_id" SortIndex="-1" SortOrder="None" />
+				<ColumnInfo Id="order" SortIndex="0" SortOrder="Ascending" />
+			</Columns>
+		</ListView>
+		<DetailView Id="WebPortalLoginLogEntry_DetailView" AllowDelete="False" AllowNew="False" AllowEdit="False" />
+		<ListView Id="WebPortalLoginLogEntry_ListView" AllowDelete="False" AllowNew="False">
+			<Columns>
+				<ColumnInfo Id="LogDate" Width="132" SortIndex="0" SortOrder="Descending" />
+			</Columns>
+		</ListView>
+		<ListView Id="WebPortalLoginLogEntry_LookupListView" AllowDelete="False" AllowLink="False" AllowNew="True" />
+		<ListView Id="WebPortalRole_ApplicationUsers_ListView" AllowDelete="False" />
+		<DetailView Id="WebPortalRole_DetailView" AllowDelete="True" AllowNew="True">
+			<Layout>
+				<LayoutGroup Id="Main" RelativeSize="100">
+					<LayoutGroup Id="SimpleEditors" RelativeSize="26.48221343873518">
+						<LayoutGroup Id="PermissionPolicyRoleBase" Index="0" RelativeSize="100">
+							<LayoutItem Id="Name" RelativeSize="23.880597014925375" />
+							<LayoutItem Id="description" ViewItem="description" ShowCaption="" Index="1" RelativeSize="17.910447761194028" IsNewNode="True" />
+							<LayoutItem Id="IsAdministrative" Index="2" RelativeSize="17.910447761194028" />
+							<LayoutItem Id="CanEditModel" Index="3" RelativeSize="17.910447761194028" />
+							<LayoutItem Id="PermissionPolicy" Index="4" RelativeSize="22.388059701492537" />
+						</LayoutGroup>
+						<LayoutGroup Id="WebPortalRole" Removed="True">
+							<LayoutItem Id="description" Removed="True" />
+						</LayoutGroup>
+					</LayoutGroup>
+					<TabbedGroup Id="Tabs" RelativeSize="73.517786561264828">
+						<LayoutGroup Id="ApplicationUsers" RelativeSize="100">
+							<LayoutItem Id="ApplicationUsers" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="TypePermissions" RelativeSize="100">
+							<LayoutItem Id="TypePermissions" RelativeSize="100" />
+						</LayoutGroup>
+						<LayoutGroup Id="NavigationPermissions" RelativeSize="100">
+							<LayoutItem Id="NavigationPermissions" RelativeSize="100" />
+						</LayoutGroup>
+					</TabbedGroup>
+				</LayoutGroup>
+			</Layout>
+		</DetailView>
+		<ListView Id="WebPortalRole_ListView" AllowDelete="True" AllowNew="True" Criteria="[name] != 'Root'" />
+		<ListView Id="WebPortalRole_LookupListView" AllowDelete="False" AllowNew="True" Criteria="[name] != 'Root'">
+			<Columns>
+				<ColumnInfo Id="Name" Index="0" />
+				<ColumnInfo Id="description" Index="1" />
+			</Columns>
+		</ListView>
+	</Views>
+</Application>

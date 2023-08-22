@@ -1,0 +1,161 @@
+<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <!--Project was exported from assembly: C:\DEV\maniwa\Coop\Coop\CashSwiftDeposit\App\UI\6.0\CashAccSysDeviceManager.dll-->
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{71990352-43EB-4901-94E6-10BFC3DDB929}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AssemblyName>CashAccSysDeviceManager</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <ApplicationVersion>6.1.0.0</ApplicationVersion>
+    <FileAlignment>512</FileAlignment>
+    <RootNamespace>CashAccSysDeviceManager</RootNamespace>
+    <TargetFrameworkProfile />
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Extensions.Configuration.Abstractions, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Configuration.Abstractions.6.0.0\lib\net461\Microsoft.Extensions.Configuration.Abstractions.dll</HintPath>
+    </Reference>
+    <Reference Include="Microsoft.Extensions.Primitives, Version=6.0.0.0, Culture=neutral, PublicKeyToken=adb9793829ddae60, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\Microsoft.Extensions.Primitives.6.0.0\lib\net461\Microsoft.Extensions.Primitives.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json">
+      <HintPath>lib\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Buffers, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Buffers.4.5.1\lib\net461\System.Buffers.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Core" />
+    <Reference Include="System.Memory, Version=4.0.1.1, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Memory.4.5.4\lib\net461\System.Memory.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Numerics" />
+    <Reference Include="System.Numerics.Vectors, Version=4.1.4.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Numerics.Vectors.4.5.0\lib\net46\System.Numerics.Vectors.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Runtime.CompilerServices.Unsafe, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.Runtime.CompilerServices.Unsafe.6.0.0\lib\net461\System.Runtime.CompilerServices.Unsafe.dll</HintPath>
+    </Reference>
+    <Reference Include="System.ValueTuple, Version=4.0.3.0, Culture=neutral, PublicKeyToken=cc7b13ffcd2ddd51, processorArchitecture=MSIL">
+      <HintPath>..\..\..\packages\System.ValueTuple.4.5.0\lib\net47\System.ValueTuple.dll</HintPath>
+    </Reference>
+    <Reference Include="System.Xml" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="WindowsBase" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DeviceManagerMode.cs" />
+    <Compile Include="CashAccSysDeviceManager.cs" />
+    <Compile Include="DE50Mode.cs" />
+    <Compile Include="DE50OperatingState.cs" />
+    <Compile Include="SerialFixState.cs" />
+    <Compile Include="DE50StatusChangedResult.cs" />
+    <Compile Include="CashAccSysSerialFix.cs" />
+    <Compile Include="ConversionClasses.cs" />
+    <Compile Include="TCPXMLListener.cs" />
+    <Compile Include="Test.cs" />
+    <Compile Include="MessageType.cs" />
+    <Compile Include="CashAccSysMessageBase.cs" />
+    <Compile Include="CDCMessenger.cs" />
+    <Compile Include="MessageClasses\ACK.cs" />
+    <Compile Include="MessageClasses\AuthoriseRequestBody.cs" />
+    <Compile Include="MessageClasses\AuthoriseRequest.cs" />
+    <Compile Include="MessageClasses\AuthoriseResponseBody.cs" />
+    <Compile Include="MessageClasses\AuthoriseResponse.cs" />
+    <Compile Include="MessageClasses\BagRemovalReportResult.cs" />
+    <Compile Include="MessageClasses\BagRemovalReportTransaction.cs" />
+    <Compile Include="MessageClasses\BagRemovalReportInformation.cs" />
+    <Compile Include="MessageClasses\BagRemovalReportNoteCount.cs" />
+    <Compile Include="MessageClasses\Summary.cs" />
+    <Compile Include="MessageClasses\BagRemovalReportBody.cs" />
+    <Compile Include="MessageClasses\BagRemovalReport.cs" />
+    <Compile Include="MessageClasses\BeginTransaction.cs" />
+    <Compile Include="MessageClasses\CancelCurrentProcess.cs" />
+    <Compile Include="MessageClasses\CloseBagRequestAction.cs" />
+    <Compile Include="MessageClasses\CloseBagRequestBody.cs" />
+    <Compile Include="MessageClasses\CloseBagRequest.cs" />
+    <Compile Include="MessageClasses\DropEndBody.cs" />
+    <Compile Include="MessageClasses\DropEnd.cs" />
+    <Compile Include="MessageClasses\DropPauseBody.cs" />
+    <Compile Include="MessageClasses\DropPause.cs" />
+    <Compile Include="MessageClasses\DropRequestBody.cs" />
+    <Compile Include="MessageClasses\DropRequest.cs" />
+    <Compile Include="MessageClasses\DropResultBody.cs" />
+    <Compile Include="MessageClasses\DropResult.cs" />
+    <Compile Include="MessageClasses\NoteCount.cs" />
+    <Compile Include="MessageClasses\NoteCounts.cs" />
+    <Compile Include="MessageClasses\DropStatusBody.cs" />
+    <Compile Include="MessageClasses\DropStatus.cs" />
+    <Compile Include="MessageClasses\EndTransaction.cs" />
+    <Compile Include="MessageClasses\OpenBagRequestBody.cs" />
+    <Compile Include="MessageClasses\OpenBagRequest.cs" />
+    <Compile Include="MessageClasses\PrintReportBody.cs" />
+    <Compile Include="MessageClasses\PrintReport.cs" />
+    <Compile Include="MessageClasses\Line.cs" />
+    <Compile Include="MessageClasses\PrintTextBody.cs" />
+    <Compile Include="MessageClasses\PrintText.cs" />
+    <Compile Include="MessageClasses\RequestErrorBody.cs" />
+    <Compile Include="MessageClasses\RequestError.cs" />
+    <Compile Include="MessageClasses\SelectCurrencyBody.cs" />
+    <Compile Include="MessageClasses\SelectCurrency.cs" />
+    <Compile Include="MessageClasses\ShowController.cs" />
+    <Compile Include="MessageClasses\BA.cs" />
+    <Compile Include="MessageClasses\CA.cs" />
+    <Compile Include="MessageClasses\Acceptors.cs" />
+    <Compile Include="MessageClasses\Cassette.cs" />
+    <Compile Include="MessageClasses\ND.cs" />
+    <Compile Include="MessageClasses\Dispensers.cs" />
+    <Compile Include="MessageClasses\Bag.cs" />
+    <Compile Include="MessageClasses\Sensors.cs" />
+    <Compile Include="MessageClasses\Escrow.cs" />
+    <Compile Include="MessageClasses\Transaction.cs" />
+    <Compile Include="MessageClasses\Status.cs" />
+    <Compile Include="MessageClasses\StatusReport.cs" />
+    <Compile Include="MessageClasses\StatusRequest.cs" />
+    <Compile Include="MessageClasses\TransactionStatusRequest.cs" />
+    <Compile Include="MessageClasses\TotalDroppedNotes.cs" />
+    <Compile Include="MessageClasses\LastDroppedNotes.cs" />
+    <Compile Include="MessageClasses\RequestedDispenseNotes.cs" />
+    <Compile Include="MessageClasses\DispensedNotes.cs" />
+    <Compile Include="MessageClasses\Body.cs" />
+    <Compile Include="MessageClasses\TransactionStatusResponse.cs" />
+    <Compile Include="Properties\Settings.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CashSwift.Library.Standard\CashSwift.Library.Standard.csproj">
+      <Project>{09280264-40a9-4a75-aad7-0776e15ffcf8}</Project>
+      <Name>CashSwift.Library.Standard</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\DeviceManager\DeviceManager.csproj">
+      <Project>{0047667a-0934-41e7-9516-6c43d221ad75}</Project>
+      <Name>DeviceManager</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <None Include="packages.config" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>

@@ -1,0 +1,161 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{2EF7DEFF-0EE1-4EB0-931C-7D49412F6571}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>CashSwiftCashControlPortal.Module.Web</RootNamespace>
+    <AssemblyName>CashSwiftCashControlPortal.Module.Web</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="DevExpress.Data.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.Data.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.AuditTrail.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.ExpressApp.AuditTrail.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.ConditionalAppearance.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.ExpressApp.ConditionalAppearance.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.HtmlPropertyEditor.Web.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.ExpressApp.HtmlPropertyEditor.Web.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Images.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.ExpressApp.Images.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Security.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.ExpressApp.Security.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Security.Xpo.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.ExpressApp.Security.Xpo.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.TreeListEditors.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.ExpressApp.TreeListEditors.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.TreeListEditors.Web.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.ExpressApp.TreeListEditors.Web.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.ExpressApp.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Validation.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.ExpressApp.Validation.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Validation.Web.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.ExpressApp.Validation.Web.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Web.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.ExpressApp.Web.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.ExpressApp.Xpo.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.ExpressApp.Xpo.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Persistent.Base.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.Persistent.Base.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Persistent.BaseImpl.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.Persistent.BaseImpl.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Printing.v17.1.Core">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.Printing.v17.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.RichEdit.v17.1.Core">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.RichEdit.v17.1.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.Utils.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Utils.v17.1.UI">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.Utils.v17.1.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxHtmlEditor.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.Web.ASPxHtmlEditor.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxSpellChecker.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.Web.ASPxSpellChecker.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxThemes.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.Web.ASPxThemes.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.ASPxTreeList.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.Web.ASPxTreeList.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.Resources.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.Web.Resources.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Web.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.Web.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="DevExpress.Xpo.v17.1">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\DevExpress.Xpo.v17.1.dll</HintPath>
+    </Reference>
+    <Reference Include="NLog">
+      <HintPath>..\CashSwiftCashControlPortal.Web\Lib\NLog.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Net.Http" />
+    <Reference Include="System.Xml" />
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="CashSwiftCashControlPortalAspNetModule.cs">
+      <SubType>Component</SubType>
+    </Compile>
+    <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <EmbeddedResource Include="CashSwiftCashControlPortalAspNetModule.resx">
+      <DependentUpon>CashSwiftCashControlPortalAspNetModule.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="dll.licenses">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="app.config" />
+    <EmbeddedResource Include="Model.DesignedDiffs.xafml">
+      <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+    </EmbeddedResource>
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\CashSwiftCashControlPortal.Module\CashSwiftCashControlPortal.Module.csproj">
+      <Project>{baa2f5f3-66d9-468f-ae87-f68741663bdb}</Project>
+      <Name>CashSwiftCashControlPortal.Module</Name>
+    </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Lib\DevExpress.ExpressApp.HtmlPropertyEditor.Web.v17.1.dll" />
+    <Content Include="Lib\DevExpress.ExpressApp.v17.1.dll" />
+    <Content Include="Lib\DevExpress.ExpressApp.Validation.Web.v17.1.dll" />
+    <Content Include="Lib\DevExpress.ExpressApp.Web.v17.1.dll" />
+    <Content Include="Lib\DevExpress.Persistent.BaseImpl.v17.1.dll" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+</Project>
