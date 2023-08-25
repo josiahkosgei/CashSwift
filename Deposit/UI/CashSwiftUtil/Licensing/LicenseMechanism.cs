@@ -36,7 +36,7 @@ namespace CashSwiftUtil.Licensing
             {
                 ActivationKey = GenerateActivationKey();
                 File.WriteAllText(ActivationKeyFile, ActivationKey);
-                processLicense();
+                //processLicense();
             }
             catch (Exception ex)
             {

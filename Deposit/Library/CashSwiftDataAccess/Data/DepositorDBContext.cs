@@ -118,7 +118,7 @@ namespace CashSwiftDataAccess.Data
         public virtual DbSet<sysTextItem> sysTextItems { get; set; }
         public virtual DbSet<sysTextItemCategory> sysTextItemCategories { get; set; }
         public virtual DbSet<sysTextItemType> sysTextItemTypes { get; set; }
-        public virtual Microsoft.Data.Entity.DbSet<sysTextTranslation> sysTextTranslations { get; set; }
+        public virtual DbSet<sysTextTranslation> sysTextTranslations { get; set; }
 
 
         protected override void OnModelCreating(DbModelBuilder modelBuilder)

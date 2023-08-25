@@ -27,12 +27,12 @@
 
     <!--#region Screen-->
     <Color x:Key="ScreenHeaderTextColor">#FFF</Color>
-    <Color x:Key="ScreenHeaderColor">#003d4c</Color>
+    <Color x:Key="ScreenHeaderColor">#1c4b82</Color>
     <Color x:Key="ScreenHeaderBorderColor">#84bd00</Color>
     <Color x:Key="ScreenHeaderGradientColor1">#f1f5f7</Color>
     <Color x:Key="ScreenHeaderGradientColor2">#FFFFFF</Color>
     <Color x:Key="ScreenFooterTextColor">#FF000000</Color>
-    <Color x:Key="ScreenFooterColor">#003d4c</Color>
+    <Color x:Key="ScreenFooterColor">#1c4b82</Color>
     <Color x:Key="ScreenFooterBorderColor">#84bd00</Color>
 
     <SolidColorBrush x:Key="ScreenHeaderBrush" Color="{StaticResource ScreenHeaderColor}" />

@@ -66,7 +66,7 @@ namespace CashSwiftDeposit.ViewModels
             get
             {
                 TransactionDenominationItems = CurrentTransaction?.CountedDenomination?.denominationItems ?? CurrentTransaction?.TotalDenomination?.denominationItems;
-                return !StateInitIsVisible && TransactionDenominationItems?.Count > 0;
+                return !STATEINITIsVisible && TransactionDenominationItems?.Count > 0;
             }
         }
 
@@ -80,15 +80,9 @@ namespace CashSwiftDeposit.ViewModels
             }
         }
 
-        public bool StateInitIsVisible
+        public bool STATEINITIsVisible
         {
-            get => sTATE_INIT_IsVisible;
-            set
-            {
-                sTATE_INIT_IsVisible = value;
-                NotifyOfPropertyChange(() => StateInitIsVisible);
-                NotifyOfPropertyChange(() => TransactionSummaryIsVisible);
-            }
+            get => CurrentCountScreenState==CountScreenState.NONE|| CurrentCountScreenState == CountScreenState.INIT;
         }
 
         public bool STATE_CASHIN_START_IsVisible
@@ -162,7 +156,6 @@ namespace CashSwiftDeposit.ViewModels
                     return;
                 currentCountScreenState = value;
                 NotifyOfPropertyChange(() => CurrentCountScreenState);
-                StateInitIsVisible = false;
                 STATE_CASHIN_START_IsVisible = false;
                 STATE_COUNTING_IsVisible = false;
                 STATE_CASHIN_PAUSE_IsVisible = false;
@@ -172,7 +165,6 @@ namespace CashSwiftDeposit.ViewModels
                 {
                     case CountScreenState.NONE:
                     case CountScreenState.INIT:
-                        StateInitIsVisible = true;
                         if (!HasStartedCounting)
                         {
                             ScreenStateInstructions = ApplicationViewModel.CashSwiftTranslationService.TranslateSystemText(string.Format("{0}.{1}.{2}", nameof(CountScreenViewModel), nameof(CurrentCountScreenState), value), "sys_CountState_Instructions_CASHIN", "Place cash on the counter and then\r\npress START COUNT");
@@ -377,10 +369,6 @@ namespace CashSwiftDeposit.ViewModels
                 NotifyOfPropertyChange(() => CountScreenTotalCaption);
             }
         }
-        public string DisplayedImage
-        {
-            get { return @"{AppDir}/Resources/CountState_Inst_INIT.png"; }
-        }
         public CountScreenViewModel(
           string screenTitle,
           ApplicationViewModel applicationViewModel,
@@ -390,7 +378,8 @@ namespace CashSwiftDeposit.ViewModels
             //StateInitIsVisible = true;
             //NotifyOfPropertyChange(() => StateInitIsVisible);
 
-            //CurrentCountScreenState = CountScreenState.INIT;
+            CurrentCountScreenState = CountScreenState.INIT;
+            NotifyOfPropertyChange(() => STATEINITIsVisible);
             CurrentTransaction = applicationViewModel.CurrentTransaction;
             ApplicationViewModel.CashInStartedEvent += new EventHandler<DeviceTransactionResult>(ApplicationViewModel_CashInStartedEvent);
             ApplicationViewModel.CountStartedEvent += new EventHandler<DeviceTransactionResult>(ApplicationViewModel_CountStartedEvent);

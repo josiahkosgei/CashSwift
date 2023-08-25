@@ -80,7 +80,7 @@
                         </StackPanel>
                     </Grid>
 
-                    <Grid x:Name="StateInitIsVisible" RowSpan="2" MaxWidth="500">
+                    <Grid x:Name="STATEINITIsVisible" RowSpan="2" MaxWidth="500">
                         <Image x:Name="image" Source="{StaticResource CountState_Inst_INIT}" Stretch="Uniform" VerticalAlignment="Top"/>
                     </Grid>
 
